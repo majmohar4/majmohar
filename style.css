@@ -1,8 +1,11 @@
 body {
-    margin: 0;
-    padding: 0;
+    margin: 1px;
+    padding: 1px;
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+    background-color: #f08502;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url("vecteezy_abstract-color-graphic-geometric-elements-abstract-backgrounds_8110386.png")  
 }
 
 h1 {
@@ -32,19 +35,30 @@ strong {
     background-color: #333;
     border-radius: 10px;
     overflow: hidden;
+    padding: 10px;
 }
 
 .navbar a {
-    float: left;
-    color: #fff;
+    flex: 1;
     text-align: center;
-    padding: 14px 16px;
+    color: #fff;
+    padding: 10px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 16px;
 }
+
+.navbar .right {
+    margin-left: auto;
+}
+.navbar .buttons {
+    display: flex;
+    justify-content: center; /* Center middle buttons */
+}
+
 
 .navbar a:hover {
     background-color: #555;
+    border-radius: 25px;
 }
 
 /* Round Corners */
@@ -94,4 +108,14 @@ button {
 
 button:hover {
     background-color: #555;
+}
+
+.centered{
+    text-align: center;
+}
+.input{
+    width: 100%;
+    padding: 30px 30px;
+    margin: 30px 0;
+    box-sizing: border-box;
 }

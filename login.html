@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="en">
 <head>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My page</title>
+    <title>Login</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
-<body onload="checkCookie()">
+<body>
     <div class="navbar">
         <a class="active, button" href="#" onclick="showHome()">Home</a>
         <a href="#" class="button" onclick="showAbout()">About</a>
@@ -20,9 +20,5 @@
             <button class="button register" onclick="showRegister()">Registracija</button>
     </div>
     </div>
-    <h1 id="pageTitle">Work in progress</h1>
-    <p id="pageContent">My name is <strong>Maj</strong> and I am a <strong>web developer</strong></p>
-    <p>You have accessed this page <span id="accessCount">0</span> times</p>
-    <p>Your last access was <span id="lastAccess">0</span> minutes ago</p>
 </body>
 </html>

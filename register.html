@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="sl">
+<html lang="en">
 <head>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My page</title>
+    <title>Register</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
 </head>
-<body onload="checkCookie()">
+<body">
     <div class="navbar">
         <a class="active, button" href="#" onclick="showHome()">Home</a>
         <a href="#" class="button" onclick="showAbout()">About</a>
@@ -20,9 +20,21 @@
             <button class="button register" onclick="showRegister()">Registracija</button>
     </div>
     </div>
-    <h1 id="pageTitle">Work in progress</h1>
-    <p id="pageContent">My name is <strong>Maj</strong> and I am a <strong>web developer</strong></p>
-    <p>You have accessed this page <span id="accessCount">0</span> times</p>
-    <p>Your last access was <span id="lastAccess">0</span> minutes ago</p>
+    <div class="input" id="login-form">
+		<h1>Login</h1>
+		<label class="centered">Email:</label>
+		<input class="centered" type="email" id="login-email"><br>
+		<label>Password:</label>
+		<input type="password" id="login-password"><br>
+		<button onclick="login()">Login</button>
+		<hr>
+</div>    
+<div id="profile" style="display: none;">
+	<h1 id="user-email"></h1>
+	<button onclick="logout()">Logout</button>
+</div>
+<div id="users" style="display: none;">
+	<h1>Users</h1>
+	<ul id="user-list"></ul>
 </body>
 </html>
