@@ -1,0 +1,97 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+
+h1 {
+    color: #2d3436;
+    text-align: center;
+    margin-top: 50px;
+}
+
+p {
+    font-size: 18px;
+    color: #636e72;
+    line-height: 1.5;
+    text-align: center;
+    margin-top: 30px;
+}
+
+strong {
+    color: #2d3436;
+    font-weight: bold;
+}
+
+/* Define styles for the navigation bar */
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.navbar a {
+    float: left;
+    color: #fff;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.navbar a:hover {
+    background-color: #555;
+}
+
+/* Round Corners */
+.navbar-rounded {
+    border-radius: 25px;
+}
+
+/* Hover Animation */
+.navbar-animation {
+    transition: transform 0.3s ease;
+}
+
+.navbar-animation:hover {
+    transform: translateY(-5px);
+}
+
+.navbar a.active {
+    background-color: #fff;
+    color: #2d3436;
+    border: 2px solid #333;
+    border-radius: 25px;
+}
+
+.button-non-active {
+    background-color: #333;
+    color: #fff;
+    border-radius: 25px;
+}
+
+.button-non-active:hover {
+    background-color: #555;
+}
+
+button {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
