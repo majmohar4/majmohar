@@ -34,37 +34,50 @@ for (var i = 0; i < navLinks.length; i++) {
 navLinks[2].classList.add("active");
 }
 
-// Get the cookie value for "accessCount" and parse it as an integer
-var accessCount = parseInt(getCookieValue("accessCount"));
-
-// Set the latestAccess variable to the current time
-var latestAccess = new Date();
-
-// Update the "accessCount" cookie with the new value
-setCookieValue("accessCount", accessCount + 1);
-
-// Update the HTML to display the access count and latest access time
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("accessCount").innerHTML = accessCount;
-    document.getElementById("latestAccess").innerHTML = latestAccess.getMinutes();
-});
-
-// Function to get the value of a cookie by name
-function getCookieValue(name) {
-    var cookies = document.cookie.split("; ");
-    for (var i = 0; i < cookies.length; i++) {
-        var parts = cookies[i].split("=");
-        if (parts[0] === name) {
-            return parts[1];
+function setCookie(cname, cvalue, exminutes) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exminutes * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+  }
+  
+  function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+      var cookies = document.cookie.split(';');
+      for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i].trim();
+        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+          cookieValue = parseInt(cookie.substring(name.length + 1));
+          break;
         }
+      }
     }
-    return "";
-}
-
-
-
-// Function to set the value of a cookie
-function setCookieValue(name, value) {
-    var cookieString = name + "=" + value;
-    document.cookie = cookieString;
-}
+    return cookieValue;
+  }
+  
+  function checkCookie() {
+    var lastAccess = getCookie("last_access");
+    var visitCount = getCookie("visit_count");
+  
+    if (lastAccess != "") {
+      var minutes = Math.floor((new Date() - new Date(lastAccess)) / 1000 / 60);
+      document.getElementById("last_access").innerHTML = minutes + " minutes ago";
+    } else {
+      document.getElementById("last_access").innerHTML = "Never";
+    }
+  
+    if (visitCount != "") {
+      visitCount = parseInt(visitCount) + 1;
+    } else {
+      visitCount = 1;
+    }
+  
+    setCookie("last_access", new Date(), 60*24);
+    setCookie("visit_count", visitCount, 60*24);
+  
+    document.getElementById("visit_count").innerHTML = visitCount + " times";
+  }
+  
+  checkCookie();
+  

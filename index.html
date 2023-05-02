@@ -9,13 +9,13 @@
 </head>
 <body>
     <div class="navbar">
-        <a class="button-non-active button" href="#" onclick="showHome()">Home</a>
-        <a href="#" class="button-non-active button" onclick="showAbout()">About</a>
-        <a href="#" class="button-non-active button" onclick="showContact()">Contact</a>
+        <a class="active, button" href="#" onclick="showHome()">Home</a>
+        <a href="#" class="button" onclick="showAbout()">About</a>
+        <a href="#" class="button" onclick="showContact()">Contact</a>
     </div>
     <h1 id="pageTitle">Work in progress</h1>
-    <p>You have accessed this website <span id="accessCount"></span> times.</p>
-	<p>The latest access was <span id="latestAccess"></span> minutes ago.</p>
     <p id="pageContent">My name is <strong>Maj</strong> and I am a <strong>web developer</strong></p>
+    <p>You have accessed this page <span id="accessCount">0</span> times</p>
+    <p>Your last access was <span id="lastAccess">0</span> minutes ago</p>
 </body>
 </html>
