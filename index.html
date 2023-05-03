@@ -5,10 +5,12 @@
 	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My page</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="firebase.js"></script>
 </head>
 <body onload="checkCookie()">
     <div class="navbar">
@@ -16,7 +18,7 @@
         <a href="#" class="button" onclick="showAbout()">About</a>
         <a href="#" class="button" onclick="showContact()">Contact</a>
     <div class="buttons">
-            <button class="button login"onclick="showLogin()">Prijava</button>
+            <button class="button login" onclick=showLogin()>Prijava</button>
             <button class="button register" onclick="showRegister()">Registracija</button>
     </div>
     </div>
@@ -24,5 +26,14 @@
     <p id="pageContent">My name is <strong>Maj</strong> and I am a <strong>web developer</strong></p>
     <p>You have accessed this page <span id="accessCount">0</span> times</p>
     <p>Your last access was <span id="lastAccess">0</span> minutes ago</p>
+
+    <div id="profile" style="display: none;">
+        <h1 id="user-email"></h1>
+        <button onclick="logout()">Logout</button>
+    </div>
+    <div id="users" style="display: none;">
+        <h1>Users</h1>
+        <ul id="user-list"></ul>
+    </div>
 </body>
 </html>

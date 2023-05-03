@@ -9,26 +9,50 @@
     <title>Register</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="firebase.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.21.0/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+          apiKey: "AIzaSyC5qgMh1cC8RsfXHafcnJu5BioJRIm1hdw",
+          authDomain: "my-website-8f892.firebaseapp.com",
+          projectId: "my-website-8f892",
+          storageBucket: "my-website-8f892.appspot.com",
+          messagingSenderId: "91947991336",
+          appId: "1:91947991336:web:663163e19d2c8d5d81901d",
+          measurementId: "G-B74BY197TF"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+      </script>
 </head>
 <body">
     <div class="navbar">
         <a class="active, button" href="#" onclick="showHome()">Home</a>
         <a href="#" class="button" onclick="showAbout()">About</a>
         <a href="#" class="button" onclick="showContact()">Contact</a>
+    </div>
     <div class="buttons">
             <button class="button login"onclick="showLogin()">Prijava</button>
             <button class="button register" onclick="showRegister()">Registracija</button>
     </div>
-    </div>
     <div class="input" id="login-form">
-		<h1>Login</h1>
-		<label class="centered">Email:</label>
-		<input class="centered" type="email" id="login-email"><br>
+        <h1>Sign up</h1>
+		<label>Email:</label>
+		<input type="email" id="signup-email"><br>
 		<label>Password:</label>
-		<input type="password" id="login-password"><br>
-		<button onclick="login()">Login</button>
-		<hr>
-</div>    
+		<input type="password" id="signup-password"><br>
+		<button onclick="signup()">Sign up</button>
+        <hr>
+    </div>    
 <div id="profile" style="display: none;">
 	<h1 id="user-email"></h1>
 	<button onclick="logout()">Logout</button>
