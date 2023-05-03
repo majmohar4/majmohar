@@ -1,6 +1,7 @@
 
 function showHome() {
     // Update the page title and content
+    window.location = "index.html";
     document.getElementById("pageTitle").innerHTML = "Home";
     document.getElementById("pageContent").innerHTML = "Welcome to my home page! This site is still under construction, but I hope to have more content soon.";
 

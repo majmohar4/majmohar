@@ -35,22 +35,22 @@
       </script>
 </head>
 <body">
-    <div class="navbar">
+    <div class="navbar centered">
         <a class="active, button" href="#" onclick="showHome()">Home</a>
         <a href="#" class="button" onclick="showAbout()">About</a>
         <a href="#" class="button" onclick="showContact()">Contact</a>
-    </div>
     <div class="buttons">
             <button class="button login"onclick="showLogin()">Prijava</button>
             <button class="button register" onclick="showRegister()">Registracija</button>
     </div>
+    </div>
     <div class="input" id="login-form">
-        <h1>Sign up</h1>
-		<label>Email:</label>
+        <h1 style="color: white;">Sign up</h1>
+		<label style="color: white;">Email:</label>
 		<input type="email" id="signup-email"><br>
-		<label>Password:</label>
+		<label style="color: white;">Password:</label>
 		<input type="password" id="signup-password"><br>
-		<button onclick="signup()">Sign up</button>
+		<button onclick="signup()" style="margin-top: 20px;">Sign up</button>
         <hr>
     </div>    
 <div id="profile" style="display: none;">
