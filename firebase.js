@@ -73,6 +73,7 @@ function logout() {
     auth.signOut()
         .then(() => {
             location.reload();
+            alert("Logged out successfully!");
         })
         .catch(error => {
             alert(error.message);
