@@ -14,23 +14,26 @@
 </head>
 <body>
     <div class="navbar">
-        <a class="active, button" href="#" onclick="showHome()">Home</a>
-        <a href="#" class="button" onclick="showAbout()">About</a>
-        <a href="#" class="button" onclick="showContact()">Contact</a>
+        <a class="active, button button3" href="#" onclick="showHome()">Home</a>
+        <a href="#" class="button button3" onclick="showAbout()">About</a>
+        <a href="#" class="button button3" onclick="showContact()">Contact</a>
     <div class="buttons">
-            <button class="button login"onclick="showLogin()">Prijava</button>
-            <button class="button register" onclick="showRegister()">Registracija</button>
+            <button class="button login button2"onclick="showLogin()">Prijava</button>
+            <button class="button register button2" onclick="showRegister()">Registracija</button>
     </div>
     </div>
-    <div class="input" id="login-form">
-        <h1 style="color: white;">Login</h1>
-		<label style="color: white;">Email:</label>
-		<input type="email" id="login-email"><br>
-		<label style="color: white;">Password:</label>
-		<input type="password" id="login-password"><br>
-		<button onclick="login()" style="margin-top: 20px;">Login</button>
+    <div class="input" id="login-form" autocomplete="off">
+        <h1>Login</h1>
+        <form>
+          <label for="login-email">Email:</label>
+          <input type="email" id="login-email" style="text-align: center" required><br>
+          <label for="login-password">Password:</label>
+          <input type="password" id="login-password" style="text-align: center;"required><br>
+          <button type="show-button" onclick="showPassword()">Show password</button>
+          <button type="submit" onclick="login()">Login</button>
+        </form>
         <hr>
-</div>
+      </div>
 
     <div id="profile" style="display: none;">
         <h1 id="user-email"></h1>

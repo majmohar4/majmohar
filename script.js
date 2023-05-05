@@ -2,38 +2,21 @@
 function showHome() {
     // Update the page title and content
     window.location = "index.html";
-    document.getElementById("pageTitle").innerHTML = "Home";
-    document.getElementById("pageContent").innerHTML = "Welcome to my home page! This site is still under construction, but I hope to have more content soon.";
-
-    // Update the active tab
-    var navLinks = document.getElementsByClassName("navbar")[0].getElementsByTagName("a");
-    for (var i = 0; i < navLinks.length; i++) {
-        navLinks[i].classList.remove("active");
-    }
-    navLinks[0].classList.add("active");
 }
 
 function showAbout() {
-    // Update the page title and content
-    document.getElementById("pageTitle").innerHTML = "About";
-    document.getElementById("pageContent").innerHTML = "I am a web developer who enjoys building responsive and user-friendly websites. I have experience with HTML, CSS, JavaScript, and Python.";
-
-    // Update the active tab
-    var navLinks = document.getElementsByClassName("navbar")[0].getElementsByTagName("a");
+    window.location = "/about.html";
+}
+function showNav() {
+    var navLinks = document.getElementsByClassName("navbar")[1].getElementsByTagName("a");
     for (var i = 0; i < navLinks.length; i++) {
         navLinks[i].classList.remove("active");
     }
-    navLinks[1].classList.add("active");
+    navLinks[2].classList.add("active");
 }
 
 function showContact() {
-document.getElementById("pageTitle").innerHTML = "Contact";
-document.getElementById("pageContent").innerHTML = "You can reach me by email at <a href='mailto:maj.mohar4@gmail.com'>maj.mohar4@gmail.com</a>.";
-var navLinks = document.getElementsByClassName("navbar")[0].getElementsByTagName("a");
-for (var i = 0; i < navLinks.length; i++) {
-    navLinks[i].classList.remove("active");
-}
-navLinks[2].classList.add("active");
+  window.location = "contact.html";
 }
 
 function setCookie(cookieName, cookieValue, expirationDays) {
@@ -42,7 +25,6 @@ function setCookie(cookieName, cookieValue, expirationDays) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
   }
-  
   function getCookie(cookieName) {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -58,9 +40,23 @@ function setCookie(cookieName, cookieValue, expirationDays) {
     }
     return "";
   }
-  
-  
   function checkCookie() {
+    var lastAccess = getCookie("lastAccess");
+    var visitCount = getCookie("visitCount");
+    var currentDate = new Date();
+    var minutes = Math.floor((currentDate.getTime() - lastAccess) / 60000);
+    if (lastAccess != "" && minutes <= 5) {{
+      document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
+      document.getElementById("accessCount").innerHTML = parseInt(visitCount) + 1;
+      setCookie("lastAccess", currentDate.getTime(), 30);
+      setCookie("visitCount", parseInt(visitCount) + 1, 30);
+    } if (lastAccess != ""){
+      setCookie("lastAccess", currentDate.getTime(), 30);
+      setCookie("visitCount", 1, 30);
+    }
+  }
+  }
+  function getcount() {
     var lastAccess = getCookie("lastAccess");
     var visitCount = getCookie("visitCount");
     var currentDate = new Date();
@@ -75,5 +71,24 @@ function setCookie(cookieName, cookieValue, expirationDays) {
       setCookie("visitCount", 1, 30);
     }
   }
-  
   checkCookie();
+
+  function showPassword() {
+    var passwordInput = document.getElementById("login-password");
+    var passwordDisplay = document.getElementById("login-password");
+    var showButton = document.getElementById("show-button");
+    
+    setTimeout(function() {
+      // Do something after 3 seconds
+      console.log("3 seconds have passed!");
+    }, 3000);
+    if (passwordInput.type === "password") {
+      passwordDisplay.innerHTML = passwordInput.value;
+      passwordInput.type = "text";
+      showButton.innerHTML = "Hide Password";
+    } else {
+      passwordDisplay.innerHTML = "*".repeat(passwordInput.value.length);
+      passwordInput.type = "password";
+      showButton.innerHTML = "Show Password";
+    }
+  }

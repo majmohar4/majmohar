@@ -12,7 +12,7 @@
     <script src="script.js"></script>
     <script src="firebase.js"></script>
 </head>
-<body onload="checkCookie()">
+<body onload="showNav()">
     <div class="navbar">
         <a class="active, button" href="#" onclick="showHome()">Home</a>
         <a href="#" class="button" onclick="showAbout()">About</a>
@@ -22,18 +22,7 @@
             <button class="button register" onclick="showRegister()">Registracija</button>
     </div>
     </div>
+    <h1>Contact page</h1>
     <h1 id="pageTitle">Work in progress</h1>
-    <p id="pageContent">My name is <strong>Maj</strong> and I am a <strong>web developer</strong></p>
-    <p>You have accessed this page <span id="accessCount"></span> times</p>
-    <p>Your last access was <span id="lastAccess"></span>.</p>
-
-    <div id="profile" style="display: none;">
-        <h1 id="user-email"></h1>
-        <button onclick="logout()">Logout</button>
-    </div>
-    <div id="users" style="display: none;">
-        <h1>Users</h1>
-        <ul id="user-list"></ul>
-    </div>
 </body>
 </html>

@@ -94,7 +94,7 @@ strong {
 
 button {
     background-color: #333;
-    border: none;
+    border: 1px #dbbc20 solid;
     color: #fff;
     padding: 10px 20px;
     text-align: center;
@@ -122,17 +122,28 @@ button:hover {
     border-radius: 5px;
     padding: 20px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2);
-    background-color: rgb(255, 115, 0); 
+    background-color: rgb(232, 81, 80); 
     width: 400px; 
     height: 300px; 
     margin: auto;
     margin-top: 100px;
 }
 .input input[type="email"], .input input[type="password"] {
-    width: 100%;
+    width: 80%;
     font-size: 15px;
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #ef5724;
-    background-color: #d4c629;
+    background-color: rgba(238, 242, 171, 0.469);
+    align-items: center;
   }
+
+.button2{
+    border: 2px #f1ac2b96 solid;
+    cursor: all-scroll;
+}
+.button3{
+    border: 3px rgba(226, 135, 75, 0.282) solid;
+    cursor: default;
+    border-radius: 25px;
+}
