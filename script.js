@@ -48,15 +48,20 @@ function setCookie(cookieName, cookieValue, expirationDays) {
     var visitCount = getCookie("visitCount");
     var currentDate = new Date();
     var minutes = Math.floor((currentDate.getTime() - lastAccess) / 60000);
-    if (lastAccess != "") {
-      document.getElementById("lastAccess").innerHTML = minutes;
+    if (minutes>=5){
+      if (lastAccess != "") {
+        document.getElementById("lastAccess").innerHTML = minutes;
+        document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
+        document.getElementById("accessCount").innerHTML = parseInt(visitCount) + 1;
+        setCookie("lastAccess", currentDate.getTime(), 30);
+        setCookie("visitCount", parseInt(visitCount) + 1, 30);
+      } else if(lastAccess=""){
+        setCookie("lastAccess", currentDate.getTime(), 30);
+        setCookie("visitCount", 1, 30);
+      }
+    }else{
+      document.getElementById("accessCount").innerHTML = parseInt(visitCount)
       document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
-      document.getElementById("accessCount").innerHTML = parseInt(visitCount) + 1;
-      setCookie("lastAccess", currentDate.getTime(), 30);
-      setCookie("visitCount", parseInt(visitCount) + 1, 30);
-    } else {
-      setCookie("lastAccess", currentDate.getTime(), 30);
-      setCookie("visitCount", 1, 30);
     }
   }
   
