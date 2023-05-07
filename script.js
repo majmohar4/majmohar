@@ -25,6 +25,7 @@ function setCookie(cookieName, cookieValue, expirationDays) {
     var expires = "expires="+ d.toUTCString();
     document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
   }
+  
   function getCookie(cookieName) {
     var name = cookieName + "=";
     var decodedCookie = decodeURIComponent(document.cookie);
@@ -40,28 +41,15 @@ function setCookie(cookieName, cookieValue, expirationDays) {
     }
     return "";
   }
+  
+  
   function checkCookie() {
     var lastAccess = getCookie("lastAccess");
     var visitCount = getCookie("visitCount");
     var currentDate = new Date();
     var minutes = Math.floor((currentDate.getTime() - lastAccess) / 60000);
-    if (lastAccess != "" && minutes <= 5) {{
-      document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
-      document.getElementById("accessCount").innerHTML = parseInt(visitCount) + 1;
-      setCookie("lastAccess", currentDate.getTime(), 30);
-      setCookie("visitCount", parseInt(visitCount) + 1, 30);
-    } if (lastAccess != ""){
-      setCookie("lastAccess", currentDate.getTime(), 30);
-      setCookie("visitCount", 1, 30);
-    }
-  }
-  }
-  function getcount() {
-    var lastAccess = getCookie("lastAccess");
-    var visitCount = getCookie("visitCount");
-    var currentDate = new Date();
-    var minutes = Math.floor((currentDate.getTime() - lastAccess) / 60000);
     if (lastAccess != "") {
+      document.getElementById("lastAccess").innerHTML = minutes;
       document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
       document.getElementById("accessCount").innerHTML = parseInt(visitCount) + 1;
       setCookie("lastAccess", currentDate.getTime(), 30);
@@ -71,6 +59,7 @@ function setCookie(cookieName, cookieValue, expirationDays) {
       setCookie("visitCount", 1, 30);
     }
   }
+  
   checkCookie();
 
   function showPassword() {
