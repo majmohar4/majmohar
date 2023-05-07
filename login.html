@@ -11,16 +11,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <script src="firebase.js"></script>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
-      data-tag="font"
-    />
-    <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
     <div class="navbar">
-        <link href="./desktop1.css" rel="stylesheet" />
         <a class="active, button button3" href="#" onclick="showHome()">Home</a>
         <a href="#" class="button button3" onclick="showAbout()">About</a>
         <a href="#" class="button button3" onclick="showContact()">Contact</a>
@@ -36,15 +29,18 @@
           <input type="email" id="login-email" style="text-align: center" required><br>
           <label for="login-password">Password:</label>
           <input type="password" id="login-password" style="text-align: center;"required><br>
-          <button type="show-button" onclick="showPassword()">Show password</button>
+            <div id="showed-password" style="display: none;">
+                <input type="password" id="showed-password" class="input">neki</button>
+            </div>
+          <button id="show-button"type="show-button" onclick="showPassword()">Show password</button>
           <button type="submit" onclick="login()">Login</button>
         </form>
-        <hr>
+        <br>
       </div>
 
     <div id="profile" style="display: none;">
         <h1 id="user-email"></h1>
-        <button onclick="logout()">Logout</button>
+        <button id="logout" onclick="logout()">Logout</button>
     </div>
     <div id="users" style="display: none;">
         <h1>Users</h1>

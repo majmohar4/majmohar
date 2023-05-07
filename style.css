@@ -140,10 +140,22 @@ button:hover {
 
 .button2{
     border: 2px #f1ac2b96 solid;
-    cursor: all-scroll;
+    cursor: default;
 }
 .button3{
     border: 3px rgba(226, 135, 75, 0.282) solid;
     cursor: default;
     border-radius: 25px;
 }
+
+
+.input:-webkit-autofill {
+    /* change background color */
+    background-color: rgb(0, 94, 255);
+    
+    /* change text color */
+    color: red;
+    
+    /* change border color */
+    border-color: green;
+  }

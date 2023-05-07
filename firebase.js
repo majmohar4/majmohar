@@ -35,11 +35,18 @@ const db = firebase.firestore();
 
 // Login function
 function login() {
+    const loginForm = document.getElementById("login-form");
+    loginForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // prevent default form submission behavior
+}); 
+    console.log("email")
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
+    console.log("found email")
     auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-            document.getElementById("login-form").style.display = "none";
+    .then(() => {
+        console.log("loged in")
+        document.getElementById("login-form").style.display = "none";
             document.getElementById("profile").style.display = "block";
             document.getElementById("user-email").innerHTML = "Logged in as: " + email;
             if (email === "maj.mohar4@gmail.com") {
@@ -59,8 +66,16 @@ function signup() {
     const email = document.getElementById("signup-email").value;
     const password = document.getElementById("signup-password").value;
     auth.createUserWithEmailAndPassword(email, password)
-        .then(() => {
+        .then((userCredential) => {
+            const user = userCredential.user;
             alert("Account created successfully!");
+            user.sendEmailVerification()
+                .then(() => {
+                    alert("Verification email sent!");
+                })
+                .catch(error => {
+                    alert(error.message);
+                });
         })
         .catch(error => {
             alert(error.message);

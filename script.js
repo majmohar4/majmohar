@@ -68,21 +68,28 @@ function setCookie(cookieName, cookieValue, expirationDays) {
   checkCookie();
 
   function showPassword() {
+    const loginForm = document.getElementById("login-form");
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault(); // prevent default form submission behavior
+    }); 
+  
     var passwordInput = document.getElementById("login-password");
-    var passwordDisplay = document.getElementById("login-password");
     var showButton = document.getElementById("show-button");
+    var passwordDisplay = document.getElementById("showed-password");
     
-    setTimeout(function() {
-      // Do something after 3 seconds
-      console.log("3 seconds have passed!");
-    }, 3000);
-    if (passwordInput.type === "password") {
-      passwordDisplay.innerHTML = passwordInput.value;
-      passwordInput.type = "text";
+    if (showButton.getAttribute("type") === "show-button") {
+      document.getElementById("showed-password").style.display = "block";
+      passwordDisplay.textContent = passwordInput.value;
+      passwordDisplay.type = "text";
       showButton.innerHTML = "Hide Password";
+      showButton.setAttribute("type", "hide-button");
     } else {
-      passwordDisplay.innerHTML = "*".repeat(passwordInput.value.length);
-      passwordInput.type = "password";
+      passwordDisplay.style.display = "none";
+      passwordDisplay.type = "password";
       showButton.innerHTML = "Show Password";
+      showButton.setAttribute("type", "show-button");
     }
   }
+  
+  
+  
