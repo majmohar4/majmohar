@@ -1,161 +1,192 @@
-body {
-    margin: 1px;
-    padding: 1px;
-    font-family: Arial, sans-serif;
-    background-color: #f08502;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-image: url("vecteezy_abstract-color-graphic-geometric-elements-abstract-backgrounds_8110386.png")  
-}
+    body {
+        margin: 1px;
+        padding: 1px;
+        font-family: Arial, sans-serif;
+        background-color: #f08502;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-image: url("vecteezy_abstract-color-graphic-geometric-elements-abstract-backgrounds_8110386.png")  
+    }
 
-h1 {
-    color: #2d3436;
-    text-align: center;
-    margin-top: 50px;
-}
+    h1 {
+        color: #2d3436;
+        text-align: center;
+        margin-top: 50px;
+    }
 
-p {
-    font-size: 18px;
-    color: #636e72;
-    line-height: 1.5;
-    text-align: center;
-    margin-top: 30px;
-}
+    p {
+        font-size: 18px;
+        color: #636e72;
+        line-height: 1.5;
+        text-align: center;
+        margin-top: 30px;
+    }
 
-strong {
-    color: #2d3436;
-    font-weight: bold;
-}
+    strong {
+        color: #2d3436;
+        font-weight: bold;
+    }
 
-/* Define styles for the navigation bar */
-.navbar {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #333;
-    border-radius: 10px;
-    overflow: hidden;
-    padding: 10px;
-}
+    /* Define styles for the navigation bar */
+    .navbar {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #333;
+        border-radius: 10px;
+        overflow: hidden;
+        padding: 10px;
+    }
 
-.navbar a {
-    flex: 1;
-    text-align: center;
-    color: #fff;
-    padding: 10px;
-    text-decoration: none;
-    font-size: 16px;
-}
+    .navbar a {
+        flex: 1;
+        text-align: center;
+        color: #fff;
+        padding: 10px;
+        text-decoration: none;
+        font-size: 16px;
+    }
 
-.navbar .right {
-    margin-left: auto;
-}
-.navbar .buttons {
-    display: flex;
-    justify-content: center; /* Center middle buttons */
-}
-
-
-.navbar a:hover {
-    background-color: #555;
-    border-radius: 25px;
-}
-
-/* Round Corners */
-.navbar-rounded {
-    border-radius: 25px;
-}
-
-/* Hover Animation */
-.navbar-animation {
-    transition: transform 0.3s ease;
-}
-
-.navbar-animation:hover {
-    transform: translateY(-5px);
-}
-
-.navbar a.active {
-    background-color: #fff;
-    color: #2d3436;
-    border: 2px solid #333;
-    border-radius: 25px;
-}
-
-.button-non-active {
-    background-color: #333;
-    color: #fff;
-    border-radius: 25px;
-}
-
-.button-non-active:hover {
-    background-color: #555;
-}
-
-button {
-    background-color: #333;
-    border: 1px #dbbc20 solid;
-    color: #fff;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 10px;
-    border-radius: 25px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #555;
-}
-
-.centered{
-    text-align: center;
-    align-items: center;
-}
-.input {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    padding: 20px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2);
-    background-color: rgb(232, 81, 80); 
-    width: 400px; 
-    height: 300px; 
-    margin: auto;
-    margin-top: 100px;
-}
-.input input[type="email"], .input input[type="password"] {
-    width: 80%;
-    font-size: 15px;
-    padding: 10px;
-    border-radius: 5px;
-    border: 2px solid #ef5724;
-    background-color: rgba(238, 242, 171, 0.469);
-    align-items: center;
-  }
-
-.button2{
-    border: 2px #f1ac2b96 solid;
-    cursor: default;
-}
-.button3{
-    border: 3px rgba(226, 135, 75, 0.282) solid;
-    cursor: default;
-    border-radius: 25px;
-}
+    .navbar .right {
+        margin-left: auto;
+    }
+    .navbar .buttons {
+        display: flex;
+        justify-content: center; /* Center middle buttons */
+    }
 
 
-.input:-webkit-autofill {
-    /* change background color */
-    background-color: rgb(0, 94, 255);
-    
-    /* change text color */
-    color: red;
-    
-    /* change border color */
-    border-color: green;
-  }
+    .navbar a:hover {
+        background-color: #555;
+        border-radius: 25px;
+    }
+
+    /* Round Corners */
+    .navbar-rounded {
+        border-radius: 25px;
+    }
+
+    /* Hover Animation */
+    .navbar-animation {
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-animation:hover {
+        transform: translateY(-5px);
+    }
+
+    .navbar a.active {
+        background-color: #fff;
+        color: #2d3436;
+        border: 2px solid #333;
+        border-radius: 25px;
+    }
+
+    .button-non-active {
+        background-color: #333;
+        color: #fff;
+        border-radius: 25px;
+    }
+
+    .button-non-active:hover {
+        background-color: #555;
+    }
+
+    button {
+        background-color: #333;
+        border: 1px #dbbc20 solid;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 10px;
+        border-radius: 25px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #555;
+    }
+
+    .centered{
+        text-align: center;
+        align-items: center;
+    }
+    .input {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        padding: 20px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2);
+        background-color: rgb(232, 81, 80); 
+        width: 400px; 
+        height: 300px; 
+        margin: auto;
+        margin-top: 100px;
+    }
+    .input input[type="email"], .input input[type="password"] {
+        width: 80%;
+        font-size: 15px;
+        padding: 10px;
+        border-radius: 5px;
+        border: 2px solid #ef5724;
+        background-color: rgba(238, 242, 171, 0.469);
+        align-items: center;
+    }
+
+    .button2{
+        border: 2px #f1ac2b96 solid;
+        cursor: default;
+    }
+    .button3{
+        border: 3px rgba(226, 135, 75, 0.282) solid;
+        cursor: default;
+        border-radius: 25px;
+    }
+
+
+    .input:-webkit-autofill {
+        /* change background color */
+        background-color: rgb(0, 94, 255);
+        
+        /* change text color */
+        color: red;
+        
+        /* change border color */
+        border-color: green;
+    }
+.navbar-600{
+    display: none;
+
+}
+    @media (max-width: 600px) {
+        .navbar{
+            display: none;
+        }
+
+        .navbar-600{
+            display: inline-block;
+            text-align: right;
+            position: relative;
+            width: 100%;
+            background-color: #333;
+            border-radius: 10px;
+        }
+        .buttons-600{
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+            font-size: 20px;
+            border-radius: 25px;
+            cursor: default;
+        }
+    }
+
+

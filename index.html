@@ -4,6 +4,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,18 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <script src="firebase.js"></script>
+    <style>
+        .material-symbols-outlined {
+            color:#e9efef ;
+    
+        margin: 5px;
+          font-variation-settings:
+          'FILL' 1,
+          'wght' 400,
+          'GRAD' 1,
+          'opsz' 48
+        }
+        </style>
 </head>
 <body onload="checkCookie()">
     <div class="navbar">
@@ -22,7 +35,20 @@
             <button class="button login button2"onclick="showLogin()">Prijava</button>
             <button class="button register button2" onclick="showRegister()">Registracija</button>
     </div>
-    </div>
+</div>
+<div class="navbar-600">
+    <button><strong><span class="material-symbols-outlined">
+        menu
+        </span></strong></button>
+    <div style="text-align: right;">
+        <div style="display: inline-block; text-align: center;">
+                <div class="buttons-600">
+                        <button class="button login button2"onclick="showLogin()">Prijava</button>
+                        <button class="button register button2" onclick="showRegister()">Registracija</button>
+                </div>
+                </div>
+        </div>
+      </div>
     <h1 id="pageTitle">Work in progress</h1>
     <p id="pageContent">My name is <strong>Maj</strong> and I am a <strong>web developer</strong></p>
     <p>You have accessed this page <span id="accessCount"></span> times</p>
