@@ -20,11 +20,6 @@
     <div class="buttons">
             <button class="button login button2"onclick="showLogin()">Prijava</button>
             <button class="button register button2" onclick="showRegister()">Registracija</button>
-            <div id="profile" style="display: none;">
-                Logged in as: <span id="user-login"></span><br>
-                User ID: <span id="user-id"></span><br>
-                Avatar URL: <img id="user-avatar" width="50px" height="50px" src=""><br>
-              </div>
     </div>
     </div>
     <div class="input" id="login-form" autocomplete="off">
@@ -39,7 +34,6 @@
             </div>
           <button id="show-button"type="show-button" onclick="showPassword()">Show password</button>
           <button type="submit" onclick="login()">Login</button>
-          <button type="submit" onclick="signInWithGitHub()">Sign in with GitHub</button>
         </form>
         <br>
       </div>

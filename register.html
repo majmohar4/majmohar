@@ -13,7 +13,6 @@
 </head>
 <body">
 <div class="navbar">
-    <link href="./desktop1.css" rel="stylesheet" />
     <a class="active, button button3" href="#" onclick="showHome()">Home</a>
     <a href="#" class="button button3" onclick="showAbout()">About</a>
     <a href="#" class="button button3" onclick="showContact()">Contact</a>
@@ -22,14 +21,22 @@
         <button class="button register button2" onclick="showRegister()">Registracija</button>
 </div>
 </div>
-    <div class="input" id="login-form">
-        <h1 style="color: white;">Sign up</h1>
-		<label style="color: rgb(234, 146, 24);">Email:</label>
-		<input type="email" id="signup-email"><br>
-		<label style="color: rgb(233, 139, 17);">Password:</label>
-		<input type="password" id="signup-password"><br>
-		<button onclick="signup()" style="margin-top: 20px;">Sign up</button>
-        <br>
+        <div class="input" id="login-form" autocomplete="off">
+            <h1>Sign Up</h1>
+            <form>
+              <label for="login-email">Email:</label>
+              <input type="email" id="login-email" style="text-align: center" required><br>
+              <label for="login-password">Password:</label>
+              <input type="password" id="repeat-password" style="text-align: center" required><br>
+              <label for="login-password">Repeat password:</label>
+              <input type="password" id="login-password" style="text-align: center;"required><br>
+                <div id="showed-password" style="display: none;">
+                    <input type="password" id="showed-password" class="input">neki</button>
+                </div>
+              <button id="show-button"type="show-button" onclick="showPassword()">Show password</button>
+              <button type="submit" onclick="signup()">SignUp</button>
+            </form>
+            <br>
     </div>    
 <div id="profile" style="display: none;">
 	<h1 id="user-email"></h1>
