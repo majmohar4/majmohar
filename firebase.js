@@ -112,6 +112,10 @@ function getUsers() {
         });
 }
 function signInWithGitHub() {
+    const loginForm = document.getElementById("login-form");
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault(); // prevent default form submission behavior
+    }); 
     const clientId = 'eee8e5694fcd93a98188'; // Replace with your own client ID
     const redirectUri = 'https://majmohar.me/login.html'; // Replace with your own redirect URI
     const scope = 'read:user'; // Replace with the scopes you need
