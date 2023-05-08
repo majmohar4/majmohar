@@ -113,7 +113,7 @@ function getUsers() {
 }
 function signInWithGitHub() {
     const clientId = 'eee8e5694fcd93a98188'; // Replace with your own client ID
-    const redirectUri = 'http://127.0.0.1:5500/login.html'; // Replace with your own redirect URI
+    const redirectUri = 'https://majmohar.me/login.html'; // Replace with your own redirect URI
     const scope = 'read:user'; // Replace with the scopes you need
 
     const url = `https://github.com/login/oauth/authorize?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scope}&state=STATE`;
@@ -151,7 +151,7 @@ function signInWithGitHub() {
         client_id: 'eee8e5694fcd93a98188', // Replace with your own client ID
         client_secret: 'd4c88530da139d6b919115072bed31cb5223b198', // Replace with your own client secret
         code: code,
-        redirect_uri: 'http://127.0.0.1:5500/login.html' // Replace with your own redirect URI
+        redirect_uri: 'https://majmohar.me/login.html' // Replace with your own redirect URI
       })
     })
     .then(response => response.text())
