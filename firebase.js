@@ -159,7 +159,9 @@ function checkSessionCookie() {
                     } else {
                         document.getElementById("users").style.display = "block";
                         const welcome = document.createElement("div");
-                        welcome.innerHTML = `Hello ${email}! Thanks for logging in to my website. New content: remnote for geography: <a href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Link</a>`;
+                        welcome.innerHTML = `Živijo ${email}! Hvala, da si se vpisal na mojo spletno stran.`;
+                        welcome.innerHTML = "   Nove stvari: remnote za geografijo: <a href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Link</a>`;
+                        welcome.innerHTML = `   Nove stvari: remnote za likovno umetnost: <a href="https://www.remnote.com/a/645aa57fd2258975e69d5b55">Link</a>`;
                         document.getElementById("profile").appendChild(welcome);
                     }
                 }
