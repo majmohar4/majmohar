@@ -5,7 +5,7 @@
         background-color: #f08502;
         background-size: cover;
         background-repeat: no-repeat;
-        background-image: url("vecteezy_abstract-color-graphic-geometric-elements-abstract-backgrounds_8110386.png")  
+        background-image: url("vecteezy_abstract-color-graphic-geometric-elements-abstract-backgrounds_8110386.png")
     }
 
     h1 {
@@ -50,9 +50,10 @@
     .navbar .right {
         margin-left: auto;
     }
+
     .navbar .buttons {
         display: flex;
-        justify-content: center; /* Center middle buttons */
+        justify-content: center
     }
 
 
@@ -110,10 +111,11 @@
         background-color: #555;
     }
 
-    .centered{
+    .centered {
         text-align: center;
         align-items: center;
     }
+
     .input {
         display: flex;
         flex-direction: column;
@@ -122,13 +124,15 @@
         border-radius: 5px;
         padding: 20px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2);
-        background-color: rgb(232, 81, 80); 
-        width: 400px; 
-        height: 300px; 
+        background-color: rgb(232, 81, 80);
+        width: 400px;
+        height: 300px;
         margin: auto;
         margin-top: 100px;
     }
-    .input input[type="email"], .input input[type="password"] {
+
+    .input input[type="email"],
+    .input input[type="password"] {
         width: 80%;
         font-size: 15px;
         padding: 10px;
@@ -138,11 +142,12 @@
         align-items: center;
     }
 
-    .button2{
+    .button2 {
         border: 2px #f1ac2b96 solid;
         cursor: default;
     }
-    .button3{
+
+    .button3 {
         border: 3px rgba(226, 135, 75, 0.282) solid;
         cursor: default;
         border-radius: 25px;
@@ -152,41 +157,39 @@
     .input:-webkit-autofill {
         /* change background color */
         background-color: rgb(0, 94, 255);
-        
+
         /* change text color */
         color: red;
-        
+
         /* change border color */
         border-color: green;
     }
-.navbar-600{
-    display: none;
 
-}
+    .buttons-main {
+        display: flex;
+        float: left;
+    }
+
+    .menu-show {
+        display: none;
+    }
+
     @media (max-width: 600px) {
-        .navbar{
+        .buttons {
+            flex-direction: column;
+        }
+
+        .buttons-main {
             display: none;
         }
 
-        .navbar-600{
-            display: inline-block;
-            text-align: right;
-            position: relative;
-            width: 100%;
-            background-color: #333;
-            border-radius: 10px;
+        .navbar {
+            flex-direction: column;
+            padding-bottom: 30px;
         }
-        .buttons-600{
-            border: none;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
+
+        .menu-show {
             display: block;
-            font-size: 20px;
-            border-radius: 25px;
-            cursor: default;
+            margin-top: 20px;
         }
     }
-
-
