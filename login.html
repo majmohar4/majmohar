@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,31 +13,32 @@
     <script src="script.js"></script>
     <script src="firebase.js"></script>
 </head>
+
 <body>
     <div class="navbar">
         <a class="active, button button3" href="#" onclick="showHome()">Home</a>
         <a href="#" class="button button3" onclick="showAbout()">About</a>
         <a href="#" class="button button3" onclick="showContact()">Contact</a>
-    <div class="buttons">
-            <button class="button login button2"onclick="showLogin()">Prijava</button>
+        <div class="buttons">
+            <button class="button login button2" onclick="showLogin()">Prijava</button>
             <button class="button register button2" onclick="showRegister()">Registracija</button>
-    </div>
+        </div>
     </div>
     <div class="input" id="login-form" autocomplete="off">
         <h1>Login</h1>
         <form>
-          <label for="login-email">Email:</label>
-          <input type="email" id="login-email" style="text-align: center" required><br>
-          <label for="login-password">Password:</label>
-          <input type="password" id="login-password" style="text-align: center;"required><br>
+            <label for="login-email">Email:</label>
+            <input type="email" id="login-email" style="text-align: center" required><br>
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" style="text-align: center;" required><br>
             <div id="showed-password" style="display: none;">
                 <input type="password" id="showed-password" class="input">neki</button>
             </div>
-          <button id="show-button"type="show-button" onclick="showPassword()">Show password</button>
-          <button type="submit" onclick="login()">Login</button>
+            <button id="show-button" type="show-button" onclick="showPassword()">Show password</button>
+            <button type="submit" onclick="login()">Login</button>
         </form>
         <br>
-      </div>
+    </div>
 
     <div id="profile" style="display: none;">
         <h1 id="user-email"></h1>
@@ -47,4 +49,5 @@
         <ul id="user-list"></ul>
     </div>
 </body>
+
 </html>
