@@ -14,7 +14,7 @@
     <script src="firebase.js"></script>
 </head>
 
-<body>
+<body onload="checkSessionCookie()">
     <div class="navbar">
         <a class="active, button button3" href="#" onclick="showHome()">Home</a>
         <a href="#" class="button button3" onclick="showAbout()">About</a>
@@ -40,13 +40,13 @@
         <br>
     </div>
 
+    <div id="users" style="display: none;">
+        <h1>Content</h1>
+        <div id="user-list"></div>
+    </div>
     <div id="profile" style="display: none;">
         <h1 id="user-email"></h1>
         <button id="logout" onclick="logout()">Logout</button>
-    </div>
-    <div id="users" style="display: none;">
-        <h1>Users</h1>
-        <div id="user-list"></div>
     </div>
 </body>
 

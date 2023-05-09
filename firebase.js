@@ -43,8 +43,17 @@ function login() {
         const password = document.getElementById("login-password").value;
 
         auth.signInWithEmailAndPassword(email, password)
-            .then(() => {
-                console.log("logged in");
+        .then((userCredential) => {
+            // Create session cookie that expires in 30 days
+            const expiresIn = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
+            firebase.auth().currentUser.getIdToken(true)
+              .then((idToken) => {
+                document.cookie = `session=${idToken};expires=${new Date(Date.now() + expiresIn).toUTCString()};path=/`;
+              })
+              .catch((error) => {
+                console.log(error.message);
+              });
+      
         document.getElementById("login-form").style.display = "none";
             document.getElementById("profile").style.display = "block";
             document.getElementById("user-email").innerHTML = "Logged in as: " + email;
@@ -52,13 +61,11 @@ function login() {
                 document.getElementById("users").style.display = "block";
                 getUsers();
             } else {
-                welcome = <div>
-                    Hello {user}!
-                    Thanks for login into my website.
-                    New content: 
-                        remnote for geography: <link src="https://www.remnote.com/a/6457b968cf00d6698dec6987">Link</link>
-                </div>
-                document.getElementById("users").style.display = welcome;
+                document.getElementById("users").style.display = "block";
+                const welcome = document.createElement("div");
+                welcome.innerHTML = `Hello ${email}! Thanks for logging in to my website. New content: remnote for geography: <a href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Link</a>`;
+                document.getElementById("profile").appendChild(welcome);
+                
             }
         })
         .catch(error => {
@@ -128,3 +135,39 @@ function getUsers() {
             alert(error.message);
         });
 }
+
+
+function checkSessionCookie() {
+    const cookies = document.cookie.split("; ");
+    for (const cookie of cookies) {
+        const [name, value] = cookie.split("=");
+        if (name === "session") {
+            // Use the Firebase Auth REST API to verify the ID token
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", `https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo?key=${firebaseConfig.apiKey}`);
+            xhr.setRequestHeader("Authorization", `Bearer ${value}`);
+            xhr.onload = () => {
+                if (xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    const email = response.users[0].email;
+                    document.getElementById("login-form").style.display = "none";
+                    document.getElementById("profile").style.display = "block";
+                    document.getElementById("user-email").innerHTML = "Logged in as: " + email;
+                    if (email === "maj.mohar4@gmail.com") {
+                        document.getElementById("users").style.display = "block";
+                        getUsers();
+                    } else {
+                        document.getElementById("users").style.display = "block";
+                        const welcome = document.createElement("div");
+                        welcome.innerHTML = `Hello ${email}! Thanks for logging in to my website. New content: remnote for geography: <a href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Link</a>`;
+                        document.getElementById("profile").appendChild(welcome);
+                    }
+                }
+            };
+            xhr.send();
+            break;
+        }
+    }
+}
+
+window.onload = checkSessionCookie;
