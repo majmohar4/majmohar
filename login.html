@@ -16,12 +16,17 @@
 
 <body onload="checkSessionCookie()">
     <div class="navbar">
-        <a class="active, button button3" href="#" onclick="showHome()">Home</a>
-        <a href="#" class="button button3" onclick="showAbout()">About</a>
-        <a href="#" class="button button3" onclick="showContact()">Contact</a>
+        <div class="buttons-main" id="menu-popup">
+            <a class="active, button button3" href="#" onclick="showHome()">Home</a>
+            <a href="#" class="button button3" onclick="showAbout()">School</a>
+            <a href="#" class="button button3" onclick="showContact()">Contact</a>
+        </div>
         <div class="buttons">
             <button class="button login button2" onclick="showLogin()">Prijava</button>
             <button class="button register button2" onclick="showRegister()">Registracija</button>
+        </div>
+        <div class="menu-show">
+            <a href="#" class="button button3" onclick="showMenu()">Show menu</a>
         </div>
     </div>
     <div class="input" id="login-form" autocomplete="off">
@@ -40,12 +45,12 @@
         <br>
     </div>
 
-    <div id="users" style="display: none;">
+    <div class="text_normal"id="users" style="display: none;">
         <h1>Content</h1>
         <div id="user-list"></div>
     </div>
     <div id="profile" style="display: none;">
-        <h1 id="user-email"></h1>
+        <h1 id="username">Username</h1>
         <button id="logout" onclick="logout()">Logout</button>
     </div>
 </body>

@@ -1,12 +1,12 @@
-
 function showHome() {
   // Update the page title and content
-  window.location = "index.html";
+  window.location.href = "index.html";
 }
 
 function showAbout() {
-  window.location = "/about.html";
+  window.location.href = "/school.html";  
 }
+
 function showNav() {
   var navLinks = document.getElementsByClassName("navbar")[1].getElementsByTagName("a");
   for (var i = 0; i < navLinks.length; i++) {
@@ -16,14 +16,14 @@ function showNav() {
 }
 
 function showContact() {
-  window.location = "contact.html";
+  window.location.href = "contact.html";
 }
 
 function setCookie(cookieName, cookieValue, expirationDays) {
   var d = new Date();
-  d.setTime(d.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
+  d.setTime(d.getTime() + expirationDays * 24 * 60 * 60 * 1000);
   var expires = "expires=" + d.toUTCString();
-  document.cookie = cookieName + "=" + cookieValue + ";" + expires + ";path=/";
+  document.cookie = cookieName + "=" + cookieValue + "; " + expires + "; path=/";
 }
 
 function getCookie(cookieName) {
@@ -31,36 +31,32 @@ function getCookie(cookieName) {
   var decodedCookie = decodeURIComponent(document.cookie);
   var ca = decodedCookie.split(';');
   for (var i = 0; i < ca.length; i++) {
-    var c = ca[i];
-    while (c.charAt(0) == ' ') {
-      c = c.substring(1);
-    }
-    if (c.indexOf(name) == 0) {
+    var c = ca[i].trim();
+    if (c.indexOf(name) === 0) {
       return c.substring(name.length, c.length);
     }
   }
   return "";
 }
 
-
 function checkCookie() {
   var lastAccess = getCookie("lastAccess");
   var visitCount = getCookie("visitCount");
   var currentDate = new Date();
   var minutes = Math.floor((currentDate.getTime() - lastAccess) / 60000);
+
   if (minutes >= 5) {
-    if (lastAccess != "") {
-      document.getElementById("lastAccess").innerHTML = minutes;
+    if (lastAccess !== "") {
       document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
       document.getElementById("accessCount").innerHTML = parseInt(visitCount) + 1;
       setCookie("lastAccess", currentDate.getTime(), 30);
       setCookie("visitCount", parseInt(visitCount) + 1, 30);
-    } else if (lastAccess = "") {
+    } else {
       setCookie("lastAccess", currentDate.getTime(), 30);
       setCookie("visitCount", 1, 30);
     }
   } else {
-    document.getElementById("accessCount").innerHTML = parseInt(visitCount)
+    document.getElementById("accessCount").innerHTML = visitCount;
     document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
   }
 }
@@ -77,17 +73,17 @@ function showPassword() {
   var showButton = document.getElementById("show-button");
   var passwordDisplay = document.getElementById("showed-password");
 
-  if (showButton.getAttribute("type") === "show-button") {
-    document.getElementById("showed-password").style.display = "block";
+  if (showButton.getAttribute("data-type") === "show-button") {
+    passwordDisplay.style.display = "block";
     passwordDisplay.textContent = passwordInput.value;
     passwordDisplay.type = "text";
     showButton.innerHTML = "Hide Password";
-    showButton.setAttribute("type", "hide-button");
+    showButton.setAttribute("data-type", "hide-button");
   } else {
     passwordDisplay.style.display = "none";
     passwordDisplay.type = "password";
     showButton.innerHTML = "Show Password";
-    showButton.setAttribute("type", "show-button");
+    showButton.setAttribute("data-type", "show-button");
   }
 }
 
@@ -96,8 +92,7 @@ function showMenu() {
 
   if (menu.style.display === "none") {
     menu.style.display = "block";
-  }
-  else {
+  } else {
     menu.style.display = "none";
   }
 }

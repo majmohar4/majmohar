@@ -37,78 +37,137 @@ const db = firebase.firestore();
 function login() {
     const loginForm = document.getElementById("login-form");
     loginForm.addEventListener("submit", (event) => {
-        event.preventDefault(); // prevent default form submission behavior
-
-        const email = document.getElementById("login-email").value;
-        const password = document.getElementById("login-password").value;
-
-        auth.signInWithEmailAndPassword(email, password)
-        .then((userCredential) => {
-            // Create session cookie that expires in 30 days
-            const expiresIn = 30 * 24 * 60 * 60 * 1000; // 30 days in milliseconds
-            firebase.auth().currentUser.getIdToken(true)
-              .then((idToken) => {
-                document.cookie = `session=${idToken};expires=${new Date(Date.now() + expiresIn).toUTCString()};path=/`;
+      event.preventDefault(); // prevent default form submission behavior
+  
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+  
+      checkEmailVerification();
+      auth
+        .signInWithEmailAndPassword(email, password)
+        .then(() => {
+          console.log("Logged");
+          document.getElementById("login-form").style.display = "none";
+          if (checkEmailVerification != false) {
+            alert("Email is not verified.");
+          }
+          document.getElementById("profile").style.display = "block";
+          document.getElementById("username").innerHTML = "Logged in as: " + email;
+          if (email === "maj.mohar4@gmail.com") {
+            document.getElementById("users").style.display = "block";
+            document.getElementById("profile").style.display = "block";
+            getName(email)
+              .then((retrievedName) => {
+                document.getElementById("username").innerHTML = retrievedName;
+                getUsers();
               })
               .catch((error) => {
-                console.log(error.message);
+                console.log("Error getting user information:", error);
               });
-      
-        document.getElementById("login-form").style.display = "none";
-            document.getElementById("profile").style.display = "block";
-            document.getElementById("user-email").innerHTML = "Logged in as: " + email;
-            if (email === "maj.mohar4@gmail.com") {
-                document.getElementById("users").style.display = "block";
-                getUsers();
-            } else {
-                document.getElementById("users").style.display = "block";
-                const welcome = document.createElement("div");
-                welcome.innerHTML = `Živijo ${email}! Hvala, da si se vpisal na mojo spletno stran.`;
-                welcome.innerHTML = "   Nove stvari: remnote za geografijo: <a href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Link</a>`;
-                welcome.innerHTML = `   Nove stvari: remnote za likovno umetnost: <a href="https://www.remnote.com/a/645aa57fd2258975e69d5b55">Link</a>`;
+          } else {
+            document.getElementById("users").style.display = "block";
+            const welcome = document.createElement("div");
+            getName(email)
+              .then((retrievedName) => {
+                welcome.innerHTML = `Živijo ${retrievedName}! Hvala, da si se vpisal na mojo spletno stran.`;
+                welcome.innerHTML += `   Nove stvari: remnote za geografijo: <a href="{link_geografija}">Link</a>`;
+                welcome.innerHTML += `   Nove stvari: remnote za likovno umetnost: <a href="{link_geografija}">Link</a>`;
                 document.getElementById("profile").appendChild(welcome);
-                
-            }
+              })
+              .catch((error) => {
+                console.log("Error getting user information:", error);
+              });
+          }
         })
-        .catch(error => {
-            alert(error.message);
+        .catch((error) => {
+          alert(error.message);
         });
-    })
-}
+    });
+  }
+  
 
 // Sign up function
 function signup() {
-    console.log("prevented")
-    const loginForm = document.getElementById("login-form");
-    loginForm.addEventListener("submit", (event) => {
+    const signupForm = document.getElementById("login-form");
+    signupForm.addEventListener("submit", (event) => {
       event.preventDefault(); // prevent default form submission behavior
-    }); 
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-    const repeat_password = document.getElementById("repeat-password").value;
-    console.log(password + " in " + repeat_password)
-    if (password === repeat_password){
-    auth.createUserWithEmailAndPassword(email, password)
-        .then((userCredential) => {
+        console.log("Signed up");
+      const email = document.getElementById("signup-email").value;
+      const password = document.getElementById("signup-password").value;
+      const repeatPassword = document.getElementById("repeat-password").value;
+      const name = document.getElementById("name-input").value;
+      const username = document.getElementById("username-input").value;
+  
+      if (password === repeatPassword) {
+        auth.createUserWithEmailAndPassword(email, password)
+          .then((userCredential) => {
             const user = userCredential.user;
             alert("Account created successfully!");
             user.sendEmailVerification()
-                .then(() => {
-                    alert("Verification email sent!");
-                })
-                .catch(error => {
-                    alert(error.message);
-                });
-        })
-        .catch(error => {
+              .then(() => {
+                alert("Verification email sent!");
+              })
+              .catch((error) => {
+                alert(error.message);
+              });
+            saveUserInfo(email, name, username);
+            window.location = "login.html";
+          })
+          .catch((error) => {
             alert(error.message);
-            alert("Account not created! Try again.")
-        });
-    }else{
+            alert("Account not created! Try again.");
+          });
+      } else {
         alert("Passwords do not match.");
+      }
+    });
+  }
+  
+function saveUserInfo(email, name, username) {
+    db.collection("users")
+      .doc(email)
+      .set({
+        name: name,
+        email: email,
+        username: username
+      })
+      .then(() => {
+        console.log("User information saved successfully!");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  }
+  
+function checkEmailVerification() {
+    const user = auth.currentUser;
+    
+    if (user && user.emailVerified) {
+        return false
+    } else {
+      console.log("Email is not verified.");
     }
-}
+  }
 
+  function getName(email) {
+    const userRef = db.collection("users").doc(email);
+  
+    return userRef
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          const name = data.name;
+          return name;
+        } else {
+          throw new Error("User not found in Firestore.");
+        }
+      })
+      .catch((error) => {
+        throw error;
+      });
+  }
+  
 // Logout function
 function logout() {
     auth.signOut()
@@ -162,10 +221,10 @@ function checkSessionCookie() {
                         document.getElementById("users").style.display = "block";
                         const welcome = document.createElement("div");
                         welcome.innerHTML = `Živijo ${email}! Hvala, da si se vpisal na mojo spletno stran.`;
-                        welcome.innerHTML = "   Nove stvari: remnote za geografijo: <a href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Link</a>`;
-                        welcome.innerHTML = `   Nove stvari: remnote za likovno umetnost: <a href="https://www.remnote.com/a/645aa57fd2258975e69d5b55">Link</a>`;
+                        welcome.innerHTML += '   Nove stvari: remnote za geografijo: <a href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Link</a>';
+                        welcome.innerHTML += '   Nove stvari: remnote za likovno umetnost: <a href="https://www.remnote.com/a/645aa57fd2258975e69d5b55">Link</a>';
                         document.getElementById("profile").appendChild(welcome);
-                    }
+                    }                    
                 }
             };
             xhr.send();
