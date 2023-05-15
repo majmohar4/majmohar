@@ -41,16 +41,10 @@ function login() {
   
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
-  
-      checkEmailVerification();
-      auth
-        .signInWithEmailAndPassword(email, password)
+      auth.signInWithEmailAndPassword(email, password)
         .then(() => {
           console.log("Logged");
           document.getElementById("login-form").style.display = "none";
-          if (checkEmailVerification != false) {
-            alert("Email is not verified.");
-          }
           document.getElementById("profile").style.display = "block";
           document.getElementById("username").innerHTML = "Logged in as: " + email;
           if (email === "maj.mohar4@gmail.com") {
