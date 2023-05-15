@@ -70,8 +70,7 @@ function login() {
             getName(email)
               .then((retrievedName) => {
                 welcome.innerHTML = `Živijo ${retrievedName}! Hvala, da si se vpisal na mojo spletno stran.`;
-                welcome.innerHTML += `   Nove stvari: remnote za geografijo: <a href="{link_geografija}">Link</a>`;
-                welcome.innerHTML += `   Nove stvari: remnote za likovno umetnost: <a href="{link_geografija}">Link</a>`;
+                welcome.innerHTML += `   Nove stvari: remnote za informatiko: <a href="https://www.remnote.com/a/64622bb4650dbdc61c7826ae">Link</a>`;
                 document.getElementById("profile").appendChild(welcome);
               })
               .catch((error) => {
