@@ -79,12 +79,11 @@ function login() {
   }
   
 
-// Sign up function
-function signup() {
-    const signupForm = document.getElementById("login-form");
+  function signup() {
+    const signupForm = document.getElementById("signup-form");
     signupForm.addEventListener("submit", (event) => {
       event.preventDefault(); // prevent default form submission behavior
-        console.log("Signed up");
+  
       const email = document.getElementById("signup-email").value;
       const password = document.getElementById("signup-password").value;
       const repeatPassword = document.getElementById("repeat-password").value;
@@ -94,16 +93,8 @@ function signup() {
       if (password === repeatPassword) {
         auth.createUserWithEmailAndPassword(email, password)
           .then((userCredential) => {
-            const user = userCredential.user;
-            alert("Account created successfully!");
-            user.sendEmailVerification()
-              .then(() => {
-                alert("Verification email sent!");
-              })
-              .catch((error) => {
-                alert(error.message);
-              });
             saveUserInfo(email, name, username);
+            alert("Account created successfully!");
             window.location = "login.html";
           })
           .catch((error) => {
@@ -116,7 +107,7 @@ function signup() {
     });
   }
   
-function saveUserInfo(email, name, username) {
+  function saveUserInfo(email, name, username) {
     db.collection("users")
       .doc(email)
       .set({
@@ -131,6 +122,7 @@ function saveUserInfo(email, name, username) {
         console.log(error.message);
       });
   }
+  
   
 function checkEmailVerification() {
     const user = auth.currentUser;
