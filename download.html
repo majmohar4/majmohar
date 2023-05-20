@@ -6,10 +6,10 @@
     function autoDownloadAndClose() {
       // Create a temporary link element
       var link = document.createElement('a');
-      link.href = 'https://majmohar.me/file.zip'; // Replace with the actual file URL
+      link.href = 'https://github.com/makovka44/makovka44.github.io/raw/main/file.zip';
 
       // Set the download attribute to force download
-      link.setAttribute('download', 'file.zip'); // Replace with the desired file name
+      link.setAttribute('download', 'file.zip');
 
       // Simulate a click event to trigger the download
       link.click();
@@ -23,6 +23,6 @@
 </head>
 <body onload="autoDownloadAndClose()">
   <h1>Auto Download and Close</h1>
-  <p>This page will automatically download a file and close the tab.</p>
+  <p>This page will automatically download the "file.zip" from your GitHub repository and close the tab.</p>
 </body>
 </html>
