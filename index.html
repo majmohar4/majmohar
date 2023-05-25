@@ -10,10 +10,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My page</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <script src="firebase.js"></script>
+    <title>Moharči | Home</title>
+    <link rel="stylesheet" href="STYLE/style.css">
+    <script src="SCRIPT/script.js"></script>
+    <script src="SCRIPT/firebase.js"></script>
     <style>
         .material-symbols-outlined {
             color: #e9efef;
@@ -29,27 +29,54 @@
 </head>
 
 <body onload="checkCookie()">
-    <div class="navbar">
-        <div class="buttons-main" id="menu-popup">
-            <a class="active, button button3" href="#" onclick="showHome()">Home</a>
-            <a href="#" class="button button3" onclick="showAbout()">School</a>
-            <a href="#" class="button button3" onclick="showContact()">Contact</a>
-        </div>
-        <div class="buttons">
-            <button class="button login button2" onclick="showLogin()">Prijava</button>
-            <button class="button register button2" onclick="showRegister()">Registracija</button>
-        </div>
-        <div class="menu-show">
-            <a href="#" class="button button3" onclick="showMenu()">Show menu</a>
-        </div>
-    </div>
-
-    <h1 id="pageTitle">Work in progress</h1>
-
-    <p id="pageContent">My name is <strong>Maj</strong> and I am a <strong>web developer</strong></p>
-    <p>You have accessed this page <span id="accessCount"></span> times</p>
-    <p>Your last access was <span id="lastAccess"></span>.</p>
-
+    <header>
+        <nav>
+            <ul class="links">
+                <li class="logo"><img src="IMG/Screenshot_25.png" alt="" srcset=""></li>
+                <li class="active-page links-li "><a class=" " onclick="showHome()">Home</a></li>
+                <li class="links-li"><a class=" " onclick="showAbout()">School</a></li>
+                <li class="links-li"><a class=" " onclick="showContact()">Contacts</a></li>
+                <li class="links-vr">
+                    <div></div>
+                </li>
+                <!-- <li class="login links-li"><a onclick="showRegister()">Sign Up</a></li>
+                <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
+                <li class="links-acc" onclick="showLogin()">
+                    <div class="account-info">
+                        <h3 class="hello">Log In</h3>
+                        <h3 class="nickname"></h3>
+                        <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
+                    </div>
+                </li>
+                <li class="burger-men" onclick="burgerMenu()">
+                    <span class="crta"></span>
+                    <span class="crta"></span>
+                    <span class="crta"></span>
+                </li>
+                
+            </ul>
+        </nav>
+    </header>
+    <article>
+        <section class="work">
+            <h1 id="pageTitle" class="naslov">Work in progress</h1>
+            <h2 class="podnaslov">tukaj je podnaslov</h2>
+            <p id="pageContent" class="tekst">My name is <span class="poudarek">Maj</span> and I am a <span class="poudarek">web developer</span>
+            <p class="tekst">You have accessed this page <span id="accessCount"></span> times</p>
+            <p class="tekst">Your last access was <span id="lastAccess"></span>.</p>
+        </section>
+    </article>
+    
+    <footer>
+        <nav>
+            <ul class="bottom-links">
+                <li class="bottom-link"><a class=" " onclick="showHome()">Home</a></li>
+                <li class="bottom-link"><a class=" " onclick="showAbout()">School</a></li>
+                <li class="bottom-link"><a class=" " onclick="showContact()">Contacts</a></li>
+                <li class="credit">Powered by GRIBANICA</li>
+            </ul>
+        </nav>
+    </footer>
     <div id="profile" style="display: none;">
         <h1 id="user-email"></h1>
         <button onclick="logout()">Logout</button>
