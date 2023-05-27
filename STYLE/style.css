@@ -141,6 +141,13 @@ footer{
     right: 0;
     bottom: 0;
 }
+footer2{
+    background-color: #4895EF;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
 .credit{
     list-style: none;
     font-family: 'Montserrat';
