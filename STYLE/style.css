@@ -66,6 +66,7 @@ body{
     padding: 20px 30px;
     font-weight: 500;
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .links-li:hover, .bottom-link:hover{
@@ -135,6 +136,10 @@ html{
 }
 footer{
     background-color: #4895EF;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
 }
 .credit{
     list-style: none;
