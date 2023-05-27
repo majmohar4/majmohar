@@ -58,7 +58,7 @@
                     <button id="show-button" class="show-psw" type="show-button" onclick="showPassword()"><img
                             src="IMG/iStock-845329690.png" ></button>
                 </span>
-                <p class="tekst" style="font-size: 0.8rem; text-align: left; padding: 0;">S prijavo se strinjam s <a href="#">pogoji</a></p>
+                <p class="tekst" style="font-size: 0.8rem; text-align: left; padding: 0;">S prijavo se strinjam s <a href="pogoji">pogoji</a></p>
                 <button type="submit" class="submit-btn" onclick="login()">Log In</button>
                 <p class="tekst" style="font-size: 1rem; text-align: left; padding: 3px 0 0 0;">Or <a href="">Sign Up</a></p>
                 <div id="status" class="long"></div>
@@ -67,11 +67,15 @@
         <section class="cookie">
             <img src="IMG/iStock-1418459527.png" alt="" srcset="">
             <h3 class="podnaslov">Our cookie policy</h3>
-            <p class="tekst">Read about our policy <a href="http://">here</a></p>
-            <form action="" method="get">
+            <p class="tekst">Read about our policy <a href="pogoji.html">here</a></p>
+            <form action="" method="get" id="cookie-banner">
                 <button id="agree">I Agree</button>
-                <span><p class="tekst">Don't show me again</p><input type="checkbox" name="Dont show again" id=""></span>
-            </form>
+                <span>
+                  <p class="tekst">Don't show me again</p>
+                  <input type="checkbox" name="dontShowAgain" id="dont-show-again-checkbox">
+                  <label for="dont-show-again-checkbox" class="checkbox-label"></label>
+                </span>
+              </form>
             
             
         </section>

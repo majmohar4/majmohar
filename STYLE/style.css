@@ -395,3 +395,45 @@ form{
         width: 85%;
     }
 }
+
+.pogoji{
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.pogoji-li{
+    margin-left: 4%;
+    margin-right: 4%;
+}
+.checkbox-label {
+    position: relative;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    background-color: #fff;
+    border: 2px solid #000;
+    cursor: pointer;
+    margin-top: 2px;
+    margin-right: 8px;
+  }
+  
+  .checkbox-label::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    transition: transform 0.3s;
+  }
+  
+  input[type="checkbox"]:checked + .checkbox-label::after {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  input[type="checkbox"] {
+    display: none;
+  }
+  
