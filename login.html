@@ -5,8 +5,11 @@
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/>
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,9 +25,9 @@
         <nav>
             <ul class="links">
                 <li class="logo"><img src="IMG/Screenshot_25.png" alt="" srcset=""></li>
-                <li class="links-li "><a class=" " onclick="showHome()">Domov</a></li>
-                <li class="links-li"><a class=" " onclick="showSchool()">Šola</a></li>
-                <li class="links-li"><a class=" " onclick="showContact()">Kontakt</a></li>
+                <li onclick="showHome()" class="links-li "><a class=" ">Domov</a></li>
+                <li onclick="showSchool()" class="links-li"><a class=" ">Šola</a></li>
+                <li onclick="showContact()" class="links-li"><a class=" ">Kontakti</a></li>
                 <li class="links-vr">
                     <div></div>
                 </li>
@@ -42,7 +45,7 @@
                     <span class="crta"></span>
                     <span class="crta"></span>
                 </li>
-                
+
             </ul>
         </nav>
     </header>
@@ -55,13 +58,16 @@
                         placeholder="E-pošta"></span>
 
                 <span>
-                    <input class="input" type="password" name="password" id="login-password" placeholder="Geslo" style="border-radius:5px 0 0 5px;     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;">
+                    <input class="input" type="password" name="password" id="login-password" placeholder="Geslo"
+                        style="border-radius:5px 0 0 5px;     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;">
                     <button id="show-button" class="show-psw" type="show-button" onclick="showPassword()"><img
-                            src="IMG/iStock-845329690.png" ></button>
+                            src="IMG/iStock-845329690.png"></button>
                 </span>
-                <p class="tekst" style="font-size: 0.8rem; text-align: left; padding: 0;">S prijavo se strinjam s <a href="pogoji">pogoji</a></p>
+                <p class="tekst" style="font-size: 0.8rem; text-align: left; padding: 0;">S prijavo se strinjam s <a
+                        href="pogoji">pogoji</a></p>
                 <button type="submit" class="submit-btn" onclick="login()">Vpis</button>
-                <p class="tekst" style="font-size: 1rem; text-align: left; padding: 3px 0 0 0;">Ali <a href="register.html">Registracija</a></p>
+                <p class="tekst" style="font-size: 1rem; text-align: left; padding: 3px 0 0 0;">Ali <a
+                        href="register.html">Registracija</a></p>
                 <div id="status" class="long"></div>
             </form>
         </section>
@@ -72,13 +78,13 @@
             <form action="" method="get" id="cookie-banner">
                 <button id="agree">Strinjam se</button>
                 <span>
-                  <p class="tekst">Ne pokaži več</p>
-                  <input type="checkbox" name="dontShowAgain" id="dont-show-again-checkbox">
-                  <label for="dont-show-again-checkbox" class="checkbox-label"></label>
+                    <p class="tekst">Ne pokaži več</p>
+                    <input type="checkbox" name="dontShowAgain" id="dont-show-again-checkbox">
+                    <label for="dont-show-again-checkbox" class="checkbox-label"></label>
                 </span>
-              </form>
-            
-            
+            </form>
+
+
         </section>
     </article>
     <footer>
