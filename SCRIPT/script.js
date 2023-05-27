@@ -1,14 +1,14 @@
 function showHome() {
   // Update the page title and content
-  window.location.href = "/index";
+  window.location.href = "/index.html";
 }
 
 function showSchool() {
-  window.location.href = "/school";  
+  window.location.href = "/school.html";  
 }
 
 function showPolicy() {
-  window.location.href = "/pogoji";  
+  window.location.href = "/pogoji.html";  
 }
 
 function showNav() {
@@ -20,7 +20,7 @@ function showNav() {
 }
 
 function showContact() {
-  window.location.href = "/contact";
+  window.location.href = "/contact.html";
 }
 
 function setCookie(cookieName, cookieValue, expirationDays) {
