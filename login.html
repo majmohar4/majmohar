@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sl">
 
 <head>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
@@ -10,7 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majmohar.me | Sign In</title>
+    <title>Majmohar.me | Vpis</title>
+    <link rel="icon" type="image/png" href="/IMG/maj.png">
     <link rel="stylesheet" href="STYLE/style.css">
     <script src="SCRIPT/script.js"></script>
     <script src="SCRIPT/firebase.js"></script>
@@ -21,9 +22,9 @@
         <nav>
             <ul class="links">
                 <li class="logo"><img src="IMG/Screenshot_25.png" alt="" srcset=""></li>
-                <li class="links-li "><a class=" " onclick="showHome()">Home</a></li>
-                <li class="links-li"><a class=" " onclick="showSchool()">School</a></li>
-                <li class="links-li"><a class=" " onclick="showContact()">Contacts</a></li>
+                <li class="links-li "><a class=" " onclick="showHome()">Domov</a></li>
+                <li class="links-li"><a class=" " onclick="showSchool()">Šola</a></li>
+                <li class="links-li"><a class=" " onclick="showContact()">Kontakt</a></li>
                 <li class="links-vr">
                     <div></div>
                 </li>
@@ -31,7 +32,7 @@
                 <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
                 <li class="links-acc" onclick="showLogin()">
                     <div class="account-info">
-                        <h3 class="hello">Log In</h3>
+                        <h3 class="hello">Vpiši se</h3>
                         <h3 class="nickname"></h3>
                         <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
                     </div>
@@ -49,29 +50,29 @@
     <article class="login-art">
         <section class="login-page">
             <form>
-                <h1 class="naslov" style="text-align: left; color: #560BAD; margin: 0 0 10px -20px;">Login</h1>
+                <h1 class="naslov" style="text-align: left; color: #560BAD; margin: 0 0 10px -20px;">Vpis</h1>
                 <span><input required class="input" type="email" name="email" id="login-email"
-                        placeholder="Email"></span>
+                        placeholder="E-pošta"></span>
 
                 <span>
-                    <input class="input" type="password" name="password" id="login-password" placeholder="Password" style="border-radius:5px 0 0 5px;     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;">
+                    <input class="input" type="password" name="password" id="login-password" placeholder="Geslo" style="border-radius:5px 0 0 5px;     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;">
                     <button id="show-button" class="show-psw" type="show-button" onclick="showPassword()"><img
                             src="IMG/iStock-845329690.png" ></button>
                 </span>
                 <p class="tekst" style="font-size: 0.8rem; text-align: left; padding: 0;">S prijavo se strinjam s <a href="pogoji">pogoji</a></p>
-                <button type="submit" class="submit-btn" onclick="login()">Log In</button>
-                <p class="tekst" style="font-size: 1rem; text-align: left; padding: 3px 0 0 0;">Or <a href="">Sign Up</a></p>
+                <button type="submit" class="submit-btn" onclick="login()">Vpis</button>
+                <p class="tekst" style="font-size: 1rem; text-align: left; padding: 3px 0 0 0;">Ali <a href="register.html">Registracija</a></p>
                 <div id="status" class="long"></div>
             </form>
         </section>
         <section class="cookie">
             <img src="IMG/iStock-1418459527.png" alt="" srcset="">
-            <h3 class="podnaslov">Our cookie policy</h3>
-            <p class="tekst">Read about our policy <a href="pogoji.html">here</a></p>
+            <h3 class="podnaslov">Naši pogoji uporabe</h3>
+            <p class="tekst">Preberi o pogojih <a href="pogoji.html">tukaj</a></p>
             <form action="" method="get" id="cookie-banner">
-                <button id="agree">I Agree</button>
+                <button id="agree">Strinjam se</button>
                 <span>
-                  <p class="tekst">Don't show me again</p>
+                  <p class="tekst">Ne pokaži več</p>
                   <input type="checkbox" name="dontShowAgain" id="dont-show-again-checkbox">
                   <label for="dont-show-again-checkbox" class="checkbox-label"></label>
                 </span>
@@ -83,20 +84,20 @@
     <footer>
         <nav>
             <ul class="bottom-links">
-                <li class="bottom-link"><a class=" " onclick="showHome()">Home</a></li>
-                <li class="bottom-link"><a class=" " onclick="showSchool()">School</a></li>
-                <li class="bottom-link"><a class=" " onclick="showContact()">Contacts</a></li>
-                <li class="credit">Powered by GRIBANICA</li>
+                <li class="bottom-link"><a class=" " onclick="showHome()">Domov</a></li>
+                <li class="bottom-link"><a class=" " onclick="showSchool()">Šola</a></li>
+                <li class="bottom-link"><a class=" " onclick="showContact()">Kontakti</a></li>
+                <li class="credit">Dizajn: GRIBANICA</li>
             </ul>
         </nav>
     </footer>
     <div class="text_normal" id="users" style="display: none;">
-        <h1>Content</h1>
+        <h1>Vsebina</h1>
         <div id="user-list"></div>
     </div>
     <div id="profile" style="display: none;">
-        <h1 id="username">Username</h1>
-        <button id="logout" onclick="logout()">Logout</button>
+        <h1 id="username">Uporabniško ime</h1>
+        <button id="logout" onclick="logout()">Izpiši se</button>
     </div>
 </body>
 

@@ -10,7 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majmohar.me | Home</title>
+    <title>Majmohar.me | Domov</title>
+    <link rel="icon" type="image/png" href="/IMG/maj.png">
     <link rel="stylesheet" href="STYLE/style.css">
     <script src="SCRIPT/script.js"></script>
     <script src="SCRIPT/firebase.js"></script>
@@ -33,9 +34,9 @@
         <nav>
             <ul class="links">
                 <li class="logo"><img src="IMG/Screenshot_25.png" alt="" srcset=""></li>
-                <li class="active-page links-li "><a class=" " onclick="showHome()">Home</a></li>
-                <li class="links-li"><a class=" " onclick="showSchool()">School</a></li>
-                <li class="links-li"><a class=" " onclick="showContact()">Contacts</a></li>
+                <li class="active-page links-li "><a class=" " onclick="showHome()">Domov</a></li>
+                <li class="links-li"><a class=" " onclick="showSchool()">Šola</a></li>
+                <li class="links-li"><a class=" " onclick="showContact()">Kontakti</a></li>
                 <li class="links-vr">
                     <div></div>
                 </li>
@@ -43,7 +44,7 @@
                 <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
                 <li class="links-acc" onclick="showLogin()">
                     <div class="account-info">
-                        <h3 class="hello">Log In</h3>
+                        <h3 class="hello">Vpiši se</h3>
                         <h3 class="nickname"></h3>
                         <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
                     </div>
@@ -59,30 +60,30 @@
     </header>
     <article>
         <section class="work">
-            <h1 id="pageTitle" class="naslov">Work in progress</h1>
-            <p id="pageContent" class="tekst">My name is <span class="poudarek">Maj</span> and I am a <span class="poudarek">web developer</span>
-            <p class="tekst">You have accessed this page <span id="accessCount"></span> times</p>
-            <p class="tekst">Your last access was <span id="lastAccess"></span>.</p>
+            <h1 id="pageTitle" class="naslov">Spletna stran je v delu.</h1>
+            <p id="pageContent" class="tekst">Jaz sem <span class="poudarek">Maj</span> in sem <span class="poudarek">razvijalec spletnih strani</span>
+            <p class="tekst">To spletno stran si obiskal <span id="accessCount"></span>-krat.</p>
+            <p class="tekst">Zadnjič si bil tukaj <span id="lastAccess"></span>.</p>
         </section>
     </article>
     
     <footer>
         <nav>
             <ul class="bottom-links">
-                <li class="bottom-link"><a class=" " onclick="showHome()">Home</a></li>
-                <li class="bottom-link"><a class=" " onclick="showSchool()">School</a></li>
-                <li class="bottom-link"><a class=" " onclick="showContact()">Contacts</a></li>
-                <li class="credit">Powered by GRIBANICA</li>
+                <li class="bottom-link"><a class=" " onclick="showHome()">Domov</a></li>
+                <li class="bottom-link"><a class=" " onclick="showSchool()">Šola</a></li>
+                <li class="bottom-link"><a class=" " onclick="showContact()">Kontakti</a></li>
+                <li class="credit">Dizajn: GRIBANICA</li>
             </ul>
         </nav>
     </footer>
     <div id="profile" style="display: none;">
         <h1 id="user-email"></h1>
-        <button onclick="logout()">Logout</button>
+        <button onclick="logout()">Izpiši se</button>
     </div>
 
     <div id="users" style="display: none;">
-        <h1>Users</h1>
+        <h1>Uporabniki</h1>
         <ul id="user-list"></ul>
     </div>
     <script src="script.js"></script>

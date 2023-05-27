@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sl">
 
 <head>
     <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
@@ -10,7 +10,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majmohar.me | Sign In</title>
+    <title>Majmohar.me | Vpis</title>
+    <link rel="icon" type="image/png" href="/IMG/maj.png">
     <link rel="stylesheet" href="STYLE/style.css">
     <script src="SCRIPT/script.js"></script>
     <script src="SCRIPT/firebase.js"></script>
@@ -21,9 +22,9 @@
         <nav>
             <ul class="links">
                 <li class="logo"><img src="IMG/Screenshot_25.png" alt="" srcset=""></li>
-                <li class="links-li "><a class=" " onclick="showHome()">Home</a></li>
-                <li class="links-li"><a class=" " onclick="showSchool()">School</a></li>
-                <li class="links-li"><a class=" " onclick="showContact()">Contacts</a></li>
+                <li class="links-li "><a class=" " onclick="showHome()">Domov</a></li>
+                <li class="links-li"><a class=" " onclick="showSchool()">Šola</a></li>
+                <li class="links-li"><a class=" " onclick="showContact()">Kontakt</a></li>
                 <li class="links-vr">
                     <div></div>
                 </li>
@@ -31,7 +32,7 @@
                 <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
                 <li class="links-acc" onclick="showLogin()">
                     <div class="account-info">
-                        <h3 class="hello">Log In</h3>
+                        <h3 class="hello">Vpiši se</h3>
                         <h3 class="nickname"></h3>
                         <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
                     </div>
@@ -109,20 +110,20 @@
     <footer>
         <nav>
             <ul class="bottom-links">
-                <li class="bottom-link"><a class=" " onclick="showHome()">Home</a></li>
-                <li class="bottom-link"><a class=" " onclick="showSchool()">School</a></li>
-                <li class="bottom-link"><a class=" " onclick="showContact()">Contacts</a></li>
-                <li class="credit">Powered by GRIBANICA</li>
+                <li class="bottom-link"><a class=" " onclick="showHome()">Domov</a></li>
+                <li class="bottom-link"><a class=" " onclick="showSchool()">Šola</a></li>
+                <li class="bottom-link"><a class=" " onclick="showContact()">Kontakti</a></li>
+                <li class="credit">Dizajn: GRIBANICA</li>
             </ul>
         </nav>
     </footer>
     <div class="text_normal" id="users" style="display: none;">
-        <h1>Content</h1>
+        <h1>Vsebina</h1>
         <div id="user-list"></div>
     </div>
     <div id="profile" style="display: none;">
-        <h1 id="username">Username</h1>
-        <button id="logout" onclick="logout()">Logout</button>
+        <h1 id="username">Uporabniško ime</h1>
+        <button id="logout" onclick="logout()">Izpis</button>
     </div>
 </body>
 
