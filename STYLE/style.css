@@ -8,6 +8,7 @@ body {
     padding: 0;
     background: linear-gradient(45deg, rgba(255, 165, 0, 0.5), rgba(128, 0, 128, 0.5));
     height: 100vh;
+    cursor: default;
 }
 
 .pattern-container {
@@ -74,6 +75,7 @@ body {
     color: #B5179E;
     background-color: #560BAD;
     border-radius: 20px;
+    cursor: default;
 }
 
 .links-li:hover a {
@@ -98,6 +100,7 @@ body {
     padding: 0.5rem 0 0 0;
 }
 
+
 .bottom-link {
     list-style: none;
     font-family: 'Montserrat';
@@ -106,6 +109,14 @@ body {
     width: 10%;
     margin: 0 45%;
     text-align: center;
+}
+.bottom-link:hover a {
+    transform: scale(1.1);
+}
+
+.bottom-link a {
+    display: inline-block;
+    transition: transform 0.4s;
 }
 
 .log-li {
