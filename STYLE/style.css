@@ -275,7 +275,10 @@ nav ul hr {
 
 .nickname {
     font-size: 0.8rem;
-    margin: auto 15px;
+    margin: 12px 15px;
+}
+
+.button-neki{
     display: none;
 }
 

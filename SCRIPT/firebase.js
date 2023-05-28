@@ -63,6 +63,7 @@ function login() {
                 document.getElementById("profile").appendChild(welcome);
                 welcome.classList.add("tekst");
                 document.getElementById("user-navbar").textContent = retrievedName;
+                document.getElementById("logout-button").style.display = "block";
               })
               .catch((error) => {
                 console.log("Error getting user information:", error);

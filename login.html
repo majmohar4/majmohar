@@ -40,6 +40,13 @@
                         <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
                     </div>
                 </li>
+                <div id="logout-button" style="display: none;">
+                    <li class="links-acc" onclick="logout()">
+                        <div class="account-info">
+                            <h3 class="nickname">Izpiši se</h3>
+                        </div>
+                    </li>
+                </div>
                 <li class="burger-men" onclick="burgerMenu()">
                     <span class="crta"></span>
                     <span class="crta"></span>
@@ -51,7 +58,7 @@
     </header>
     </header>
     <article class="login-art">
-        <section class="login-page">
+        <section class="login-page" id="login-form">
             <form id="login-form">
                 <h1 class="naslov" style="text-align: left; color: #560BAD; margin: 0 0 10px -20px;">Vpis</h1>
                 <span><input required class="input" type="email" name="email" id="login-email"
@@ -98,8 +105,7 @@
         </nav>
     </footer>
     <div class="text_normal tekst" id="users" style="display: none;">
-        <button id="logout" class="logout-button" onclick="logout()">Izpiši se</button>
-        <h1 class="naslov" style="margin-left: 5%;">Vsebina</h1>
+        <h1 class="naslov" style="margin-left: 5%; margin-top: 5%">Vsebina</h1>
         <div class="tekst"id="user-list"></div>
     </div>
     <div id="profile" style="display: none;">
