@@ -74,22 +74,43 @@ function showPassword() {
   });
 
   var passwordInput = document.getElementById("login-password");
-  var showButton = document.getElementById("show-button");
-  var passwordDisplay = document.getElementById("showed-password");
 
-  if (showButton.getAttribute("data-type") === "show-button") {
-    passwordDisplay.style.display = "block";
-    passwordDisplay.textContent = passwordInput.value;
-    passwordDisplay.type = "text";
-    showButton.innerHTML = "Hide Password";
-    showButton.setAttribute("data-type", "hide-button");
+  if (passwordInput.type == "password") {
+    passwordInput.type = "text";
   } else {
-    passwordDisplay.style.display = "none";
-    passwordDisplay.type = "password";
-    showButton.innerHTML = "Show Password";
-    showButton.setAttribute("data-type", "show-button");
+    passwordInput.type = "password";
   }
 }
+function showPassword2() {
+  const loginForm = document.getElementById("signup-page"); 
+  loginForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // prevent default form submission behavior
+  });
+
+  var passwordInput = document.getElementById("signup-password");
+
+  if (passwordInput.type == "password") {
+    passwordInput.type = "text";
+  } else {
+    passwordInput.type = "password";
+  }
+}
+function showPassword3() {
+  const loginForm = document.getElementById("signup-page");
+  loginForm.addEventListener("submit", (event) => {
+    event.preventDefault(); // prevent default form submission behavior
+  });
+
+  var passwordInput = document.getElementById("repeat-password");
+
+  if (passwordInput.type == "password") {
+    passwordInput.type = "text";
+  } else {
+    passwordInput.type = "password";
+  }
+}
+
+
 
 function showMenu() {
   var menu = document.getElementById("menu-popup");

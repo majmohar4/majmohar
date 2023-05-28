@@ -48,9 +48,9 @@
     </header>
     <article class="login-art">
         <section class="login-page">
-            <form>
+            <form id="signup-page">
                 <h1 class="naslov" style="text-align: left; color: #560BAD; margin: 0 0 10px -20px;">Registracija</h1>
-                <span><input required class="input" type="email" name="email" id="login-email"
+                <span><input required class="input" type="email" name="email" id="signup-email"
                         placeholder="E-pošta"></span>
                 <span><input required class="input" type="text" name="name" id="name-input" placeholder="Ime"></span>
                 <span><input required class="input" type="text" name="username" id="username-input"
@@ -59,13 +59,13 @@
                 <span>
                     <input class="input" type="password" name="password" id="signup-password" placeholder="Geslo"
                         style="border-radius:5px 0 0 5px;     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;">
-                    <button id="show-button" class="show-psw" type="show-button" onclick="showPassword()"><img
+                    <button id="show-button" class="show-psw" type="show-button" onclick="showPassword2()"><img
                             src="IMG/iStock-845329690.png"></button>
                 </span>
                 <span>
                     <input class="input" type="password" name="password" id="repeat-password" placeholder="Ponovite geslo"
                         style="border-radius:5px 0 0 5px;     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;">
-                    <button id="show-button" class="show-psw" type="show-button" onclick="showPassword()"><img
+                    <button id="show-button" class="show-psw" type="show-button" onclick="showPassword3()"><img
                             src="IMG/iStock-845329690.png"></button>
                 </span>
                 <p class="tekst" style="font-size: 0.8rem; text-align: left; padding: 0;">S registracijo se strinjam s <a href="pogoji.html">pogoji</a></p>
@@ -100,7 +100,7 @@
     </div>
     <div id="profile" style="display: none;">
         <h1 id="user-email"></h1>
-        <button onclick="logout()">Izpis</button>
+        <button class="button"onclick="logout()">Izpis</button>
     </div>
     <div id="users" style="display: none;">
         <h1>Uporabniki</h1>

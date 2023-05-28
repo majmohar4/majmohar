@@ -9,11 +9,6 @@ function showLogin() {
 }
 function showRegister() {
   window.location = "register.html";
-  var navLinks = document.getElementsByClassName("register")[0].getElementsByTagName("a");
-  for (var i = 0; i < navLinks.length; i++) {
-      navLinks[i].classList.remove("active");
-  }
-  navLinks[1].classList.add("active");
 }
 const firebaseConfig = {
     apiKey: "AIzaSyC5qgMh1cC8RsfXHafcnJu5BioJRIm1hdw",
@@ -66,6 +61,8 @@ function login() {
                 welcome.innerHTML = `Živijo ${retrievedName}! Hvala, da si se vpisal na mojo spletno stran.`;
                 welcome.innerHTML += `   Nove stvari: remnote za informatiko: <a href="https://www.remnote.com/a/64622bb4650dbdc61c7826ae">Link</a>`;
                 document.getElementById("profile").appendChild(welcome);
+                welcome.classList.add("tekst");
+                document.getElementById("user-navbar").textContent = retrievedName;
               })
               .catch((error) => {
                 console.log("Error getting user information:", error);
@@ -80,7 +77,7 @@ function login() {
   
 
   function signup() {
-    const signupForm = document.getElementById("signup-form");
+    const signupForm = document.getElementById("signup-page");
     signupForm.addEventListener("submit", (event) => {
       event.preventDefault(); // prevent default form submission behavior
   

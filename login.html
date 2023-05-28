@@ -15,7 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Majmohar.me | Vpis</title>
     <link rel="icon" type="image/png" href="/IMG/maj.png">
-    <link rel="stylesheet" href="STYLE/style.css">
+    <link rel="stylesheet" href="STYLE/style.css"> 
     <script src="SCRIPT/script.js"></script>
     <script src="SCRIPT/firebase.js"></script>
 </head>
@@ -35,7 +35,7 @@
                 <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
                 <li class="links-acc" onclick="showLogin()">
                     <div class="account-info">
-                        <h3 class="hello">Vpiši se</h3>
+                        <span class="hello" id="user-navbar">Vpiši se</span>
                         <h3 class="nickname"></h3>
                         <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
                     </div>
@@ -52,7 +52,7 @@
     </header>
     <article class="login-art">
         <section class="login-page">
-            <form>
+            <form id="login-form">
                 <h1 class="naslov" style="text-align: left; color: #560BAD; margin: 0 0 10px -20px;">Vpis</h1>
                 <span><input required class="input" type="email" name="email" id="login-email"
                         placeholder="E-pošta"></span>
@@ -97,13 +97,13 @@
             </ul>
         </nav>
     </footer>
-    <div class="text_normal" id="users" style="display: none;">
-        <h1>Vsebina</h1>
-        <div id="user-list"></div>
+    <div class="text_normal tekst" id="users" style="display: none;">
+        <button id="logout" class="logout-button" onclick="logout()">Izpiši se</button>
+        <h1 class="naslov" style="margin-left: 5%;">Vsebina</h1>
+        <div class="tekst"id="user-list"></div>
     </div>
     <div id="profile" style="display: none;">
-        <h1 id="username">Uporabniško ime</h1>
-        <button id="logout" onclick="logout()">Izpiši se</button>
+        <h1 class="podnaslov" id="username">Uporabniško ime</h1>
     </div>
 </body>
 
