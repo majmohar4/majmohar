@@ -93,7 +93,7 @@ function encryptCode() {
     document.documentElement.innerHTML = `
             <h2>1. Challenge</h2>
             <hr>
-            <h1>Poišči izvorno kodo</h1>
+            <h1>Poišči kodo, skrito v tej spletni strani.</h1>
             <p>Poskušaj najti kodo, ki se začne na 12... in mi jo pošlji na DM.</p>
         `;
     }
