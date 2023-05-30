@@ -247,36 +247,12 @@ function regularLogin(email, password) {
       console.log("Logged");
       document.getElementById("login-form").style.display = "none";
       document.getElementById("profile").style.display = "block";
-      document.getElementById("username").innerHTML = "Logged in as: " + email;
-
-      if (email === "maj.mohar4@gmail.com") {
-        document.getElementById("users").style.display = "block";
-        document.getElementById("profile").style.display = "block";
-        getName(email)
-          .then((retrievedName) => {
-            document.getElementById("username").innerHTML = retrievedName;
-            getUsers();
-          })
-          .catch((error) => {
-            console.log("Error getting user information:", error);
-          });
-      } else {
-        document.getElementById("users").style.display = "block";
-        const welcome = document.createElement("div");
-        getName(email)
-          .then((retrievedName) => {
-            welcome.innerHTML = `Živijo ${retrievedName}! Hvala, da si se vpisal na mojo spletno stran.`;
-            welcome.innerHTML += `   Nove stvari: remnote za informatiko: <a href="https://www.remnote.com/a/64622bb4650dbdc61c7826ae">Link</a>`;
-            document.getElementById("profile").appendChild(welcome);
-            welcome.classList.add("tekst");
-            document.getElementById("user-navbar").textContent = retrievedName;
-            document.getElementById("logout-button").style.display = "block";
-          })
-          .catch((error) => {
-            console.log("Error getting user information:", error);
-          });
-      }
-    })
+      getName(email)
+      .then((name) =>{
+        document.getElementById("username").innerHTML = "Logged in as " + name;
+        SetContent(name);
+      })
+      })
     .catch((error) => {
       alert(error.message);
     });
@@ -287,7 +263,7 @@ function checkTokenOnLoad() {
     const token = getCookie("token");
     if (token) {
         if (token === "a0a0a0a0a0a0a0a0a0a0a0a0"){
-        return
+          return
         } else{
       getEmailFromToken(token)
         .then((name) => {
@@ -358,12 +334,16 @@ function SetContent(name){
     }
   }
 function checkCookie_Box(){
-    const box_display = getCookie("box_display");
+  const box_display = getCookie("box_display");
+  if (window.location.pathname === "/login" || window.location.pathname === "/register.html" || window.location.pathname === "/login.html"){
     if (box_display){
         document.getElementById("cookie-banner").style.display = "none"
     }else{
         return
     }
+  }else{
+    return
+  }
 }
 function CookieDontShow(){
     const CookieShow = document.getElementById("cookie-banner");

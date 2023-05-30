@@ -17,7 +17,7 @@
     <script src="SCRIPT/firebase.js"></script>
 </head>
 
-<body onload="checkCookie(); checkTokenOnLoad()">
+<body onload="checkTokenOnLoad()">
     <header>
         <nav>
             <ul class="links">
@@ -37,6 +37,13 @@
                         <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
                     </div>
                 </li>
+                <div id="logout-button" style="display: none;">
+                    <li class="links-acc" onclick="logout()">
+                        <div class="account-info">
+                            <h3 class="nickname">Izpiši se</h3>
+                        </div>
+                    </li>
+                </div>
                 <li class="burger-men" onclick="burgerMenu()">
                     <span class="crta"></span>
                     <span class="crta"></span>
