@@ -1,34 +1,22 @@
 function showLogin() {
-    window.location = "login.html";
-    // Update the active tab
-    var navLinks = document.getElementsByClassName("login")[0].getElementsByTagName("a");
-    for (var i = 0; i < navLinks.length; i++) {
-        navLinks[i].classList.remove("active");
-    }
-    navLinks[1].classList.add("active");
+  window.location = "login.html";
 }
+
 function showRegister() {
   window.location = "register.html";
 }
 const firebaseConfig = {
-    apiKey: "AIzaSyC5qgMh1cC8RsfXHafcnJu5BioJRIm1hdw",
-    authDomain: "my-website-8f892.firebaseapp.com",
-    projectId: "my-website-8f892",
-    storageBucket: "my-website-8f892.appspot.com",
-    messagingSenderId: "91947991336",
-    appId: "1:91947991336:web:663163e19d2c8d5d81901d",
-  };
-
-// Initialize Firebase
+  apiKey: "AIzaSyC5qgMh1cC8RsfXHafcnJu5BioJRIm1hdw",
+  authDomain: "my-website-8f892.firebaseapp.com",
+  projectId: "my-website-8f892",
+  storageBucket: "my-website-8f892.appspot.com",
+  messagingSenderId: "91947991336",
+  appId: "1:91947991336:web:663163e19d2c8d5d81901d",
+};
 firebase.initializeApp(firebaseConfig);
-
-// Get a reference to the authentication service
 const auth = firebase.auth();
-
-// Get a reference to the Firestore database
 const db = firebase.firestore();
 
-// Login function
 function login() {
     const loginForm = document.getElementById("login-form");
     loginForm.addEventListener("submit", (event) => {
@@ -36,184 +24,354 @@ function login() {
   
       const email = document.getElementById("login-email").value;
       const password = document.getElementById("login-password").value;
-      auth.signInWithEmailAndPassword(email, password)
-        .then(() => {
-          console.log("Logged");
-          document.getElementById("login-form").style.display = "none";
-          document.getElementById("profile").style.display = "block";
-          document.getElementById("username").innerHTML = "Logged in as: " + email;
-          if (email === "maj.mohar4@gmail.com") {
-            document.getElementById("users").style.display = "block";
-            document.getElementById("profile").style.display = "block";
-            getName(email)
-              .then((retrievedName) => {
-                document.getElementById("username").innerHTML = retrievedName;
-                getUsers();
-              })
-              .catch((error) => {
-                console.log("Error getting user information:", error);
-              });
-          } else {
-            document.getElementById("users").style.display = "block";
-            const welcome = document.createElement("div");
-            getName(email)
-              .then((retrievedName) => {
-                welcome.innerHTML = `Živijo ${retrievedName}! Hvala, da si se vpisal na mojo spletno stran.`;
-                welcome.innerHTML += `   Nove stvari: remnote za informatiko: <a href="https://www.remnote.com/a/64622bb4650dbdc61c7826ae">Link</a>`;
-                document.getElementById("profile").appendChild(welcome);
-                welcome.classList.add("tekst");
-                document.getElementById("user-navbar").textContent = retrievedName;
-                document.getElementById("logout-button").style.display = "block";
-              })
-              .catch((error) => {
-                console.log("Error getting user information:", error);
-              });
-          }
-        })
-        .catch((error) => {
-          alert(error.message);
-        });
+  
+      const token = getCookie("token");
+  
+      if (token) {
+          replaceCookieWithFirestore(email)
+          .then(() => {
+              console.log("Token replaced successfully");
+            regularLogin(email, password); // Proceed with regular login
+          })
+          .catch((error) => {
+            console.log("Error replacing token with Firestore:", error);
+            regularLogin(email, password); // Fall back to regular login if token replacement fails
+          });
+      } else {
+        createCookieWithFirestore(email)
+          .then(() => {
+            console.log("Token created successfully");
+            regularLogin(email, password); // Proceed with regular login
+          })
+          .catch((error) => {
+            console.log("Error creating token with Firestore:", error);
+            regularLogin(email, password); // Fall back to regular login if token creation fails
+          });
+      }
     });
   }
-  
 
-  function signup() {
-    const signupForm = document.getElementById("signup-page");
-    signupForm.addEventListener("submit", (event) => {
+function setCookie(cookieName, cookieValue, expirationDays) {
+  var d = new Date();
+  d.setTime(d.getTime() + expirationDays * 24 * 60 * 60 * 1000);
+  var expires = "expires=" + d.toUTCString();
+  document.cookie = cookieName + "=" + cookieValue + "; " + expires + "; path=/";
+}
+
+function signup() {
+  const signupForm = document.getElementById("signup-page");
+  signupForm.addEventListener("submit", (event) => {
       event.preventDefault(); // prevent default form submission behavior
-  
+
       const email = document.getElementById("signup-email").value;
       const password = document.getElementById("signup-password").value;
       const repeatPassword = document.getElementById("repeat-password").value;
       const name = document.getElementById("name-input").value;
       const username = document.getElementById("username-input").value;
-  
+
       if (password === repeatPassword) {
-        auth.createUserWithEmailAndPassword(email, password)
-          .then((userCredential) => {
-            saveUserInfo(email, name, username);
-            alert("Account created successfully!");
-            window.location = "login.html";
-          })
-          .catch((error) => {
-            alert(error.message);
-            alert("Account not created! Try again.");
-          });
+          auth.createUserWithEmailAndPassword(email, password)
+              .then((userCredential) => {
+                  saveUserInfo(email, name, username);
+                  alert("Account created successfully!");
+                  window.location = "login.html";
+              })
+              .catch((error) => {
+                  alert(error.message);
+                  alert("Account not created! Try again.");
+              });
       } else {
-        alert("Passwords do not match.");
+          alert("Passwords do not match.");
       }
+  });
+}
+
+function saveUserInfo(email, name, username) {
+  db.collection("users")
+      .doc(email)
+      .set({
+          name: name,
+          email: email,
+          username: username
+      })
+      .then(() => {
+          console.log("User information saved successfully!");
+      })
+      .catch((error) => {
+          console.log(error.message);
+      });
+}
+
+function checkEmailVerification() {
+  const user = auth.currentUser;
+
+  if (user && user.emailVerified) {
+      return false
+  } else {
+      console.log("Email is not verified.");
+  }
+}
+
+function getName(email) {
+  const userRef = db.collection("users").doc(email);
+
+  return userRef
+      .get()
+      .then((doc) => {
+          if (doc.exists) {
+              const data = doc.data();
+              const name = data.name;
+              return name;
+          } else {
+              throw new Error("User not found in Firestore.");
+          }
+      })
+      .catch((error) => {
+          throw error;
+      });
+}
+
+function logout() {
+  auth.signOut()
+      .then(() => {
+          setCookie("token", "a0a0a0a0a0a0a0a0a0a0a0a0")
+          location.reload()
+          alert("Logged out successfully!");
+      })
+      .catch(error => {
+          alert(error.message);
+      });
+}
+
+function getUsers() {
+  db.collection("users").get()
+      .then(querySnapshot => {
+          const userList = document.getElementById("user-list");
+          querySnapshot.forEach(doc => {
+              const user = doc.data();
+              const li = document.createElement("li");
+              li.innerHTML = user.name + " (" + user.email + ")";
+              userList.appendChild(li);
+          });
+      })
+      .catch(error => {
+          alert(error.message);
+      });
+}
+
+function checkLogin() {
+  db.collection("tokens").get()
+      .then(querySnapshot => {
+
+          querySnapshot.forEach(doc => {
+              const user = doc.data();
+              const li = document.createElement("li");
+              li.innerHTML = user.name + " (" + user.email + ")";
+              userList.appendChild(li);
+          });
+      })
+      .catch(error => {
+          alert(error.message);
+      });
+}
+
+function replaceCookieWithFirestore(email) {
+        return new Promise((resolve, reject) => {
+            const usersRef = firebase.firestore().collection("users");
+            const query = usersRef.where("email", "==", email).limit(1);
+        
+            query
+              .get()
+              .then((snapshot) => {
+                if (!snapshot.empty) {
+                  const doc = snapshot.docs[0];
+                  const firestoreCode = doc.get("token");
+                  setCookie("token", firestoreCode);
+                  resolve();
+                } else {
+                  reject(new Error("User not found"));
+                }
+              })
+              .catch((error) => {
+                reject(error);
+              });
+      resolve();
     });
   }
   
-  function saveUserInfo(email, name, username) {
-    db.collection("users")
-      .doc(email)
-      .set({
-        name: name,
-        email: email,
-        username: username
-      })
-      .then(() => {
-        console.log("User information saved successfully!");
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  }
+  function createCookieWithFirestore(email) {
+    return new Promise((resolve, reject) => {
+      // Get the Firestore code from the Firebase collection "users" based on the email
+      const usersRef = firebase.firestore().collection("users");
+      const query = usersRef.where("email", "==", email).limit(1);
   
+      query
+        .get()
+        .then((snapshot) => {
+          if (!snapshot.empty) {
+            const doc = snapshot.docs[0];
+            const firestoreCode = doc.get("token");
   
-function checkEmailVerification() {
-    const user = auth.currentUser;
-    
-    if (user && user.emailVerified) {
-        return false
-    } else {
-      console.log("Email is not verified.");
-    }
-  }
-
-  function getName(email) {
-    const userRef = db.collection("users").doc(email);
-  
-    return userRef
-      .get()
-      .then((doc) => {
-        if (doc.exists) {
-          const data = doc.data();
-          const name = data.name;
-          return name;
-        } else {
-          throw new Error("User not found in Firestore.");
-        }
-      })
-      .catch((error) => {
-        throw error;
-      });
-  }
-  
-// Logout function
-function logout() {
-    auth.signOut()
-        .then(() => {
-            location.reload();
-            alert("Logged out successfully!");
+            // Set the Firestore code as the value of the "token" cookie
+            setCookie("token", firestoreCode);
+            resolve(); // Resolve the promise to indicate success
+          } else {
+            reject(new Error("User not found"));
+          }
         })
-        .catch(error => {
-            alert(error.message);
+        .catch((error) => {
+          reject(error);
         });
-}
+    });
+  }
 
-// Get all users
-function getUsers() {
-    db.collection("users").get()
-        .then(querySnapshot => {
-            const userList = document.getElementById("user-list");
-            querySnapshot.forEach(doc => {
-                const user = doc.data();
-                const li = document.createElement("li");
-                li.innerHTML = user.name + " (" + user.email + ")";
-                userList.appendChild(li);
-            });
-        })
-        .catch(error => {
-            alert(error.message);
-        });
-}
-
-
-function checkSessionCookie() {
+  function setCookie(name, value) {
+    document.cookie = `${name}=${value}; path=/`;
+  }
+  
+  function getCookie(name) {
     const cookies = document.cookie.split("; ");
-    for (const cookie of cookies) {
-        const [name, value] = cookie.split("=");
-        if (name === "session") {
-            // Use the Firebase Auth REST API to verify the ID token
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET", `https://www.googleapis.com/identitytoolkit/v3/relyingparty/getAccountInfo?key=${firebaseConfig.apiKey}`);
-            xhr.setRequestHeader("Authorization", `Bearer ${value}`);
-            xhr.onload = () => {
-                if (xhr.status === 200) {
-                    const response = JSON.parse(xhr.responseText);
-                    const email = response.users[0].email;
-                    document.getElementById("login-form").style.display = "none";
-                    document.getElementById("profile").style.display = "block";
-                    document.getElementById("user-email").innerHTML = "Logged in as: " + email;
-                    if (email === "maj.mohar4@gmail.com") {
-                        document.getElementById("users").style.display = "block";
-                        getUsers();
-                    } else {
-                        document.getElementById("users").style.display = "block";
-                        const welcome = document.createElement("div");
-                        welcome.innerHTML = `Živijo ${email}! Hvala, da si se vpisal na mojo spletno stran.`;
-                        welcome.innerHTML += '   Nove stvari: remnote za geografijo: <a href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Link</a>';
-                        welcome.innerHTML += '   Nove stvari: remnote za likovno umetnost: <a href="https://www.remnote.com/a/645aa57fd2258975e69d5b55">Link</a>';
-                        document.getElementById("profile").appendChild(welcome);
-                    }                    
-                }
-            };
-            xhr.send();
-            break;
-        }
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].split("=");
+      if (cookie[0] === name) {
+        return cookie[1];
+      }
     }
+    return null;
+  }
+
+function regularLogin(email, password) {
+    console.log("trying to log in")
+    auth.signInWithEmailAndPassword(email, password)
+    .then(() => {
+      console.log("Logged");
+      document.getElementById("login-form").style.display = "none";
+      document.getElementById("profile").style.display = "block";
+      document.getElementById("username").innerHTML = "Logged in as: " + email;
+
+      if (email === "maj.mohar4@gmail.com") {
+        document.getElementById("users").style.display = "block";
+        document.getElementById("profile").style.display = "block";
+        getName(email)
+          .then((retrievedName) => {
+            document.getElementById("username").innerHTML = retrievedName;
+            getUsers();
+          })
+          .catch((error) => {
+            console.log("Error getting user information:", error);
+          });
+      } else {
+        document.getElementById("users").style.display = "block";
+        const welcome = document.createElement("div");
+        getName(email)
+          .then((retrievedName) => {
+            welcome.innerHTML = `Živijo ${retrievedName}! Hvala, da si se vpisal na mojo spletno stran.`;
+            welcome.innerHTML += `   Nove stvari: remnote za informatiko: <a href="https://www.remnote.com/a/64622bb4650dbdc61c7826ae">Link</a>`;
+            document.getElementById("profile").appendChild(welcome);
+            welcome.classList.add("tekst");
+            document.getElementById("user-navbar").textContent = retrievedName;
+            document.getElementById("logout-button").style.display = "block";
+          })
+          .catch((error) => {
+            console.log("Error getting user information:", error);
+          });
+      }
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
 }
 
-window.onload = checkSessionCookie;
+function checkTokenOnLoad() {
+    checkCookie_Box()
+    const token = getCookie("token");
+    if (token) {
+        if (token === "a0a0a0a0a0a0a0a0a0a0a0a0"){
+        return
+        } else{
+      getEmailFromToken(token)
+        .then((name) => {
+              console.log("Name:", name);
+              if ((window.location.pathname === "/login" || window.location.pathname === "/login.html") && name !== ""){
+                SetContent(name)
+              }else{
+                document.getElementById("user-navbar").textContent = name;
+                document.getElementById("logout-button").style.display = "block";
+              }
+            })
+            .catch((error) => {
+              console.log("Error getting name from email:", error);
+            });
+        }
+    } else {
+      console.log("No token found.");
+      pass
+    }
+  }
+  
+function getEmailFromToken(token) {
+    return new Promise((resolve, reject) => {
+      // Retrieve the email associated with the token from the Firestore collection "tokens"
+      const tokensRef = firebase.firestore().collection("tokens").doc(token);
+  
+      tokensRef
+        .get()
+        .then((doc) => {
+          if (doc.exists) {
+            const data = doc.data();
+            const name = data.name;  
+            resolve(name);
+          } else {
+            reject(new Error("Token not found"));
+          }
+        })
+        .catch((error) => {
+          reject(error);
+        });
+    });
+  }
+function SetContent(name){
+    if (name === "Maj") {
+        document.getElementById("users").style.display = "block";
+        document.getElementById("vsebina_naslov").textContent = "Uporabniki";
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("users").style.display = "block";
+        document.getElementById("users").classList.add("tekst");
+        document.getElementById("user-list").style.marginLeft = "5%";
+        document.getElementById("user-navbar").textContent = name;
+        document.getElementById("logout-button").style.display = "block";
+        getUsers();
+    }else{
+        document.getElementById("login-form").style.display = "none";
+        document.getElementById("content").style.display = "block";
+        document.getElementById("users").style.display = "block";
+        var welcome = document.createElement("p");
+        welcome.innerHTML = `Živijo ${name}! Hvala, da si se vpisal na mojo spletno stran.<br>`;
+        welcome.innerHTML += `- nove stvari: <br>`;
+        welcome.innerHTML += `&emsp; - remnote za informatiko: <a href="https://www.remnote.com/a/64622bb4650dbdc61c7826ae">Link</a>`;
+        document.getElementById("content").appendChild(welcome);
+        document.getElementById("content").classList.add("tekst");
+        document.getElementById("content").style.marginLeft = "5%";
+        document.getElementById("user-navbar").textContent = name;
+        document.getElementById("users").classList.add("tekst");
+        document.getElementById("logout-button").style.display = "block";
+    }
+  }
+function checkCookie_Box(){
+    const box_display = getCookie("box_display");
+    if (box_display){
+        document.getElementById("cookie-banner").style.display = "none"
+    }else{
+        return
+    }
+}
+function CookieDontShow(){
+    const CookieShow = document.getElementById("cookie-banner");
+    console.log("najden")
+    CookieShow.addEventListener("submit", (event) => {
+    event.preventDefault();
+  
+    setCookie("box_display", 1)
+    document.getElementById("cookie-banner").style.display = "none"
+    })
+}

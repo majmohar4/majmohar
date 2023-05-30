@@ -17,7 +17,7 @@
     <script src="SCRIPT/firebase.js"></script>
 </head>
 
-<body>
+<body onload="checkCookie(); checkTokenOnLoad()">
     <header>
         <nav>
             <ul class="links">
@@ -78,12 +78,7 @@
             <h3 class="podnaslov">Naši pogoji uporabe</h3>
             <p class="tekst">Preberi o pogojih <a href="pogoji.html">tukaj</a></p>
             <form action="" method="get" id="cookie-banner">
-                <button id="agree">Strinjam se</button>
-                <span>
-                  <p class="tekst">Ne pokaži več</p>
-                  <input type="checkbox" name="dontShowAgain" id="dont-show-again-checkbox">
-                  <label for="dont-show-again-checkbox" class="checkbox-label"></label>
-                </span>
+                <button id="agree" onclick="CookieDontShow()">Strinjam se</button>
               </form>
         </section>
     </article>

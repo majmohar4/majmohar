@@ -16,8 +16,20 @@
     <link rel="stylesheet" href="STYLE/style.css">
     <script src="SCRIPT/script.js"></script>
     <script src="SCRIPT/firebase.js"></script>
+    <style>
+        .material-symbols-outlined {
+            color: #e9efef;
+
+            margin: 5px;
+            font-variation-settings:
+                'FILL' 1,
+                'wght' 400,
+                'GRAD' 1,
+                'opsz' 48
+        }
+    </style>
 </head>
-<body onload="showNav()">
+<body onload="checkCookie(); checkTokenOnLoad()">
     <header>
         <nav>
             <ul class="links">
@@ -32,11 +44,18 @@
                 <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
                 <li class="links-acc" onclick="showLogin()">
                     <div class="account-info">
-                        <h3 class="hello">Vpiši se</h3>
+                        <span class="hello" id="user-navbar">Vpiši se</span>
                         <h3 class="nickname"></h3>
                         <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
                     </div>
                 </li>
+                <div id="logout-button" style="display: none;">
+                    <li class="links-acc" onclick="logout()">
+                        <div class="account-info">
+                            <h3 class="nickname">Izpiši se</h3>
+                        </div>
+                    </li>
+                </div>
                 <li class="burger-men" onclick="burgerMenu()">
                     <span class="crta"></span>
                     <span class="crta"></span>

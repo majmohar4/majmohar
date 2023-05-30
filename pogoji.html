@@ -19,7 +19,7 @@
     <script src="SCRIPT/firebase.js"></script>
 </head>
 
-<body onload="checkSessionCookie()">
+<body onload="checkCookie(); checkTokenOnLoad()">
     <header>
         <nav>
             <ul class="links">
@@ -34,7 +34,7 @@
                 <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
                 <li class="links-acc" onclick="showLogin()">
                     <div class="account-info">
-                        <h3 class="hello">Vpiši se</h3>
+                        <span class="hello" id="user-navbar">Vpiši se</span>
                         <h3 class="nickname"></h3>
                         <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
                     </div>
