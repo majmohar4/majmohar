@@ -73,12 +73,12 @@ function signup() {
           auth.createUserWithEmailAndPassword(email, password)
               .then((userCredential) => {
                   saveUserInfo(email, name, username);
-                  alert("Account created successfully!");
+                  alert("Account created successfully anigga!");
                   window.location = "login.html";
               })
               .catch((error) => {
                   alert(error.message);
-                  alert("Account not created! Try again.");
+                  alert("Account not created you looser! Try again.");
               });
       } else {
           alert("Passwords do not match.");
@@ -136,7 +136,7 @@ function logout() {
       .then(() => {
           setCookie("token", "a0a0a0a0a0a0a0a0a0a0a0a0")
           location.reload()
-          alert("Logged out successfully!");
+          alert("Logged out successfully you nigger!");
       })
       .catch(error => {
           alert(error.message);
@@ -284,7 +284,6 @@ function checkTokenOnLoad() {
       pass
     }
   }
-  
 function getEmailFromToken(token) {
     return new Promise((resolve, reject) => {
       // Retrieve the email associated with the token from the Firestore collection "tokens"

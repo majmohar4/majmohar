@@ -51,6 +51,15 @@ function checkCookie() {
 
   if (minutes >= 5) {
     if (lastAccess !== "") {
+      if(minute === 1){
+        document.getElementById("lastAccess").innerHTML = minutes + " minuto nazaj";
+      }
+      else if (minutes === 2){
+        document.getElementById("lastAccess").innerHTML = minutes + " minuti nazaj";
+      }
+      else if (minutes <= 3){
+        document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
+      }
       document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
       document.getElementById("accessCount").innerHTML = parseInt(visitCount) + 1;
       setCookie("lastAccess", currentDate.getTime(), 30);
