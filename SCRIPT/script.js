@@ -73,7 +73,6 @@ function checkCookie() {
     document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
   }
 }
-
 checkCookie();
 
 function showPassword() {
@@ -119,8 +118,6 @@ function showPassword3() {
   }
 }
 
-
-
 function showMenu() {
   var menu = document.getElementById("menu-popup");
 
@@ -133,32 +130,4 @@ function showMenu() {
 function burgerMenu(){
   document.getElementsByClassName("links-li").classList.add("show");
   alert("button");
-}
-
-// Event listener for the Agree button
-document.getElementById('agree').addEventListener('click', function() {
-  // Check if the checkbox is checked
-  const checkbox = document.getElementById('dont-show-again-checkbox');
-  if (checkbox.checked) {
-    // Set the cookie to not show the checkbox again
-    setCookie('dontShowAgain', 'true', 365); // Cookie expires in 365 days
-  } else {
-    // Remove the cookie if the checkbox is unchecked
-    removeCookie('dontShowAgain');
-  }
-});
-
-// Function to remove a cookie
-function removeCookie(name) {
-  document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-}
-
-function checkCookieBanner() {
-  const dontShowAgain = getCookie('dontShowAgain');
-  if (dontShowAgain === 'true') {
-    const cookieBanner = document.getElementById('cookie-banner');
-    if (cookieBanner) {
-      cookieBanner.style.display = 'none';
-    }
-  }
 }

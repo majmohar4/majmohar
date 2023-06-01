@@ -199,7 +199,7 @@ function replaceCookieWithFirestore(email) {
     });
   }
   
-  function createCookieWithFirestore(email) {
+function createCookieWithFirestore(email) {
     return new Promise((resolve, reject) => {
       // Get the Firestore code from the Firebase collection "users" based on the email
       const usersRef = firebase.firestore().collection("users");
@@ -225,11 +225,11 @@ function replaceCookieWithFirestore(email) {
     });
   }
 
-  function setCookie(name, value) {
+function setCookie(name, value) {
     document.cookie = `${name}=${value}; path=/`;
   }
   
-  function getCookie(name) {
+function getCookie(name) {
     const cookies = document.cookie.split("; ");
     for (let i = 0; i < cookies.length; i++) {
       const cookie = cookies[i].split("=");
@@ -256,7 +256,7 @@ function regularLogin(email, password) {
     .catch((error) => {
       alert(error.message);
     });
-}
+  }
 
 function checkTokenOnLoad() {
     checkCookie_Box()
