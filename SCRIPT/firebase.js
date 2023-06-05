@@ -71,17 +71,17 @@ function signup() {
 
       if (password === repeatPassword) {
           auth.createUserWithEmailAndPassword(email, password)
-              .then((userCredential) => {
+              .then(() => {
                   saveUserInfo(email, name, username);
-                  alert("Account created successfully anigga!");
+                  alert("Account created successfully.");
                   window.location = "login.html";
               })
               .catch((error) => {
                   alert(error.message);
-                  alert("Account not created you looser! Try again.");
+                  alert("Account not created! Try again.");
               });
       } else {
-          alert("Passwords do not match looooooser.");
+          alert("Passwords do not match.");
       }
   });
 }
@@ -136,7 +136,7 @@ function logout() {
       .then(() => {
           setCookie("token", "a0a0a0a0a0a0a0a0a0a0a0a0")
           location.reload()
-          alert("Logged out successfully you nigger!");
+          alert("Logged out successfully.");
       })
       .catch(error => {
           alert(error.message);
@@ -353,4 +353,19 @@ function CookieDontShow(){
     setCookie("box_display", 1)
     document.getElementById("cookie-banner").style.display = "none"
     })
+}
+
+
+
+function loadEverything() {
+  db.collection("users")
+    .get()
+    .then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data());
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting documents: ", error);
+    });
 }
