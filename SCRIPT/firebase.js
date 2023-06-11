@@ -50,14 +50,12 @@ function login() {
     }
   });
 }
-
 function setCookie(cookieName, cookieValue, expirationDays) {
   var d = new Date();
   d.setTime(d.getTime() + expirationDays * 24 * 60 * 60 * 1000);
   var expires = "expires=" + d.toUTCString();
   document.cookie = cookieName + "=" + cookieValue + "; " + expires + "; path=/";
 }
-
 function signup() {
   const signupForm = document.getElementById("signup-page");
   signupForm.addEventListener("submit", (event) => {
@@ -85,7 +83,6 @@ function signup() {
     }
   });
 }
-
 function saveUserInfo(email, name, username) {
   db.collection("users")
     .doc(email)
@@ -131,7 +128,7 @@ function getName(email) {
 function logout() {
   auth.signOut()
     .then(() => {
-      setCookie("token", "a0a0a0a0a0a0a0a0a0a0a0a0")
+      deleteCookie("token")
       location.reload()
       alert("Logged out successfully.");
     })
@@ -224,11 +221,13 @@ function getCookie(name) {
   const cookies = document.cookie.split("; ");
   for (let i = 0; i < cookies.length; i++) {
     const cookie = cookies[i].split("=");
-    if (cookie[0] === name) {
-      return cookie[1];
+    const cookieName = decodeURIComponent(cookie[0]);
+    const cookieValue = decodeURIComponent(cookie[1]);
+    if (cookieName === name) {
+      return cookieValue;
     }
   }
-  return null;
+  return "";
 }
 function regularLogin(email, password) {
   console.log("trying to log in")
@@ -251,7 +250,7 @@ function checkTokenOnLoad() {
   checkCookie_Box()
   const token = getCookie("token");
   if (token) {
-    if (token === "a0a0a0a0a0a0a0a0a0a0a0a0") {
+    if (token === "") {
       return
     } else {
       getEmailFromToken(token)
@@ -343,7 +342,9 @@ function CookieDontShow() {
     document.getElementById("cookie-banner").style.display = "none"
   })
 }
-
+function deleteCookie(name) {
+  document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+}
 
 let score = 0;
 let timeLeft = 5000;
