@@ -24,7 +24,7 @@ function showNav() {
 }
 
 function showContact() {
-  window.location.href = "/contact/";
+  window.location.href = "/contact";
 }
 
 function setCookie(cookieName, cookieValue, expirationDays) {

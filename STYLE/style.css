@@ -92,9 +92,10 @@ body {
 
 .bottom-links {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
-    padding: 0;
+    text-align: center;
+    border: 10%;
     background-color: #94C5CC;
     color: #241e1e;
     position: relative;
@@ -107,11 +108,14 @@ body {
 .bottom-link {
     list-style: none;
     font-family: 'Montserrat';
-    padding: 3px 20px 2px;
+    padding: 3px 40px 2px;
+    align-items: center;
     font-size: 0.9rem;
     width: 10%;
-    margin: 0 45%;
+    margin: 0 20%;
     text-align: center;
+    border:#00000025 2px solid;
+    border-radius: 10px;
 }
 
 .bottom-link:hover a {
