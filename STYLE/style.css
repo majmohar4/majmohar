@@ -3,10 +3,12 @@
 }
 
 body {
+    height: 100%;
     display: relative;
     margin: 0;
     padding: 0;
-    background: linear-gradient(45deg, rgba(255, 165, 0, 0.5), rgba(128, 0, 128, 0.5));
+    /* background: linear-gradient(45deg, rgba(255, 165, 0, 0.5), rgba(128, 0, 128, 0.5)); */
+    background-color: #e2e2e2;
     background-size: cover auto;
     min-height: 100vh;
     cursor: default;
@@ -31,7 +33,7 @@ body {
     left: 0;
     width: 200%;
     height: 200%;
-    background: linear-gradient(-45deg, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.3) 75%, rgba(0, 0, 0, 0.2) 75%);
+    /* background: linear-gradient(-45deg, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.3) 75%, rgba(0, 0, 0, 0.2) 75%); */
     background-size: 10px 10px;
     transform: translate(-25%, -25%);
     opacity: 0.3;
@@ -45,7 +47,7 @@ body {
     width: 100%;
     height: 100%;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
-    background: linear-gradient(45deg, rgba(255, 165, 0, 0.3), rgba(128, 0, 128, 0.3));
+    /* background: linear-gradient(45deg, rgba(255, 165, 0, 0.3), rgba(128, 0, 128, 0.3)); */
     opacity: 0.3;
     mix-blend-mode: screen;
 }
@@ -55,9 +57,9 @@ body {
     flex-wrap: nowrap;
     justify-content: center;
     padding: 0;
-    background-color: #480CA8;
+    background-color: #94C5CC;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-    color: white;
+    color: #65686f;
     min-height: 60px;
 }
 
@@ -73,8 +75,8 @@ body {
 
 .links-li:hover,
 .bottom-link:hover {
-    color: #B5179E;
-    background-color: #560BAD;
+    color: #FFE787;
+    background-color: #424242;
     border-radius: 20px;
     cursor: default;
 }
@@ -85,7 +87,7 @@ body {
 
 .links-li a {
     display: inline-block;
-    transition: transform 0.4s;
+    /* transition: transform 0.4s; */
 }
 
 .bottom-links {
@@ -93,8 +95,8 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     padding: 0;
-    background-color: #480CA8;
-    color: #c2c2c2;
+    background-color: #94C5CC;
+    color: #241e1e;
     position: relative;
     bottom: 0;
     width: 100%;
@@ -127,7 +129,7 @@ body {
 
 .log {
     border-radius: 7px;
-    background-color: #3A0CA3;
+    background-color: #a30c0c;
     color: white;
     padding: 15px 20px;
 }
@@ -169,7 +171,7 @@ html {
 }
 
 footer {
-    background-color: rgb(68, 26, 156);
+    background-color: #94C5CC;
     display: flex;
     position: relative;
     bottom: 0;
@@ -207,8 +209,8 @@ footer {
 }
 
 .active-page {
-    color: #B5179E;
-    background-color: #560BAD;
+    background-color: #75add5;
+    color: #ffe787;
 }
 
 nav ul hr {
@@ -225,14 +227,14 @@ nav ul hr {
 .login a {
     /* margin: 14px 0 0 0; */
     padding: 13px 22px;
-    background-color: rgb(232, 81, 80);
+    background-color: #a1a6b4;
     border-radius: 4px;
 }
 
 .links-vr div {
     height: 100%;
     width: 2px;
-    background-color: rgb(232, 81, 80);
+    background-color: #a1a6b4;
 }
 
 .links-vr {
@@ -259,7 +261,7 @@ nav ul hr {
 .account-info {
     max-height: 60px;
     display: flex;
-    background: rgb(232, 81, 80);
+    background: #FFE787;
     border-radius: 7px;
     padding: 5px 10px;
 }
@@ -267,7 +269,7 @@ nav ul hr {
 .account-info:hover {
     opacity: 0.7;
     transition: 0.4s;
-    color: #B5179E;
+    color: #b4d2e7;
     cursor: pointer;
 }
 
@@ -295,7 +297,7 @@ nav ul hr {
     margin: 3em 0%;
     text-align: center;
     padding: 1rem;
-    background-color: rgb(232, 81, 80);
+    background-color: #94c5cc;
     vertical-align: middle;
     border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
@@ -517,7 +519,7 @@ form {
         opacity: 1;
         text-align: center;
         padding: 20px 0;
-        background-color: #480CA8;
+        background-color: #FFE787;
     }
 
     .links-acc {
@@ -656,7 +658,7 @@ input[type="checkbox"] {
     margin: 2%;
     position: relative;
     border-radius: 3px;
-    background-color: #0970df;
+    background-color: transparent;
 }
 
 .leaderboard:before {
@@ -666,13 +668,14 @@ input[type="checkbox"] {
     left: -2%;
     right: -2%;
     bottom: -2%;
-    background-color: #fff;
+    background-color: #0871ae;
     z-index: -1;
     border-radius: 3px;
 }
 
 .leaderboard-content {
-    background-color: transparent;
+    background-color: #8aa2fc;
+    border-radius: 3px;
 }
 
 @keyframes scoreAnimation {
