@@ -10,6 +10,7 @@ function showSchool() {
 function showPolicy() {
   window.location.href = "/pogoji";  
 }
+
 function showClicker(){
   window.location.href = "/clicker"
 }
@@ -50,11 +51,16 @@ function checkCookie() {
   var lastAccess = getCookie("lastAccess");
   var visitCount = getCookie("visitCount");
   var currentDate = new Date();
+  if (visitCount === ""){
+    setCookie("visitCount", "1")
+  } else if (lastAccess === ""){
+    setCookie("lastAccess", currentDate.getTime())
+  } else{
   var minutes = Math.floor((currentDate.getTime() - lastAccess) / 60000);
 
   if (minutes >= 5) {
     if (lastAccess !== "") {
-      if(minute === 1){
+      if(minutes === 1){
         document.getElementById("lastAccess").innerHTML = minutes + " minuto nazaj";
       }
       else if (minutes === 2){
@@ -75,6 +81,7 @@ function checkCookie() {
     document.getElementById("accessCount").innerHTML = visitCount;
     document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
   }
+}
 }
 checkCookie();
 

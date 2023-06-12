@@ -392,10 +392,10 @@ function start() {
     startCountdown();
   }
 }
-
+if (window.location.href === "/clicker" || window.location.href === "/clicker.html"){
 document.getElementById("clickGumb").addEventListener("click", handleClick);
 document.getElementById("resetGumb").addEventListener("click", reset);
-
+}
 
 function zapišiScore(score) {
   const date = new Date();

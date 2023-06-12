@@ -17,13 +17,12 @@
     <meta property="og:description" content="Spletna stran za šolo in ostalo.">
     <meta property="og:image" content="/IMG/preview.png">
     <title>Majmohar.me | Domov</title>
-    <link rel="icon" type="image/png" href="/IMG/maj.png">
+    <link rel="icon" type="image/png" href="/IMG/maj2.png">
     <link rel="stylesheet" href="STYLE/style.css">
-    <script src="SCRIPT/script.js"></script>
     <script src="SCRIPT/firebase.js"></script>
 </head>
 
-<body onload="loadEverything(); checkCookie(); checkTokenOnLoad(); ">
+<body onload="checkCookie(); checkTokenOnLoad(); loadEverything();">
     <header>
         <nav>
             <ul class="links">
@@ -36,62 +35,64 @@
                     <div></div>
                 </li>
                 <!-- <li class="login links-li"><a onclick="showRegister()">Sign Up</a></li>
-                <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
-                <li class="links-acc" onclick="showLogin()">
-                    <div class="account-info">
-                        <span class="hello" id="user-navbar">Vpiši se</span>
-                        <h3 class="nickname"></h3>
-                        <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
-                    </div>
-                </li>
-                <div id="logout-button" style="display: none;">
-                    <li class="links-acc" onclick="logout()">
+                    <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
+                    <li class="links-acc" onclick="showLogin()">
                         <div class="account-info">
-                            <h3 class="nickname">Izpiši se</h3>
+                            <span class="hello" id="user-navbar">Vpiši se</span>
+                            <h3 class="nickname"></h3>
+                            <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
                         </div>
                     </li>
-                </div>
-                <li class="burger-men" onclick="burgerMenu()">
-                    <span class="crta"></span>
-                    <span class="crta"></span>
-                    <span class="crta"></span>
-                </li>
-                
-            </ul>
-        </nav>
-    </header>
-    <article>
-        <section class="work">
-            <h1 id="pageTitle" class="naslov" style="text-align: center;">Maj Mohar</h1>
+                    <div id="logout-button" style="display: none;">
+                        <li class="links-acc" onclick="logout()">
+                            <div class="account-info">
+                                <h3 class="nickname">Izpiši se</h3>
+                            </div>
+                        </li>
+                    </div>
+                    <li class="burger-men" onclick="burgerMenu()">
+                        <span class="crta"></span>
+                        <span class="crta"></span>
+                        <span class="crta"></span>
+                    </li>
+                    
+                </ul>
+            </nav>
+        </header>
+        <article>
+            <section class="work">
+                <h1 id="pageTitle" class="naslov" style="text-align: center;">Maj Mohar</h1>
             <h1 id="pageTitle" class="podnaslov">Nekaj o meni:</h1>
             <p id="pageContent" class="tekst">Jaz sem <span class="poudarek">Maj</span> in sem <span class="poudarek">razvijalec spletnih strani</span>
-            <p class="tekst">To spletno stran si obiskal <span id="accessCount"></span>-krat.</p>
-            <p class="tekst">Zadnjič si bil tukaj <span id="lastAccess"></span>.</p>
-        </section>
-    </article>
+                <p class="tekst">To spletno stran si obiskal <span id="accessCount">_</span>-krat.</p>
+                <p class="tekst">Zadnjič si bil tukaj <span id="lastAccess">_</span>.</p>
+                <br>
+            </section>
+        </article>
+        
+        <footer>
+            <nav>
+                <ul class="bottom-links">
+                    <li class="bottom-link"><a class=" " onclick="showHome()">Domov</a></li>
+                    <li class="bottom-link"><a class=" " onclick="showSchool()">Šola</a></li>
+                    <li class="bottom-link"><a class=" " onclick="showContact()">Kontakti</a></li>
+                    <li class="bottom-link"><a class=" " onclick="showPolicy()">Pogoji uporabe</a></li>
+                </ul>
+            </nav>
+        </footer>
+        <div style="margin-left: 5%; margin-top: 5%">
+            <div class="text_normal tekst" id="users" style="display: none;">
+                <h1 class="naslov" id="vsebina_naslov">Vsebina</h1>
+                <div class="tekst"id="user-list"></div>
+            </div>
+            <div id="profile" style="display: none;">
+                <h1 class="podnaslov" id="username">Uporabniško ime</h1>
+            </div>
+            <div id="content" style="display: none;">
+                <p class="tekst" style="margin-left: 5%; margin-top: 2%" ></p>
+            </div>
+        </div>
+        <script src="SCRIPT/script.js"></script>
+    </body>
     
-    <footer>
-        <nav>
-            <ul class="bottom-links">
-                <li class="bottom-link"><a class=" " onclick="showHome()">Domov</a></li>
-                <li class="bottom-link"><a class=" " onclick="showSchool()">Šola</a></li>
-                <li class="bottom-link"><a class=" " onclick="showContact()">Kontakti</a></li>
-                <li class="bottom-link"><a class=" " onclick="showPolicy()">Pogoji uporabe</a></li>
-            </ul>
-        </nav>
-    </footer>
-    <div style="margin-left: 5%; margin-top: 5%">
-        <div class="text_normal tekst" id="users" style="display: none;">
-            <h1 class="naslov" id="vsebina_naslov">Vsebina</h1>
-            <div class="tekst"id="user-list"></div>
-        </div>
-        <div id="profile" style="display: none;">
-            <h1 class="podnaslov" id="username">Uporabniško ime</h1>
-        </div>
-        <div id="content" style="display: none;">
-            <p class="tekst" style="margin-left: 5%; margin-top: 2%" ></p>
-        </div>
-    </div>
-</body>
-
 </html>
