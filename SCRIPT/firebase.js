@@ -430,6 +430,7 @@ function preglejPrejšnjeRezultate(ime, score){
   .doc(ime)
   const točke = doc.data().score;
   if (score > točke){
+    db.collection("scores")
     /* treba še anrdit, da bo delal za shranjevat */  
   }
 }
