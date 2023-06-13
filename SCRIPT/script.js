@@ -4,14 +4,14 @@ function showHome() {
 }
 
 function showSchool() {
-  window.location.href = "/school";  
+  window.location.href = "/school";
 }
 
 function showPolicy() {
-  window.location.href = "/pogoji";  
+  window.location.href = "/pogoji";
 }
 
-function showClicker(){
+function showClicker() {
   window.location.href = "/clicker"
 }
 
@@ -51,37 +51,36 @@ function checkCookie() {
   var lastAccess = getCookie("lastAccess");
   var visitCount = getCookie("visitCount");
   var currentDate = new Date();
-  if (visitCount === ""){
+  if (visitCount === "") {
     setCookie("visitCount", "1")
-  } else if (lastAccess === ""){
+  } else if (lastAccess === "") {
     setCookie("lastAccess", currentDate.getTime())
-  } else{
-  var minutes = Math.floor((currentDate.getTime() - lastAccess) / 60000);
-
-  if (minutes >= 5) {
-    if (lastAccess !== "") {
-      if(minutes === 1){
-        document.getElementById("lastAccess").innerHTML = minutes + " minuto nazaj";
-      }
-      else if (minutes === 2){
-        document.getElementById("lastAccess").innerHTML = minutes + " minuti nazaj";
-      }
-      else if (minutes <= 3){
-        document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
-      }
-      document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
-      document.getElementById("accessCount").innerHTML = parseInt(visitCount) + 1;
-      setCookie("lastAccess", currentDate.getTime(), 30);
-      setCookie("visitCount", parseInt(visitCount) + 1, 30);
-    } else {
-      setCookie("lastAccess", currentDate.getTime(), 30);
-      setCookie("visitCount", 1, 30);
-    }
   } else {
-    document.getElementById("accessCount").innerHTML = visitCount;
-    document.getElementById("lastAccess").innerHTML = minutes + " minutes ago";
+    var minutes = Math.floor((currentDate.getTime() - lastAccess) / 60000);
+
+    if (minutes >= 5) {
+      if (lastAccess !== "") {
+        if (minutes === 1) {
+          document.getElementById("lastAccess").innerHTML = minutes + " minuto nazaj";
+        }
+        else if (minutes === 2) {
+          document.getElementById("lastAccess").innerHTML = minutes + " minuti nazaj";
+        }
+        else if (minutes <= 3) {
+          document.getElementById("lastAccess").innerHTML = minutes + " minut nazaj";
+        }
+        document.getElementById("accessCount").innerHTML = parseInt(visitCount) + 1;
+        setCookie("lastAccess", currentDate.getTime(), 30);
+        setCookie("visitCount", parseInt(visitCount) + 1, 30);
+      } else {
+        setCookie("lastAccess", currentDate.getTime(), 30);
+        setCookie("visitCount", 1, 30);
+      }
+    } else {
+      document.getElementById("accessCount").innerHTML = visitCount;
+      document.getElementById("lastAccess").innerHTML = "malo prej";
+    }
   }
-}
 }
 checkCookie();
 
@@ -100,7 +99,7 @@ function showPassword() {
   }
 }
 function showPassword2() {
-  const loginForm = document.getElementById("signup-page"); 
+  const loginForm = document.getElementById("signup-page");
   loginForm.addEventListener("submit", (event) => {
     event.preventDefault(); // prevent default form submission behavior
   });
@@ -137,7 +136,7 @@ function showMenu() {
     menu.style.display = "none";
   }
 }
-function burgerMenu(){
+function burgerMenu() {
   document.getElementsByClassName("links-li").classList.add("show");
   alert("button");
 }

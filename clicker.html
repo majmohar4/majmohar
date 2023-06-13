@@ -23,7 +23,7 @@
     <script src="SCRIPT/script.js"></script>
 </head>
 
-<body onload="checkTokenOnLoad()">
+<body onload="checkTokenOnLoad(); pokažiNajvišjiRezultat()">
     <header>
         <nav>
             <ul class="links">
@@ -78,16 +78,18 @@
             <div id="leaderboard" class="leaderboard">
                 <div class="leaderboard-content">
                     <h1 class="clicknaslov">Leaderboard</h1>
-                    <ul id="prvi_tekmovalec"> 1. tekmovalec</ul>
-                    <ul id="drugi_tekmovalec"> 2. tekmovalec</ul>
-                    <ul id="tretji_tekmovalec"> 3. tekmovalec</ul>
-                    <ul id="četrti_tekmovalec"> 4. tekmovalec</ul>
-                    <ul id="peti_tekmovalec"> 5. tekmovalec</ul>
-                    <ul id="šesti_tekmovalec"> 6. tekmovalec</ul>
-                    <ul id="sedmi_tekmovalec"> 7. tekmovalec</ul>
-                    <ul id="osmi_tekmovalec"> 8. tekmovalec</ul>
-                    <ul id="deveti_tekmovalec"> 9. tekmovalec</ul>
-                    <ul id="deseti_tekmovalec">10. tekmovalec</ul>
+                    <ul id="results-list">
+                        <li>&nbsp;&nbsp;&nbsp;1. mesto:&nbsp; <a id="tekmovalec_1"></a> </li>
+                        <li>&nbsp;&nbsp;&nbsp;2. mesto:&nbsp;<a id="tekmovalec_2"></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;3. mesto:&nbsp;<a id="tekmovalec_3"></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;4. mesto:&nbsp;<a id="tekmovalec_4"></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;5. mesto:&nbsp;<a id="tekmovalec_5"></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;6. mesto:&nbsp;<a id="tekmovalec_6"></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;7. mesto:&nbsp;<a id="tekmovalec_7"></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;8. mesto:&nbsp;<a id="tekmovalec_8"></a></li>
+                        <li>&nbsp;&nbsp;&nbsp;9. mesto:&nbsp;<a id="tekmovalec_9"></a></li>
+                        <li>&nbsp;10. mesto:&nbsp;<a id="tekmovalec_10"></a></li>
+                    </ul>
                 </div>
             </div>
         </section>
