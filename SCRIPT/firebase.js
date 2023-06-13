@@ -238,6 +238,7 @@ function regularLogin(email, password) {
       document.getElementById("profile").style.display = "block";
       getName(email)
         .then((name) => {
+          setCookie("name", name)
           document.getElementById("username").innerHTML = "Logged in as " + name;
           SetContent(name);
         })
@@ -246,30 +247,32 @@ function regularLogin(email, password) {
       alert(error.message);
     });
 }
-function checkTokenOnLoad() {
-  checkCookie_Box()
-  const token = getCookie("token");
-  if (token) {
-    if (token === "") {
-      return
-    } else {
-      getEmailFromToken(token)
-        .then((name) => {
-          console.log("Name:", name);
-          if ((window.location.pathname === "/login" || window.location.pathname === "/login.html") && name !== "") {
-            SetContent(name)
-          } else {
-            document.getElementById("user-navbar").textContent = name;
-            document.getElementById("logout-button").style.display = "block";
-          }
-        })
-        .catch((error) => {
-          console.log("Error getting name from email:", error);
-        });
-    }
+function checkTokenOnLoad() { 
+  if (window.location.href === "/index.html" || window.location.href === "/index.html") {
   } else {
-    console.log("No token found.");
-    pass
+    checkCookie_Box()
+    const token = getCookie("token");
+    if (token) {
+      if (token === "") {
+        return
+      } else {
+        getEmailFromToken(token)
+          .then((name) => {
+            console.log("Name:", name);
+            if ((window.location.pathname === "/login" || window.location.pathname === "/login.html") && name !== "") {
+              SetContent(name)
+            } else {
+              document.getElementById("user-navbar").textContent = name;
+              document.getElementById("logout-button").style.display = "block";
+            }
+          })
+          .catch((error) => {
+            console.log("Error getting name from email:", error);
+          });
+      }
+    } else {
+      console.log("No token found.");
+    }
   }
 }
 function getEmailFromToken(token) {
@@ -351,18 +354,17 @@ let timeLeft = 5000;
 let countdownInterval;
 let isCountdownRunning = false;
 
+document.getElementById("clickGumb").addEventListener("click", handleClick);
+
 function handleClick() {
   score++;
   document.getElementById("score").textContent = "Score: " + score;
 }
-
 function startCountdown() {
   countdownInterval = setInterval(updateTime, 10);
   isCountdownRunning = true;
 }
-
 function updateTime() {
-  console.log(timeLeft)
   if (timeLeft > 0) {
     timeLeft -= 10;
     document.getElementById("clickGumb").innerHTML = (timeLeft / 1000).toFixed(3);
@@ -370,10 +372,9 @@ function updateTime() {
     clearInterval(countdownInterval);
     isCountdownRunning = false;
     document.getElementById("clickGumb").disabled = true;
-    zapišiScore(score);
+    zapišiScore();
   }
 }
-
 function reset() {
   score = 0;
   timeLeft = 5000;
@@ -383,7 +384,6 @@ function reset() {
   clearInterval(countdownInterval);
   isCountdownRunning = false;
 }
-
 function start() {
   if (!isCountdownRunning) {
     score = 0;
@@ -392,45 +392,83 @@ function start() {
     startCountdown();
   }
 }
-if (window.location.href === "/clicker" || window.location.href === "/clicker.html"){
-document.getElementById("clickGumb").addEventListener("click", handleClick);
-document.getElementById("resetGumb").addEventListener("click", reset);
-}
-
-function zapišiScore(score) {
-  const date = new Date();
-  const datum = getFormattedDate(date);
-  const ime_tekmovalca = getCOokie("name");
+function zapišiScore() {
+  const ime_tekmovalca = getCookie("name");
+  const točke = document.getElementById("score").textContent;
+  const score = točke / 5;
+  console.log(score);
   preglejPrejšnjeRezultate(ime_tekmovalca, score)
-  .then(() => {
-    db.collection("scores")
-      .doc(ime_tekmovalca)
-      .set({
-        date: datum,
-        name: ime_tekmovalca,
-        score: točke
-      })
-      .then(() => {;
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
-  })
-  .catch(() => {
-    alert("Error during saving and checking results.")
-  })
+  .then(() =>{
+    console.log("herer");
+  } )
 }
-
 function getFormattedDate(date) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString(undefined, options);
 }
-function preglejPrejšnjeRezultate(ime, score){
-  db.collection("scores")
-  .doc(ime)
-  const točke = doc.data().score;
-  if (score > točke){
-    db.collection("scores")
-    /* treba še anrdit, da bo delal za shranjevat */  
-  }
+function preglejPrejšnjeRezultate(ime, točke_dobljene) {
+  const date12 = new Date();
+  const datum = getFormattedDate(date12);
+  const docRef = db.collection("točke").doc(ime);
+
+  return docRef.get().then((doc) => {
+    if (doc.exists) {
+      const točke = doc.data().score;
+      if (score >= točke) {
+        alert("Nisi presegel svojega rekorda!");
+      } else if (točke_dobljene < točke) {
+        alert("Čestitam, presegel si svoj rekord!");
+        docRef.set({
+          name: ime,
+          date: datum,
+          score: točke_dobljene,
+        });
+      }
+    } else {
+      alert("No previous results found.");
+      docRef.set({
+        name: ime,
+        date: datum,
+        score: score,
+      });
+    }
+  });
 }
+
+
+
+function pokažiNajvišjiRezultat() {
+  const resultsList = document.getElementById("results-list");
+  resultsList.innerHTML = ""; // Clear the existing content
+
+  db.collection("točke")
+    .orderBy("score", "desc")
+    .limit(10)
+    .get()
+    .then((querySnapshot) => {
+      let index = 1; // Initialize index to 1
+      querySnapshot.forEach((doc) => {
+        const name = doc.data().name;
+        const score = doc.data().score;
+
+        const listItem = document.createElement("li");
+        const anchor = document.createElement("a");
+        anchor.id = "tekmovalec_" + index;
+        anchor.textContent = name + ": " + score;
+
+        listItem.appendChild(document.createTextNode("\u00A0\u00A0\u00A0" + index + ". mesto:\u00A0"));
+        listItem.appendChild(anchor);
+        resultsList.appendChild(listItem);
+
+        index++; // Increment index after each iteration
+      });
+    })
+    .catch((error) => {
+      console.log("Error getting highest results:", error);
+    });
+}
+
+
+
+
+
