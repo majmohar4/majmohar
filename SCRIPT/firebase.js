@@ -277,7 +277,6 @@ function checkTokenOnLoad() {
 }
 function getEmailFromToken(token) {
   return new Promise((resolve, reject) => {
-    // Retrieve the email associated with the token from the Firestore collection "tokens"
     const tokensRef = firebase.firestore().collection("tokens").doc(token);
 
     tokensRef
@@ -358,7 +357,7 @@ document.getElementById("clickGumb").addEventListener("click", handleClick);
 
 function handleClick() {
   score++;
-  document.getElementById("score").textContent = "Score: " + score;
+  document.getElementById("score").textContent = score;
 }
 function startCountdown() {
   countdownInterval = setInterval(updateTime, 10);
@@ -378,7 +377,7 @@ function updateTime() {
 function reset() {
   score = 0;
   timeLeft = 5000;
-  document.getElementById("score").innerHTML = "Score: " + score;
+  document.getElementById("score").innerHTML = score;
   document.getElementById("clickGumb").innerHTML = (timeLeft / 1000).toFixed(3);
   document.getElementById("clickGumb").disabled = false;
   clearInterval(countdownInterval);
@@ -387,17 +386,16 @@ function reset() {
 function start() {
   if (!isCountdownRunning) {
     score = 0;
-    document.getElementById("score").textContent = "Score: " + score;
+    document.getElementById("score").textContent = score;
     document.getElementById("clickGumb").disabled = false;
     startCountdown();
   }
 }
 function zapišiScore() {
   const ime_tekmovalca = getCookie("name");
-  const točke = document.getElementById("score").textContent;
-  const score = točke / 5;
-  console.log(score);
-  preglejPrejšnjeRezultate(ime_tekmovalca, score)
+  const točke = parseInt(document.getElementById("score").textContent);
+  console.log(točke);
+  preglejPrejšnjeRezultate(ime_tekmovalca, točke)
   .then(() =>{
     console.log("herer");
   } )
@@ -406,6 +404,8 @@ function getFormattedDate(date) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString(undefined, options);
 }
+
+
 function preglejPrejšnjeRezultate(ime, točke_dobljene) {
   const date12 = new Date();
   const datum = getFormattedDate(date12);
@@ -414,14 +414,23 @@ function preglejPrejšnjeRezultate(ime, točke_dobljene) {
   return docRef.get().then((doc) => {
     if (doc.exists) {
       const točke = doc.data().score;
-      if (score >= točke) {
+
+      if (isNaN(točke_dobljene)) {
+        alert("Vnesi veljavno vrednost točk.");
+      } else if (točke_dobljene <= točke) {
         alert("Nisi presegel svojega rekorda!");
-      } else if (točke_dobljene < točke) {
+      } else if (točke_dobljene > točke) {
         alert("Čestitam, presegel si svoj rekord!");
         docRef.set({
           name: ime,
           date: datum,
           score: točke_dobljene,
+        })
+        .then(() => {
+          console.log("Results saved successfully!");
+        })
+        .catch((error) => {
+          console.error("Error saving results: ", error);
         });
       }
     } else {
@@ -429,12 +438,17 @@ function preglejPrejšnjeRezultate(ime, točke_dobljene) {
       docRef.set({
         name: ime,
         date: datum,
-        score: score,
+        score: točke_dobljene,
+      })
+      .then(() => {
+        console.log("Results saved successfully!");
+      })
+      .catch((error) => {
+        console.error("Error saving results: ", error);
       });
     }
   });
 }
-
 
 
 function pokažiNajvišjiRezultat() {
