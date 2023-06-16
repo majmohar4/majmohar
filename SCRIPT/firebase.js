@@ -355,15 +355,15 @@ let isCountdownRunning = false;
 
 document.getElementById("clickGumb").addEventListener("click", handleClick);
 
-function handleClick() {
+function handleClick(score) {
   score++;
   document.getElementById("score").textContent = score;
 }
-function startCountdown() {
-  countdownInterval = setInterval(updateTime, 10);
+function startCountdown(točke) {
+  countdownInterval = setInterval(updateTime(točke), 10);
   isCountdownRunning = true;
 }
-function updateTime() {
+function updateTime(točke) {
   if (timeLeft > 0) {
     timeLeft -= 10;
     document.getElementById("clickGumb").innerHTML = (timeLeft / 1000).toFixed(3);
@@ -371,7 +371,7 @@ function updateTime() {
     clearInterval(countdownInterval);
     isCountdownRunning = false;
     document.getElementById("clickGumb").disabled = true;
-    zapišiScore();
+    zapišiScore(točke);
   }
 }
 function reset() {
@@ -388,17 +388,19 @@ function start() {
     score = 0;
     document.getElementById("score").textContent = score;
     document.getElementById("clickGumb").disabled = false;
-    startCountdown();
+    startCountdown(score);
   }
 }
-function zapišiScore() {
+function zapišiScore(točke) {
   const ime_tekmovalca = getCookie("name");
-  const točke = parseInt(document.getElementById("score").textContent);
   console.log(točke);
+  if (ime_tekmovalca === "") {;}
+  else{
   preglejPrejšnjeRezultate(ime_tekmovalca, točke)
   .then(() =>{
     console.log("herer");
   } )
+}
 }
 function getFormattedDate(date) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };

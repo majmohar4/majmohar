@@ -145,6 +145,7 @@ article {
 
 section {
     margin: 2rem 20%;
+    padding: 2rem;
     width: 60%;
     border: 5px solid rgb(166, 169, 171);
     border-radius: 5px;
