@@ -129,6 +129,8 @@ function logout() {
   auth.signOut()
     .then(() => {
       deleteCookie("token")
+      deleteCookie("name")
+      deleteCookie("username")
       location.reload()
       alert("Logged out successfully.");
     })
@@ -355,15 +357,16 @@ let isCountdownRunning = false;
 
 document.getElementById("clickGumb").addEventListener("click", handleClick);
 
-function handleClick(score) {
+function handleClick() {
   score++;
   document.getElementById("score").textContent = score;
+  document.getElementById("neki2").textContent = score;
 }
-function startCountdown(točke) {
-  countdownInterval = setInterval(updateTime(točke), 10);
+function startCountdown() {
+  countdownInterval = setInterval(updateTime, 10);
   isCountdownRunning = true;
 }
-function updateTime(točke) {
+function updateTime() {
   if (timeLeft > 0) {
     timeLeft -= 10;
     document.getElementById("clickGumb").innerHTML = (timeLeft / 1000).toFixed(3);
@@ -371,13 +374,19 @@ function updateTime(točke) {
     clearInterval(countdownInterval);
     isCountdownRunning = false;
     document.getElementById("clickGumb").disabled = true;
-    zapišiScore(točke);
+    const dorian = getCookie("name");
+    if (dorian === ""){
+      alert("Nisi vpisan. Za shranitev točk se portrebuješ vpisati.")
+    }else{
+    zapišiScore();
   }
+}
 }
 function reset() {
   score = 0;
   timeLeft = 5000;
   document.getElementById("score").innerHTML = score;
+  document.getElementById("neki2").innerHTML = score;
   document.getElementById("clickGumb").innerHTML = (timeLeft / 1000).toFixed(3);
   document.getElementById("clickGumb").disabled = false;
   clearInterval(countdownInterval);
@@ -387,27 +396,24 @@ function start() {
   if (!isCountdownRunning) {
     score = 0;
     document.getElementById("score").textContent = score;
+    document.getElementById("neki2").textContent = score;
     document.getElementById("clickGumb").disabled = false;
-    startCountdown(score);
+    startCountdown();
   }
 }
-function zapišiScore(točke) {
+function zapišiScore() {
   const ime_tekmovalca = getCookie("name");
+  const točke = parseInt(document.getElementById("neki2").textContent);
   console.log(točke);
-  if (ime_tekmovalca === "") {;}
-  else{
   preglejPrejšnjeRezultate(ime_tekmovalca, točke)
   .then(() =>{
     console.log("herer");
   } )
 }
-}
 function getFormattedDate(date) {
   const options = { year: 'numeric', month: 'long', day: 'numeric' };
   return date.toLocaleDateString(undefined, options);
 }
-
-
 function preglejPrejšnjeRezultate(ime, točke_dobljene) {
   const date12 = new Date();
   const datum = getFormattedDate(date12);
@@ -451,8 +457,6 @@ function preglejPrejšnjeRezultate(ime, točke_dobljene) {
     }
   });
 }
-
-
 function pokažiNajvišjiRezultat() {
   const resultsList = document.getElementById("results-list");
   resultsList.innerHTML = ""; // Clear the existing content
