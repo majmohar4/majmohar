@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Drag and Rearrange Rows</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+      }
+
+      .container {
+        display: flex;
+        justify-content: space-between;
+        max-width: 800px;
+        margin: 50px auto;
+      }
+
+      .box {
+        width: 300px;
+        height: 400px;
+        background-color: #eee;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .item {
+        border: 0px solid #000000;
+        padding: 10px;
+        text-align: center;
+        background-color: #668492;
+        height: 40px;
+        width: 40px;
+        border-radius: 4px;
+        margin-top: 40px;
+        user-select: none;
+        cursor: grab;
+        position: relative;
+      }
+
+      .box.dragover {
+        border: 2px dashed #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Drag and Rearrange Rows</h1>
+    <div class="container">
+      <div id="box1" class="box">
+        <div class="item">Item 1</div>
+        <div class="item">Item 2</div>
+        <div class="item">Item 3</div>
+        <div class="item">Item 4</div>
+        <div class="item">Item 5</div>
+      </div>
+      <div id="box2" class="box"></div>
+    </div>
+
+    <script>
+      const items = document.querySelectorAll(".item");
+      let draggedItem = null;
+      let initialX = 0;
+      let initialY = 0;
+      let offsetX = 0;
+      let offsetY = 0;
+
+      items.forEach((item) => {
+        item.addEventListener("mousedown", handleMouseDown);
+      });
+
+      function handleMouseDown(event) {
+        event.preventDefault();
+
+        draggedItem = event.target;
+        const rect = draggedItem.getBoundingClientRect();
+        initialX = event.clientX;
+        initialY = event.clientY;
+        offsetX = event.clientX - rect.left;
+        offsetY = event.clientY - rect.top;
+
+        draggedItem.style.cursor = "grabbing";
+        draggedItem.style.zIndex = "1000";
+
+        document.addEventListener("mousemove", handleMouseMove);
+        document.addEventListener("mouseup", handleMouseUp);
+      }
+
+      function handleMouseMove(event) {
+        const x = event.clientX - initialX + offsetX;
+        const y = event.clientY - initialY + offsetY;
+
+        draggedItem.style.transform = `translate(${x}px, ${y}px)`;
+
+        const targetBox = getTargetBox(event.clientX, event.clientY);
+        if (targetBox && targetBox !== draggedItem.parentNode) {
+          targetBox.classList.add("dragover");
+        } else {
+          targetBox.classList.remove("dragover");
+        }
+      }
+
+      function handleMouseUp(event) {
+        event.preventDefault();
+
+        draggedItem.style.cursor = "grab";
+        draggedItem.style.zIndex = "auto";
+        draggedItem.style.transform = "";
+
+        document.removeEventListener("mousemove", handleMouseMove);
+        document.removeEventListener("mouseup", handleMouseUp);
+
+        const targetBox = getTargetBox(event.clientX, event.clientY);
+        const box1 = document.getElementById("box1");
+        const box2 = document.getElementById("box2");
+
+        if (targetBox && targetBox !== draggedItem.parentNode) {
+          targetBox.appendChild(draggedItem);
+        } else if (targetBox === draggedItem.parentNode) {
+          const items = Array.from(targetBox.getElementsByClassName("item"));
+          const newIndex = Array.from(targetBox.children).indexOf(draggedItem);
+          targetBox.insertBefore(draggedItem, items[newIndex]);
+        } else {
+          resetItemPosition();
+          if (box1.contains(draggedItem)) {
+            box1.appendChild(draggedItem);
+          } else if (box2.contains(draggedItem)) {
+            box2.appendChild(draggedItem);
+          }
+        }
+
+        targetBox.classList.remove("dragover");
+        draggedItem = null;
+      }
+
+      function resetItemPosition() {
+        draggedItem.style.transform = "";
+      }
+
+      function getTargetBox(x, y) {
+        const boxes = document.querySelectorAll(".box");
+        for (const box of boxes) {
+          const rect = box.getBoundingClientRect();
+          if (
+            x >= rect.left &&
+            x <= rect.right &&
+            y >= rect.top &&
+            y <= rect.bottom
+          ) {
+            return box;
+          }
+        }
+        return null;
+      }
+    </script>
+  </body>
+</html>
