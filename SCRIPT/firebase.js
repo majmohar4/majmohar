@@ -145,7 +145,7 @@ function getUsers() {
       querySnapshot.forEach(doc => {
         const user = doc.data();
         const li = document.createElement("li");
-        li.innerHTML = user.name + " (" + user.email + ")";
+        li.innerHTML = user.name + " (" + user.username + ")";
         userList.appendChild(li);
       });
     })
@@ -299,6 +299,7 @@ function getEmailFromToken(token) {
 }
 function SetContent(name) {
   if (name === "Maj") {
+    getUsers();
     document.getElementById("users").style.display = "block";
     document.getElementById("vsebina_naslov").textContent = "Uporabniki";
     document.getElementById("login-form").style.display = "none";
@@ -306,13 +307,15 @@ function SetContent(name) {
     document.getElementById("users").classList.add("tekst");
     document.getElementById("user-list").style.marginLeft = "5%";
     document.getElementById("user-navbar").textContent = name;
+    document.getElementById("vsebina").style.display = "block";
     document.getElementById("logout-button").style.display = "block";
-    getUsers();
   } else {
     document.getElementById("login-form").style.display = "none";
+    document.getElementById("vsebina").style.display = "block";
     document.getElementById("content").style.display = "block";
     document.getElementById("users").style.display = "block";
     var welcome = document.createElement("p");
+    console.log("not maj");
     welcome.innerHTML = `Živijo ${name}! Hvala, da si se vpisal na mojo spletno stran.<br>`;
     welcome.innerHTML += `- nove stvari: <br>`;
     welcome.innerHTML += `&emsp; - remnote za informatiko: <a href="https://www.remnote.com/a/64622bb4650dbdc61c7826ae">Link</a>`;
@@ -354,18 +357,23 @@ let score = 0;
 let timeLeft = 5000;
 let countdownInterval;
 let isCountdownRunning = false;
+let isClickDisabled = false; // Added variable to track click button disabled state
 
 document.getElementById("clickGumb").addEventListener("click", handleClick);
 
 function handleClick() {
-  score++;
-  document.getElementById("score").textContent = score;
-  document.getElementById("neki2").textContent = score;
+  if (!isClickDisabled) { // Check if click is enabled
+    score++;
+    document.getElementById("score").textContent = score;
+    document.getElementById("neki2").textContent = score;
+  }
 }
+
 function startCountdown() {
   countdownInterval = setInterval(updateTime, 10);
   isCountdownRunning = true;
 }
+
 function updateTime() {
   if (timeLeft > 0) {
     timeLeft -= 10;
@@ -374,14 +382,16 @@ function updateTime() {
     clearInterval(countdownInterval);
     isCountdownRunning = false;
     document.getElementById("clickGumb").disabled = true;
+    isClickDisabled = true; // Disable click button
     const dorian = getCookie("name");
-    if (dorian === ""){
-      alert("Nisi vpisan. Za shranitev točk se portrebuješ vpisati.")
-    }else{
-    zapišiScore();
+    if (dorian === "") {
+      alert("Nisi vpisan. Za shranitev točk se portrebuješ vpisati.");
+    } else {
+      zapišiScore();
+    }
   }
 }
-}
+
 function reset() {
   score = 0;
   timeLeft = 5000;
@@ -389,9 +399,24 @@ function reset() {
   document.getElementById("neki2").innerHTML = score;
   document.getElementById("clickGumb").innerHTML = (timeLeft / 1000).toFixed(3);
   document.getElementById("clickGumb").disabled = false;
+  isClickDisabled = false; // Enable click button
   clearInterval(countdownInterval);
   isCountdownRunning = false;
 }
+
+function start() {
+  if (!isCountdownRunning) {
+    score = 0;
+    document.getElementById("score").textContent = score;
+    document.getElementById("neki2").textContent = score;
+    document.getElementById("clickGumb").disabled = false;
+    isClickDisabled = false; // Enable click button
+    startCountdown();
+  }
+}
+
+// Rest of the code remains the same...
+
 function start() {
   if (!isCountdownRunning) {
     score = 0;
@@ -406,57 +431,66 @@ function zapišiScore() {
   const točke = parseInt(document.getElementById("neki2").textContent);
   console.log(točke);
   preglejPrejšnjeRezultate(ime_tekmovalca, točke)
-  .then(() =>{
-    console.log("herer");
-  } )
+    .then(() => {
+      console.log("here");
+    })
+    .catch((error) => {
+      console.error("Error: ", error);
+    });
 }
+
 function getFormattedDate(date) {
-  const options = { year: 'numeric', month: 'long', day: 'numeric' };
-  return date.toLocaleDateString(undefined, options);
+  return date.getTime(); // Return the date as a number (milliseconds since January 1, 1970)
 }
+
 function preglejPrejšnjeRezultate(ime, točke_dobljene) {
-  const date12 = new Date();
-  const datum = getFormattedDate(date12);
+  const datum = getFormattedDate(new Date());
   const docRef = db.collection("točke").doc(ime);
-
-  return docRef.get().then((doc) => {
+  
+  return docRef
+  .get()
+  .then((doc) => {
     if (doc.exists) {
+      console.log(doc.data());
       const točke = doc.data().score;
-
-      if (isNaN(točke_dobljene)) {
-        alert("Vnesi veljavno vrednost točk.");
-      } else if (točke_dobljene <= točke) {
-        alert("Nisi presegel svojega rekorda!");
-      } else if (točke_dobljene > točke) {
-        alert("Čestitam, presegel si svoj rekord!");
-        docRef.set({
-          name: ime,
-          date: datum,
-          score: točke_dobljene,
-        })
-        .then(() => {
-          console.log("Results saved successfully!");
-        })
-        .catch((error) => {
-          console.error("Error saving results: ", error);
-        });
+        if (točke_dobljene <= točke) {
+          alert("Nisi presegel svojega rekorda!");
+        } else if (točke_dobljene > točke) {
+          alert("Čestitam, presegel si svoj rekord!");
+          docRef
+            .set({
+              name: ime,
+              date: datum,
+              score: točke_dobljene,
+            })
+            .then(() => {
+              console.log("Results saved successfully!");
+            })
+            .catch((error) => {
+              console.error("Error saving results: ", error);
+            });
+        }
+      } else {
+        alert("Shranjen prvi rezultat.");
+        docRef
+          .set({
+            name: ime,
+            date: datum,
+            score: točke_dobljene,
+          })
+          .then(() => {
+            console.log("Rezultati shranjeni!");
+          })
+          .catch((error) => {
+            console.error("Error saving results: ", error);
+          });
       }
-    } else {
-      alert("No previous results found.");
-      docRef.set({
-        name: ime,
-        date: datum,
-        score: točke_dobljene,
-      })
-      .then(() => {
-        console.log("Results saved successfully!");
-      })
-      .catch((error) => {
-        console.error("Error saving results: ", error);
-      });
-    }
-  });
+    })
+    .catch((error) => {
+      console.error("Error: ", error);
+    });
 }
+
 function pokažiNajvišjiRezultat() {
   const resultsList = document.getElementById("results-list");
   resultsList.innerHTML = ""; // Clear the existing content
