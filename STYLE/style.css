@@ -12,6 +12,8 @@ body {
     background-size: cover auto;
     min-height: 100vh;
     cursor: default;
+    overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .pattern-container {
