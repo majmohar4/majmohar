@@ -1,34 +1,3 @@
-function showHome() {
-	// Update the page title and content
-	window.location.href = "/index";
-}
-
-function showSchool() {
-	window.location.href = "/school";
-}
-
-function showPolicy() {
-	window.location.href = "/pogoji";
-}
-
-function showClicker() {
-	window.location.href = "/clicker";
-}
-
-function showNav() {
-	var navLinks = document
-		.getElementsByClassName("navbar")[1]
-		.getElementsByTagName("a");
-	for (var i = 0; i < navLinks.length; i++) {
-		navLinks[i].classList.remove("active");
-	}
-	navLinks[2].classList.add("active");
-}
-
-function showContact() {
-	window.location.href = "/contact";
-}
-
 function setCookie(cookieName, cookieValue, expirationDays) {
 	var d = new Date();
 	d.setTime(d.getTime() + expirationDays * 24 * 60 * 60 * 1000);
@@ -132,16 +101,12 @@ function showPassword3() {
 	}
 }
 
-function showMenu() {
-	var menu = document.getElementById("menu-popup");
-
-	if (menu.style.display === "none") {
-		menu.style.display = "block";
-	} else {
-		menu.style.display = "none";
-	}
-}
 function burgerMenu() {
-	document.getElementsByClassName("links-li").classList.add("show");
-	alert("button");
+	nav = document.getElementsByClassName("nav-links");
+
+	if (nav[0].style.display === "flex") {
+		nav[0].style.display = "none";
+	} else {
+		nav[0].style.display = "flex";
+	}
 }

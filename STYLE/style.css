@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Montserrat';
 }
 
 body {
@@ -10,7 +11,8 @@ body {
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    font-family: 'Montserrat';
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 header nav {
@@ -79,21 +81,10 @@ header nav li span {
     padding: 15px 20px;
 }
 
-article {
-    width: 100%;
-    min-height: 85vh;
-}
-
 section {
-    margin: 2rem 20%;
+    margin: 2rem 10%;
     padding: 2rem;
-    width: 60%;
     border: 5px solid rgb(166, 169, 171);
-    border-radius: 5px;
-}
-
-section::before {
-    border: 10px solid blue;
     border-radius: 5px;
 }
 
@@ -111,7 +102,6 @@ html {
 
 .tekst {
     font-size: 1.4rem;
-
     font-family: 'Montserrat';
 }
 
@@ -122,57 +112,6 @@ html {
     color: #3A0CA3;
     opacity: 0.65;
     font-weight: 600;
-}
-
-footer {
-    background-color: #94C5CC;
-    display: flex;
-    position: relative;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0;
-    min-height: 10vh;
-}
-
-footer nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-footer nav ul {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-footer nav li {
-    padding: 0.5rem 1rem;
-    font-family: 'Montserrat';
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #65686f;
-    cursor: pointer;
-}
-
-footer nav li:hover a {
-    color: #FFE787;
-}
-
-footer nav li a {
-    text-decoration: none;
-    color: #65686f;
 }
 
 .credit {
@@ -197,7 +136,6 @@ footer nav li a {
 
 .spisek a {
     text-decoration: none;
-
 }
 
 .active-page {
@@ -206,36 +144,15 @@ footer nav li a {
     border-radius: 5px;
 }
 
-nav ul hr {
-    width: 5%;
-    border-top: 1px dashed #8c8b8b;
-    border-bottom: 1px dashed #fff;
-}
-
 .login {
     margin: 20px 0px 0 30px;
     padding: 0;
 }
 
 .login a {
-    /* margin: 14px 0 0 0; */
     padding: 13px 22px;
     background-color: #a1a6b4;
     border-radius: 4px;
-}
-
-.links-vr div {
-    height: 100%;
-    width: 2px;
-    background-color: #a1a6b4;
-}
-
-.links-vr {
-    list-style: none;
-    /* margin-right: 2rem; */
-    font-family: 'Montserrat';
-    padding: 7px 10px;
-    font-weight: 500;
 }
 
 .button-neki {
@@ -323,8 +240,6 @@ nav ul hr {
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.1);
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;
-
-
 }
 
 .show-psw img {
@@ -341,76 +256,8 @@ form {
     padding: 0 20px 5px;
 }
 
-.cookie {
-    position: fixed;
-    bottom: 0%;
-    right: 0;
-    z-index: 2;
-    background-color: rgb(232, 81, 80);
-    padding: 20px 0px;
-    border-radius: 8px;
-    width: 14%;
-    margin: 20px;
-    min-width: 270px;
-    text-align: center;
-}
-
-.cookie h3 {
-    font-size: 1.4rem;
-    margin: 5px 15px 15px;
-}
-
-/* .cookie form {
-    display: flex;
-    flex-wrap: wrap;
-} */
-
-.cookie p,
-.cookie form p {
-    margin: 0;
-    padding: 0 20px 5px;
-    font-size: 0.9rem;
-    text-align: center;
-}
-
-.cookie form p {
-    padding: 1px 5px 0 0;
-    font-size: 0.8rem;
-}
-
-.cookie a {
-    color: #480CA8;
-    text-decoration: none;
-}
-
-.cookie form button {
-    background-color: #480CA8;
-    color: white;
-    border-radius: 5px;
-    border: none;
-    height: 3em;
-    width: 100%;
-    margin: 10px auto 0;
-    font-weight: bolder;
-    font-family: 'Montserrat';
-    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-}
-
-.cookie img {
-    height: 6rem;
-}
-
 .burger-men {
-    height: 30px;
     display: none;
-    justify-content: center;
-    padding: 15px;
-    list-style: none;
-    cursor: pointer;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: 2;
 }
 
 .logo img,
@@ -427,21 +274,27 @@ form {
 }
 
 @media (max-width: 560px) {
-
-    .links-vr {
-        display: none;
-    }
-
-    .links {
-        flex-wrap: wrap;
-        /* padding-top: 60px; */
-        position: relative;
-        display: block;
-        z-index: 1;
-    }
-
     .burger-men {
         display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 40px;
+    }
+
+    .nav-links {
+        position: absolute;
+        height: 100vh;
+        width: 100%;
+        background-color: #94c5cc;
+        top: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.5s ease-in;
+        z-index: 1;
     }
 
     .logo img,
@@ -456,13 +309,6 @@ form {
 
 .show {
     display: block;
-}
-
-@media (max-width: 700px) {
-    section {
-        margin: 2rem 7.5%;
-        width: 85%;
-    }
 }
 
 .pogoji {
@@ -573,11 +419,15 @@ input[type="checkbox"] {
 }
 
 .leaderboard {
-    padding: 2%;
-    margin: 2%;
+    padding: 10px;
+    margin: 0 auto;
     position: relative;
     border-radius: 3px;
     background-color: transparent;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    z-index: 1;
+    list-style: none;
 }
 
 .leaderboard:before {
@@ -595,6 +445,15 @@ input[type="checkbox"] {
 .leaderboard-content {
     background-color: #8aa2fc;
     border-radius: 3px;
+}
+
+#results-list {
+    padding: 10px;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 @keyframes scoreAnimation {
