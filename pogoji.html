@@ -1,140 +1,192 @@
 <!DOCTYPE html>
 <html lang="sl">
+	<head>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com%22%3E/">
+		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Majmohar.me | Vpis</title>
+		<link rel="icon" type="image/png" href="/IMG/maj2.png" />
+		<link rel="stylesheet" href="STYLE/style.css" />
+		<script src="SCRIPT/script.js"></script>
+		<script src="SCRIPT/firebase.js"></script>
+		<script
+			src="https://kit.fontawesome.com/b94e1e9a72.js"
+			crossorigin="anonymous"></script>
+	</head>
 
-<head>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet"><meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majmohar.me | Vpis</title>
-    <link rel="icon" type="image/png" href="/IMG/maj2.png">
-    <link rel="stylesheet" href="STYLE/style.css">
-    <script src="SCRIPT/script.js"></script>
-    <script src="SCRIPT/firebase.js"></script>
-</head>
-
-<body onload="checkTokenOnLoad()">
-    <header>
-        <nav>
-            <ul class="links">
-                <li class="logo"><img src="IMG/Screenshot_25.png" alt="" srcset=""></li>
-                <li onclick="showHome()" class="links-li "><a class=" ">Domov</a></li>
-                <li onclick="showSchool()" class="links-li"><a class=" ">Šola</a></li>
-                <li onclick="showContact()" class="links-li"><a class=" ">Kontakti</a></li>
-                <li onclick="showClicker()" class="links-li"><a class=" ">Games</a></li>
-                <li class="links-vr">
-                    <div></div>
-                </li>
-                <!-- <li class="login links-li"><a onclick="showRegister()">Sign Up</a></li>
-                <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
-                <li class="links-acc" onclick="showLogin()">
-                    <div class="account-info">
-                        <span class="hello" id="user-navbar">Vpiši se</span>
-                        <h3 class="nickname"></h3>
-                        <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
-                    </div>
-                </li>
-                <div id="logout-button" style="display: none;">
-                    <li class="links-acc" onclick="logout()">
-                        <div class="account-info">
-                            <h3 class="nickname">Izpiši se</h3>
-                        </div>
-                    </li>
-                </div>
-                <li class="burger-men" onclick="burgerMenu()">
-                    <span class="crta"></span>
-                    <span class="crta"></span>
-                    <span class="crta"></span>
-                </li>
-                
-            </ul>
-        </nav>
-    </header>
-    </header>
-    <article class="login-art">
-        <div class="pogoji">
-            <br>
-            <div class="naslov"><strong>Pogoji:</strong></div>
-            <br>
-            <div class="tekst">Dobrodošli na naši spletni strani. Preden nadaljujete, vas prosimo, da skrbno preberete naslednje pogoje uporabe. Z uporabo naše spletne strani se strinjate z naslednjimi pogoji:
-                <br>
-                <br>
-                <div class="podnaslov">1. Uporaba piškotkov:</div>
-                <div class="pogoji-li">
-                   a) Naša spletna stran uporablja piškotke za izboljšanje funkcionalnosti, analitike in prilagajanja uporabniške izkušnje. Piškotki so majhne datoteke, ki se shranijo na vašo napravo in omogočajo beleženje informacij o vaših nastavitvah, dejavnostih na strani in interakciji z našo spletno stranjo.
-                   <br>
-                   <br>
-                   b) Sprejemate uporabo piškotkov za beleženje in sledenje tokena za avtomatsko vpisovanje, kar vam omogoča lažje in udobnejše uporabniško doživetje.
-                   <br>
-                   <br>
-                </div>
-                <div class="podnaslov">2. Zbiranje in obdelava osebnih podatkov:</div>
-                <div class="pogoji-li">
-                   a) Za namene vpisa na našo spletno stran ter zagotavljanja in izboljšanja storitev zbiramo in obdelujemo določene osebne podatke, kot so ime, priimek, uporabniško ime in e-poštni naslov.
-                   <br>
-                   <br>
-                   b) Osebne podatke shranjujemo v varnem in zaščitenem okolju. Zagotavljamo, da se vaši osebni podatki ne bodo posredovali tretjim osebam brez vašega izrecnega soglasja, razen če je to potrebno za izpolnjevanje zakonskih obveznosti ali za zagotavljanje storitev naše spletne strani.
-                   <br>
-                   <br>
-                   c) Soglašate, da se vaši osebni podatki shranjujejo, obdelujejo in uporabljajo za namene, povezane z vašo uporabo naše spletne strani, vključno z vpisom, komunikacijo in zagotavljanjem informacij o storitvah.
-                   <br>
-                   <br>
-                </div>
-                <div class="podnaslov">3. Varovanje podatkov:</div>
-                    <div class="pogoji-li">
-                   a) Sledimo najboljšim praksam in sprejemamo ustrezne tehnične, organizacijske in varnostne ukrepe za zaščito vaših podatkov pred nepooblaščenim dostopom, izgubo, zlorabo ali spreminjanjem.
-                   <br>
-                   <br>
-                   b) Kljub našim prizadevanjem za varovanje podatkov ne moremo zagotoviti popolne varnosti. Uporaba naše spletne strani je na vašo lastno odgovornost, in soglašate, da se ne bomo smatrali odgovorni za morebitno nepooblaščeno razkritje vaših podatkov, ki ni posledica naše malomarnosti.
-                   <br>
-                   <br>
-                    </div>
-                <div class="podnaslov">4. Izključitev odgovornosti:</div>
-                    <div class="pogoji-li">
-                   a) Naša spletna stran vsebuje povezave do tretjih strani, ki niso pod našim nadzorom. Ne prevzemamo odgovornosti za vsebino, varnost ali prakse teh tretjih strani. S klikom na povezavo našo spletno stran zapustite na lastno odgovornost.
-                   <br>
-                   <br>
-                   b) Prav tako ne prevzemamo odgovornosti za morebitne napake, okvare ali prekinitve delovanja naše spletne strani, ki so zunaj našega nadzora.
-                   <br>
-                   <br>
-                    </div>
-                <div class="podnaslov">5. Spremembe pogojev uporabe:</div>
-                    <div class="pogoji-li">
-                   a) Pridržujemo si pravico do spremembe teh pogojev uporabe kadarkoli, brez predhodnega obvestila. Spremembe bodo objavljene na naši spletni strani.
-                   <br>
-                   <br>
-                   b) Nadaljnja uporaba spletne strani po spremembah pomeni, da se strinjate z novimi pogoji.
-                    </div>
-                    <br>
-                Zahvaljujemo se vam, ker ste skrbno prebrali naše pogoje uporabe. Če se s pogoji ne strinjate, vas prosimo, da ne uporabljate naše spletne strani.</div>
-                <br>
-                <br>
-            </div>
-        </article>
-    <footer>
-        <nav>
-            <ul class="bottom-links">
-                <li class="bottom-link"><a class=" " onclick="showHome()">Domov</a></li>
-                <li class="bottom-link"><a class=" " onclick="showSchool()">Šola</a></li>
-                <li class="bottom-link"><a class=" " onclick="showContact()">Kontakti</a></li>
-                <li class="bottom-link"><a class=" " onclick="showPolicy()">Pogoji uporabe</a></li>
-            </ul>
-        </nav>
-    </footer>
-    <div class="text_normal" id="users" style="display: none;">
-        <h1>Vsebina</h1>
-        <div id="user-list"></div>
-    </div>
-    <div id="profile" style="display: none;">
-        <h1 id="username">Uporabniško ime</h1>
-        <button id="logout" onclick="logout()">Izpis</button>
-    </div>
-</body>
-
+	<body onload="checkTokenOnLoad()">
+		<header>
+			<nav>
+				<ul>
+					<li class="logo">
+						<img src="IMG/Screenshot_25.png" alt="" srcset="" />
+					</li>
+					<li>
+						<a href="\">Domov</a>
+					</li>
+					<li class="active-page">
+						<a href="school.html">Šola</a>
+					</li>
+					<li>
+						<a href="contact.html">Kontakti</a>
+					</li>
+					<li>
+						<a href="clicker.html">Games</a>
+					</li>
+				</ul>
+				<ul>
+					<li onclick="showLogin()">
+						<span id="user-navbar">Vpiši se</span>
+						<i class="fas fa-user-circle"></i>
+					</li>
+					<div id="logout-button" style="display: none">
+						<li onclick="logout()">
+							<h3>Izpiši se</h3>
+						</li>
+					</div>
+					<li class="burger-men" onclick="burgerMenu()">
+						<i class="fas fa-bars"></i>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<article class="login-art">
+			<div class="pogoji">
+				<br />
+				<div class="naslov"><strong>Pogoji:</strong></div>
+				<br />
+				<div class="tekst">
+					Dobrodošli na naši spletni strani. Preden nadaljujete, vas
+					prosimo, da skrbno preberete naslednje pogoje uporabe. Z
+					uporabo naše spletne strani se strinjate z naslednjimi
+					pogoji:
+					<br />
+					<br />
+					<div class="podnaslov">1. Uporaba piškotkov:</div>
+					<div class="pogoji-li">
+						a) Naša spletna stran uporablja piškotke za izboljšanje
+						funkcionalnosti, analitike in prilagajanja uporabniške
+						izkušnje. Piškotki so majhne datoteke, ki se shranijo na
+						vašo napravo in omogočajo beleženje informacij o vaših
+						nastavitvah, dejavnostih na strani in interakciji z našo
+						spletno stranjo.
+						<br />
+						<br />
+						b) Sprejemate uporabo piškotkov za beleženje in sledenje
+						tokena za avtomatsko vpisovanje, kar vam omogoča lažje
+						in udobnejše uporabniško doživetje.
+						<br />
+						<br />
+					</div>
+					<div class="podnaslov">
+						2. Zbiranje in obdelava osebnih podatkov:
+					</div>
+					<div class="pogoji-li">
+						a) Za namene vpisa na našo spletno stran ter
+						zagotavljanja in izboljšanja storitev zbiramo in
+						obdelujemo določene osebne podatke, kot so ime, priimek,
+						uporabniško ime in e-poštni naslov.
+						<br />
+						<br />
+						b) Osebne podatke shranjujemo v varnem in zaščitenem
+						okolju. Zagotavljamo, da se vaši osebni podatki ne bodo
+						posredovali tretjim osebam brez vašega izrecnega
+						soglasja, razen če je to potrebno za izpolnjevanje
+						zakonskih obveznosti ali za zagotavljanje storitev naše
+						spletne strani.
+						<br />
+						<br />
+						c) Soglašate, da se vaši osebni podatki shranjujejo,
+						obdelujejo in uporabljajo za namene, povezane z vašo
+						uporabo naše spletne strani, vključno z vpisom,
+						komunikacijo in zagotavljanjem informacij o storitvah.
+						<br />
+						<br />
+					</div>
+					<div class="podnaslov">3. Varovanje podatkov:</div>
+					<div class="pogoji-li">
+						a) Sledimo najboljšim praksam in sprejemamo ustrezne
+						tehnične, organizacijske in varnostne ukrepe za zaščito
+						vaših podatkov pred nepooblaščenim dostopom, izgubo,
+						zlorabo ali spreminjanjem.
+						<br />
+						<br />
+						b) Kljub našim prizadevanjem za varovanje podatkov ne
+						moremo zagotoviti popolne varnosti. Uporaba naše spletne
+						strani je na vašo lastno odgovornost, in soglašate, da
+						se ne bomo smatrali odgovorni za morebitno nepooblaščeno
+						razkritje vaših podatkov, ki ni posledica naše
+						malomarnosti.
+						<br />
+						<br />
+					</div>
+					<div class="podnaslov">4. Izključitev odgovornosti:</div>
+					<div class="pogoji-li">
+						a) Naša spletna stran vsebuje povezave do tretjih
+						strani, ki niso pod našim nadzorom. Ne prevzemamo
+						odgovornosti za vsebino, varnost ali prakse teh tretjih
+						strani. S klikom na povezavo našo spletno stran
+						zapustite na lastno odgovornost.
+						<br />
+						<br />
+						b) Prav tako ne prevzemamo odgovornosti za morebitne
+						napake, okvare ali prekinitve delovanja naše spletne
+						strani, ki so zunaj našega nadzora.
+						<br />
+						<br />
+					</div>
+					<div class="podnaslov">5. Spremembe pogojev uporabe:</div>
+					<div class="pogoji-li">
+						a) Pridržujemo si pravico do spremembe teh pogojev
+						uporabe kadarkoli, brez predhodnega obvestila. Spremembe
+						bodo objavljene na naši spletni strani.
+						<br />
+						<br />
+						b) Nadaljnja uporaba spletne strani po spremembah
+						pomeni, da se strinjate z novimi pogoji.
+					</div>
+					<br />
+					Zahvaljujemo se vam, ker ste skrbno prebrali naše pogoje
+					uporabe. Če se s pogoji ne strinjate, vas prosimo, da ne
+					uporabljate naše spletne strani.
+				</div>
+				<br />
+				<br />
+			</div>
+		</article>
+		<footer>
+			<nav>
+				<ul>
+					<li>
+						<a href="\">Domov</a>
+					</li>
+					<li>
+						<a href="school.html">Šola</a>
+					</li>
+					<li>
+						<a href="contact.html">Kontakti</a>
+					</li>
+					<li>
+						<a href="pogoji.html">Pogoji uporabe</a>
+					</li>
+				</ul>
+			</nav>
+		</footer>
+		<div class="text_normal" id="users" style="display: none">
+			<h1>Vsebina</h1>
+			<div id="user-list"></div>
+		</div>
+		<div id="profile" style="display: none">
+			<h1 id="username">Uporabniško ime</h1>
+			<button id="logout" onclick="logout()">Izpis</button>
+		</div>
+	</body>
 </html>

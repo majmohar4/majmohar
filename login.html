@@ -1,118 +1,140 @@
 <!DOCTYPE html>
 <html lang="sl">
+	<head>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com%22%3E/" />
+		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Majmohar.me | Vpis</title>
+		<link rel="icon" type="image/png" href="/IMG/maj2.png" />
+		<link rel="stylesheet" href="STYLE/style.css" />
+		<script src="SCRIPT/script.js"></script>
+		<script src="SCRIPT/firebase.js"></script>
+		<script
+			src="https://kit.fontawesome.com/b94e1e9a72.js"
+			crossorigin="anonymous"></script>
+	</head>
 
-<head>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majmohar.me | Vpis</title>
-    <link rel="icon" type="image/png" href="/IMG/maj2.png">
-    <link rel="stylesheet" href="STYLE/style.css"> 
-    <script src="SCRIPT/script.js"></script>
-    <script src="SCRIPT/firebase.js"></script>
-</head>
-
-<body onload="checkTokenOnLoad()">
-    <header>
-        <nav>
-            <ul class="links">
-                <li class="logo"><img src="IMG/Screenshot_25.png" alt="" srcset=""></li>
-                <li onclick="showHome()" class="links-li "><a class=" ">Domov</a></li>
-                <li onclick="showSchool()" class="links-li"><a class=" ">Šola</a></li>
-                <li onclick="showContact()" class="links-li"><a class=" ">Kontakti</a></li>
-                <li onclick="showClicker()" class="links-li"><a class=" ">Games</a></li>
-                <li class="links-vr">
-                    <div></div>
-                </li>
-                <!-- <li class="login links-li"><a onclick="showRegister()">Sign Up</a></li>
-                <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
-                <li class="links-acc" onclick="showLogin()">
-                    <div class="account-info">
-                        <span class="hello" id="user-navbar">Vpiši se</span>
-                        <h3 class="nickname"></h3>
-                        <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
-                    </div>
-                </li>
-                <div id="logout-button" style="display: none;">
-                    <li class="links-acc" onclick="logout()">
-                        <div class="account-info">
-                            <h3 class="nickname">Izpiši se</h3>
-                        </div>
-                    </li>
+	<body onload="checkTokenOnLoad()">
+		<header>
+			<nav>
+				<div class="logo">
+					<img src="IMG/Screenshot_25.png" alt="" srcset="" />
                 </div>
-                <li class="burger-men" onclick="burgerMenu()">
-                    <span class="crta"></span>
-                    <span class="crta"></span>
-                    <span class="crta"></span>
-                </li>
-
-            </ul>
-        </nav>
-    </header>
-    </header>
-    <article class="login-art">
-        <section class="login-page" id="login-form">
-            <form id="login-form">
-                <h1 class="naslov" style="text-align: left; color: #560BAD; margin: 0 0 10px -20px;">Vpis</h1>
-                <span><input required class="input" type="email" name="email" id="login-email"
-                        placeholder="E-pošta"></span>
-
-                <span>
-                    <input class="input" type="password" name="password" id="login-password" placeholder="Geslo"
-                        style="border-radius:5px 0 0 5px;     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;">
-                    <button id="show-button" class="show-psw" type="show-button" onclick="showPassword()"><img
-                            src="IMG/iStock-845329690.png"></button>
-                </span>
-                <p class="tekst" style="font-size: 0.8rem; text-align: left; padding: 0;">S prijavo se strinjam s <a
-                    href="pogoji.html">pogoji</a></p>
-                    <button type="submit" class="submit-btn" onclick="login()">Vpis</button>
-                    <p class="tekst" style="font-size: 1rem; text-align: left; padding: 3px 0 0 0;">Ali <a
-                        href="register.html">Registracija</a></p>
-                        <div id="status" class="long"></div>
-                    </form>
-                </section>
-                <section id="vsebina" style="display: none;">
-                    <div>
-                        <div class="text_normal tekst" id="users" style="display: none;">
-                            <h1 class="naslov" id="vsebina_naslov">Vsebina</h1>
-                            <div class="tekst"id="user-list"></div>
-                        </div>
-                        <div id="profile" style="display: none;">
-                            <h1 class="podnaslov" id="username">Uporabniško ime</h1>
-                        </div>
-                        <div id="content" style="display: none;">
-                            <p class="tekst" ></p>
-                        </div>
-                    </div>
-        </section>
-        <section class="cookie" id="cookie-banner">
-            <img src="IMG/iStock-1418459527.png" alt="" srcset="">
-            <h3 class="podnaslov">Naši pogoji uporabe</h3>
-            <p class="tekst">Preberi o pogojih <a href="pogoji.html">tukaj</a></p>
-            <form action="" method="get" id="cookie-banner">
-                <button id="agree" onclick="CookieDontShow()">Strinjam se</button>
-            </form>
-
-
-        </section>
-    </article>
-    <footer>
-        <nav>
-            <ul class="bottom-links">
-                <li class="bottom-link"><a class=" " onclick="showHome()">Domov</a></li>
-                <li class="bottom-link"><a class=" " onclick="showSchool()">Šola</a></li>
-                <li class="bottom-link"><a class=" " onclick="showContact()">Kontakti</a></li>
-            </ul>
-        </nav>
-    </footer>
-</body>
-
+				<ul class="nav-links">
+					<li>
+						<a href="\">Domov</a>
+					</li>
+					<li class="active-page">
+						<a href="school.html">Šola</a>
+					</li>
+					<li>
+						<a href="contact.html">Kontakti</a>
+					</li>
+					<li>
+						<a href="clicker.html">Games</a>
+					</li>
+				</ul>
+				<ul>
+					<li onclick="showLogin()">
+						<span id="user-navbar">Vpiši se</span>
+						<i class="fas fa-user-circle"></i>
+					</li>
+					<div id="logout-button" style="display: none">
+						<li onclick="logout()">
+							<h3>Izpiši se</h3>
+						</li>
+					</div>
+					<li class="burger-men" onclick="burgerMenu()">
+						<i class="fas fa-bars"></i>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<article class="login-art">
+			<section class="login-page">
+				<form id="login-form">
+					<h1
+						class="naslov"
+						style="
+							text-align: left;
+							color: #560bad;
+							margin: 0 0 10px -20px;
+						">
+						Vpis
+					</h1>
+					<span
+						><input
+							required
+							class="input"
+							type="email"
+							name="email"
+							id="login-email"
+							placeholder="E-pošta"
+					/></span>
+					<span>
+						<input
+							class="input"
+							type="password"
+							name="password"
+							id="login-password"
+							placeholder="Geslo"
+							style="
+								border-radius: 5px 0 0 5px;
+								box-shadow: rgba(0, 0, 0, 0.15) 2.4px 0px 3.2px;
+							" />
+						<button
+							id="show-button"
+							class="show-psw"
+							type="show-button"
+							onclick="showPassword()">
+							<i class="fas fa-eye"></i>
+						</button>
+					</span>
+					<p
+						class="tekst"
+						style="font-size: 0.8rem; text-align: left; padding: 0">
+						S prijavo se strinjam s <a href="pogoji.html">pogoji</a>
+					</p>
+					<button type="submit" class="submit-btn" onclick="login()">
+						Vpis
+					</button>
+					<p
+						class="tekst"
+						style="
+							font-size: 1rem;
+							text-align: left;
+							padding: 3px 0 0 0;
+						">
+						Ali <a href="register.html">Registracija</a>
+					</p>
+					<div id="status" class="long"></div>
+				</form>
+			</section>
+			<section id="vsebina" style="display: none">
+				<div>
+					<div
+						class="text_normal tekst"
+						id="users"
+						style="display: none">
+						<h1 class="naslov" id="vsebina_naslov">Vsebina</h1>
+						<div class="tekst" id="user-list"></div>
+					</div>
+					<div id="profile" style="display: none">
+						<h1 class="podnaslov" id="username">Uporabniško ime</h1>
+					</div>
+					<div id="content" style="display: none">
+						<p class="tekst"></p>
+					</div>
+				</div>
+			</section>
+		</article>
+	</body>
 </html>
