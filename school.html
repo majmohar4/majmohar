@@ -1,93 +1,118 @@
 <!DOCTYPE html>
 <html lang="sl">
-<head>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com%22%3E/>
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet"><meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Majmohar.me | Šola</title>
-    <link rel="icon" type="image/png" href="/IMG/maj2.png">
-    <link rel="stylesheet" href="STYLE/style.css">
-    <script src="SCRIPT/script.js"></script>
-    <script src="SCRIPT/firebase.js"></script>
-    <style>
-        .material-symbols-outlined {
-            color: #e9efef;
-
-            margin: 5px;
-            font-variation-settings:
-                'FILL' 1,
-                'wght' 400,
-                'GRAD' 1,
-                'opsz' 48
-        }
-    </style>
-</head>
-<body onload="checkTokenOnLoad()">
-    <header>
-        <nav>
-            <ul class="links">
-                <li class="logo"><img src="IMG/Screenshot_25.png" alt="" srcset=""></li>
-                <li onclick="showHome()" class="links-li "><a class=" ">Domov</a></li>
-                <li onclick="showSchool()" class="active-page links-li"><a class=" ">Šola</a></li>
-                <li onclick="showContact()" class="links-li"><a class=" ">Kontakti</a></li>
-                <li onclick="showClicker()" class="links-li"><a class=" ">Games</a></li>
-                <li class="links-vr">
-                    <div></div>
-                </li>
-                <!-- <li class="login links-li"><a onclick="showRegister()">Sign Up</a></li>
-                <li class=" links-li"><a onclick="showLogin()">Log In</a></li> -->
-                <li class="links-acc" onclick="showLogin()">
-                    <div class="account-info">
-                        <span class="hello" id="user-navbar">Vpiši se</span>
-                        <h3 class="nickname"></h3>
-                        <img src="IMG/iStock-1400219675.png" alt="account" srcset="">
-                    </div>
-                </li>
-                <div id="logout-button" style="display: none;">
-                    <li class="links-acc" onclick="logout()">
-                        <div class="account-info">
-                            <h3 class="nickname">Izpiši se</h3>
-                        </div>
-                    </li>
-                </div>
-                <li class="burger-men" onclick="burgerMenu()">
-                    <span class="crta"></span>
-                    <span class="crta"></span>
-                    <span class="crta"></span>
-                </li>
-                
-            </ul>
-        </nav>
-    </header>
-    <article>
-        <section class="work">
-            <h1 id="pageTitle" class="naslov">Vse za šolo</h1>
-            <h2 class="podnaslov">Moji Remnoti (klikni)</h2>
-            <ul class="spisek tekst">
-                <li><a target="_blank" href="https://www.remnote.com/a/likovna-umetnost-1-in-edini-test/645aa57fd2258975e69d5b55">Likovna umetnost</a>
-                <li><a target="_blank" href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Informatika</a></li>
-                <li><a target="_blank" href="https://www.remnote.com/a/645cf87ac840aade638f148a">Zgodovina</a></li>
-                <li><a target="_blank" href="https://www.remnote.com/a/6457b968cf00d6698dec6987">Geografija</a></li>
-            </li>        
-        </section>
-    </article>
-    <footer>
-        <nav>
-            <ul class="bottom-links">
-                <li class="bottom-link"><a class=" " onclick="showHome()">Domov</a></li>
-                <li class="bottom-link"><a class=" " onclick="showSchool()">Šola</a></li>
-                <li class="bottom-link"><a class=" " onclick="showContact()">Kontakti</a></li>
-                <li class="bottom-link"><a class=" " onclick="showPolicy()">Pogoji uporabe</a></li>
-                <li onclick="showClicker()" class="links-li"><a class=" ">Games</a></li>
-            </ul>
-        </nav>
-    </footer>
-</body>
+	<head>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/8.2.1/firebase-firestore.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com%22%3E/" />
+		<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+			rel="stylesheet" />
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Majmohar.me | Šola</title>
+		<link rel="icon" type="image/png" href="/IMG/maj2.png" />
+		<link rel="stylesheet" href="STYLE/style.css" />
+		<script src="SCRIPT/script.js"></script>
+		<script src="SCRIPT/firebase.js"></script>
+		<script
+			src="https://kit.fontawesome.com/b94e1e9a72.js"
+			crossorigin="anonymous"></script>
+	</head>
+	<body onload="checkTokenOnLoad()">
+		<header>
+			<nav>
+				<ul>
+					<li class="logo">
+						<img src="IMG/Screenshot_25.png" alt="" srcset="" />
+					</li>
+					<li>
+						<a href="\">Domov</a>
+					</li>
+					<li class="active-page">
+						<a href="school.html">Šola</a>
+					</li>
+					<li>
+						<a href="contact.html">Kontakti</a>
+					</li>
+					<li>
+						<a href="clicker.html">Games</a>
+					</li>
+				</ul>
+				<ul>
+					<li onclick="showLogin()">
+						<span id="user-navbar">Vpiši se</span>
+						<i class="fas fa-user-circle"></i>
+					</li>
+					<div id="logout-button" style="display: none">
+						<li onclick="logout()">
+							<h3>Izpiši se</h3>
+						</li>
+					</div>
+					<li class="burger-men" onclick="burgerMenu()">
+						<i class="fas fa-bars"></i>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<article>
+			<section class="work">
+				<h1 id="pageTitle" class="naslov">Vse za šolo</h1>
+				<h2 class="podnaslov">Moji Remnoti (klikni)</h2>
+				<ul class="spisek tekst">
+					<li>
+						<a
+							target="_blank"
+							href="https://www.remnote.com/a/likovna-umetnost-1-in-edini-test/645aa57fd2258975e69d5b55"
+							>Likovna umetnost</a
+						>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://www.remnote.com/a/6457b968cf00d6698dec6987"
+							>Informatika</a
+						>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://www.remnote.com/a/645cf87ac840aade638f148a"
+							>Zgodovina</a
+						>
+					</li>
+					<li>
+						<a
+							target="_blank"
+							href="https://www.remnote.com/a/6457b968cf00d6698dec6987"
+							>Geografija</a
+						>
+					</li>
+				</ul>
+			</section>
+		</article>
+		<footer>
+			<nav>
+				<ul>
+					<li>
+						<a onclick="showHome()">Domov</a>
+					</li>
+					<li>
+						<a onclick="showSchool()">Šola</a>
+					</li>
+					<li>
+						<a onclick="showContact()">Kontakti</a>
+					</li>
+					<li>
+						<a onclick="showPolicy()">Pogoji uporabe</a>
+					</li>
+					<li>
+						<a onclick="showClicker()">Games</a>
+					</li>
+				</ul>
+			</nav>
+		</footer>
+	</body>
 </html>

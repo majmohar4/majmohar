@@ -1,57 +1,60 @@
 * {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    height: 100%;
-    display: relative;
-    margin: 0;
-    padding: 0;
-    /* background: linear-gradient(45deg, rgba(255, 165, 0, 0.5), rgba(128, 0, 128, 0.5)); */
     background-color: #e2e2e2;
-    background-size: cover auto;
-    min-height: 100vh;
-    cursor: default;
-    overflow-x: hidden;
-  overflow-y: auto;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: 'Montserrat';
 }
 
-.pattern-container {
+header nav {
     display: flex;
-    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    list-style: none;
+    background-color: #94C5CC;
 }
 
-.pattern {
-    width: 100px;
-    height: 100px;
-    position: relative;
-    overflow: hidden;
+header nav ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
 }
 
-.pattern:before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 200%;
-    /* background: linear-gradient(-45deg, rgba(0, 0, 0, 0.2) 25%, rgba(0, 0, 0, 0.3) 25%, rgba(0, 0, 0, 0.3) 75%, rgba(0, 0, 0, 0.2) 75%); */
-    background-size: 10px 10px;
-    transform: translate(-25%, -25%);
-    opacity: 0.3;
+header nav li {
+    padding: 0.5rem 1rem;
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #65686f;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
-.pattern:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5) inset;
-    /* background: linear-gradient(45deg, rgba(255, 165, 0, 0.3), rgba(128, 0, 128, 0.3)); */
-    opacity: 0.3;
-    mix-blend-mode: screen;
+header nav li:hover,
+header nav li:hover a,
+header nav li:hover span {
+    color: #FFE787;
+}
+
+header nav li a {
+    text-decoration: none;
+    color: #65686f;
+}
+
+header nav li span {
+    margin-right: 10px;
 }
 
 .links {
@@ -63,70 +66,6 @@ body {
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
     color: #65686f;
     min-height: 60px;
-}
-
-.links-li {
-    list-style: none;
-    font-family: 'Montserrat';
-    padding: 20px 30px;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 10px;
-    transition: 0.4s;
-}
-
-.links-li:hover,
-.bottom-link:hover {
-    color: #FFE787;
-    background-color: #424242;
-    border-radius: 20px;
-    cursor: default;
-}
-
-.links-li:hover a {
-    transform: scale(1.1);
-}
-
-.links-li a {
-    display: inline-block;
-    /* transition: transform 0.4s; */
-}
-
-.bottom-links {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: center;
-    text-align: center;
-    border: 10%;
-    background-color: #94C5CC;
-    color: #241e1e;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    padding: 0.5rem 0 0 0;
-}
-
-
-.bottom-link {
-    list-style: none;
-    font-family: 'Montserrat';
-    padding: 3px 40px 2px;
-    align-items: center;
-    font-size: 0.9rem;
-    width: 10%;
-    margin: 0 20%;
-    text-align: center;
-    border:#00000025 2px solid;
-    border-radius: 10px;
-}
-
-.bottom-link:hover a {
-    transform: scale(1.1);
-}
-
-.bottom-link a {
-    display: inline-block;
-    transition: transform 0.4s;
 }
 
 .log-li {
@@ -153,10 +92,10 @@ section {
     border-radius: 5px;
 }
 
-section::before{
+section::before {
     border: 10px solid blue;
     border-radius: 5px;
-    }
+}
 
 html {
     height: 100vh
@@ -198,6 +137,44 @@ footer {
     min-height: 10vh;
 }
 
+footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+footer nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+footer nav li {
+    padding: 0.5rem 1rem;
+    font-family: 'Montserrat';
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #65686f;
+    cursor: pointer;
+}
+
+footer nav li:hover a {
+    color: #FFE787;
+}
+
+footer nav li a {
+    text-decoration: none;
+    color: #65686f;
+}
+
 .credit {
     list-style: none;
     font-family: 'Montserrat';
@@ -226,6 +203,7 @@ footer {
 .active-page {
     background-color: #75add5;
     color: #ffe787;
+    border-radius: 5px;
 }
 
 nav ul hr {
@@ -258,44 +236,6 @@ nav ul hr {
     font-family: 'Montserrat';
     padding: 7px 10px;
     font-weight: 500;
-}
-
-.links-acc {
-    list-style: none;
-    font-family: 'Montserrat';
-    padding: 5px;
-    font-weight: 500;
-    transition: all 0.3s;
-}
-
-.links-acc:hover {
-    transform: scale(1.05);
-    font-weight: 700;
-}
-
-.account-info {
-    max-height: 60px;
-    display: flex;
-    background: #FFE787;
-    border-radius: 7px;
-    padding: 5px 10px;
-}
-
-.account-info:hover {
-    opacity: 0.7;
-    transition: 0.4s;
-    color: #b4d2e7;
-    cursor: pointer;
-}
-
-.hello {
-    font-size: 0.8rem;
-    margin: auto 15px;
-}
-
-.nickname {
-    font-size: 0.8rem;
-    margin: 12px 15px;
 }
 
 .button-neki {
@@ -458,12 +398,9 @@ form {
 
 .cookie img {
     height: 6rem;
-    /* margin: 0 50%;
-    transform: translateX(-50%); */
 }
 
 .burger-men {
-    /* padding: auto; */
     height: 30px;
     display: none;
     justify-content: center;
@@ -474,16 +411,6 @@ form {
     right: 0;
     top: 0;
     z-index: 2;
-}
-
-.crta {
-    width: 35px;
-    height: 4px;
-    border-radius: 4px;
-    background-color: #B5179E;
-    display: block;
-    margin: auto;
-    /* margin-bottom: 6px; */
 }
 
 .logo img,
@@ -501,12 +428,6 @@ form {
 
 @media (max-width: 560px) {
 
-    .links-li,
-    .links-acc,
-    .links-vr {
-        /* display: none; */
-    }
-
     .links-vr {
         display: none;
     }
@@ -520,29 +441,12 @@ form {
     }
 
     .burger-men {
-        display: grid;
+        display: flex;
     }
 
     .logo img,
     .logo {
         display: block;
-    }
-
-    .links-li,
-    .links-acc {
-        width: 100%;
-        opacity: 1;
-        text-align: center;
-        padding: 20px 0;
-        background-color: #FFE787;
-    }
-
-    .links-acc {
-        /* margin: 20px 40px; */
-        padding: 0 0 10px;
-        margin: 0 auto;
-        width: 30%;
-        min-width: 130px;
     }
 
     .account-info img {
